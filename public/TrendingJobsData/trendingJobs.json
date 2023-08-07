@@ -58,5 +58,25 @@
     "ceo_image": "https://i.ibb.co/q0djqz2/ceo-m.jpg",
     "ceo_name": "Michael Anderson",
     "salary": "$85,000"
+  },
+  {
+    "_id": 7,
+    "job_image": "https://i.ibb.co/JCbBSdm/img-3.jpg",
+    "job_title": "Design & Cretive",
+    "job_text": "Utilize data analysis to derive insights and make data-driven business decisions.",
+    "location": "Seattle, WA",
+    "ceo_image": "https://i.ibb.co/h7QsDxF/ceo-w.png",
+    "ceo_name": "Michelle Williams",
+    "salary": "$100,000"
+  },
+  {
+    "_id": 8,
+    "job_image": "https://i.ibb.co/T44Y0mq/img-4.jpg",
+    "job_title": "Graphic Designer",
+    "job_text": "Create visually appealing designs for various digital and print media.",
+    "location": "Los Angeles, CA",
+    "ceo_image": "https://i.ibb.co/q0djqz2/ceo-m.jpg",
+    "ceo_name": "David Lee",
+    "salary": "$70,000"
   }
 ]
