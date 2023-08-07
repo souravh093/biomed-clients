@@ -4,6 +4,8 @@ const Home = () => {
     return (
         <div>
             Home
+            This is rakib 
+            <h1>Project starting</h1>
         </div>
     );
 };
