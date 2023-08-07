@@ -1,11 +1,12 @@
 import React from 'react';
+import Categorys from './categorys/Categorys';
 
 const Home = () => {
     return (
         <div>
             Home
-            This is rakib 
-            <h1>Project starting</h1>
+            This is rakib
+            <Categorys />
         </div>
     );
 };
