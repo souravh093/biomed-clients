@@ -6,7 +6,7 @@ import Categorys from './categorys/Categorys';
 const Home = () => {
     return (
         <div>
-          <TrendingJobs />
+            <TrendingJobs />
             <Categorys />
             <TopCompany />
         </div>
