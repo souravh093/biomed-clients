@@ -9,6 +9,8 @@ import logo6 from '../../../assets/marquee/com-6.png';
 import logo7 from '../../../assets/marquee/com-7.png';
 import logo8 from '../../../assets/marquee/com-8.png';
 import logo11 from '../../../assets/marquee/com-11.png';
+import SectionTitle from '../../../components/Shared/SectionTitle/SectionTitle';
+import Container from '../../../components/Shared/Container/Container';
 
 const TopCompany = () => {
     const companies = [
@@ -57,31 +59,36 @@ const TopCompany = () => {
     };
 
     return (
-        <div className="py-4">
-            <div className="container mx-auto">
-                <div
-                    className="flex items-center overflow-hidden marquee-container"
-                    onMouseEnter={togglePause}
-                    onMouseLeave={togglePause}
-                >
+        <Container>
+            <SectionTitle heading="Top Companies"
+                text="Industry Leaders Rely on Us">
+            </SectionTitle>
+            <div className="py-4">
+                <div className="container mx-auto">
                     <div
-                        className={`marquee-content ${isPaused ? 'paused' : ''}`}
+                        className="flex items-center overflow-hidden marquee-container"
+                        onMouseEnter={togglePause}
+                        onMouseLeave={togglePause}
                     >
-                        {companies.map((company, index) => (
-                            <a key={index} href="#" className="mr-4">
-                                <div className="logo-card transition-transform transform hover:scale-110">
-                                    <img
-                                        src={company.logo}
-                                        alt={`${company.name} Logo`}
-                                        className="h-100 w-100 mx-auto object-cover"
-                                    />
-                                </div>
-                            </a>
-                        ))}
+                        <div
+                            className={`marquee-content ${isPaused ? 'paused' : ''}`}
+                        >
+                            {companies.map((company, index) => (
+                                <a key={index} href="#" className="sm:mr-0 md:mr-4 lg:mr-8">
+                                    <div className="logo-card transition-transform transform hover:scale-110">
+                                        <img
+                                            src={company.logo}
+                                            alt={`${company.name} Logo`}
+                                            className="h-auto w-auto mx-auto object-cover"
+                                        />
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     );
 };
 

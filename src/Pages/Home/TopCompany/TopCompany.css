@@ -15,8 +15,8 @@
 
 .logo-card {
     padding: 12px;
-    border-radius: 8px;
-    background-color: #ffffff;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
@@ -37,5 +37,12 @@
 
     100% {
         transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-card {
+        padding: 20px;
+
     }
 }
