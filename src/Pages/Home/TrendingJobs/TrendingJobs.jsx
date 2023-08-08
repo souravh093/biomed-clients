@@ -12,6 +12,7 @@ import "./TrendingJobs.css";
 // Required modules
 import { Link } from "react-router-dom";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
+import Container from "../../../components/Shared/Container/Container";
 
 const TrendingJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -25,12 +26,12 @@ const TrendingJobs = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <SectionTitle
         heading={"Trending Jobs"}
         text={"Most viewed and all-time top Jobs"}
       />
-      <div className="bg-slate-50 dark:bg-slate-700 w-full px-4 mx-auto">
+      <div className="w-full px-4 mx-auto">
         <Swiper
           spaceBetween={30}
           freeMode={true}
@@ -52,7 +53,7 @@ const TrendingJobs = () => {
             1024: {
               slidesPerView: 3,
             },
-            1440: {
+            1920: {
               slidesPerView: 4,
             },
           }}
@@ -89,7 +90,7 @@ const TrendingJobs = () => {
           ))}
         </Swiper>
       </div>
-    </>
+    </Container>
   );
 };
 
