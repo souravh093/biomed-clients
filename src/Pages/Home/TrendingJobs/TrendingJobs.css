@@ -1,6 +1,18 @@
+/* Swiper pagination styles*/
+.mySwiper {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.swiper-pagination {
+  position: absolute;
+  transform: translateY(-20%);
+  z-index: 10;
+}
+
+/* Swiper navigation buttons styles */
 .mySwiper .swiper-button-prev,
 .mySwiper .swiper-button-next {
-  color: #333;
   background-color: #fff;
   padding: 2rem;
   border-radius: 100%;

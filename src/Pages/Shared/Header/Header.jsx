@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
 import SearchForm from "./SearchForm/SearchForm";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
