@@ -1,14 +1,12 @@
-import React from 'react';
+import React from "react";
+import TrendingJobs from "./TrendingJobs/TrendingJobs";
 
 const Home = () => {
-    return (
-        <div>
-            Home
-            This is rakib 
-            <h1>Project starting</h1>
-            <h2>First my branch change</h2>
-        </div>
-    );
+  return (
+    <div>
+      <TrendingJobs />
+    </div>
+  );
 };
 
 export default Home;
