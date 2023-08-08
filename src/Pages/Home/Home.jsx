@@ -1,12 +1,14 @@
 import React from 'react';
+import TopCompany from './TopCompany/TopCompany';
+import TrendingJobs from './TrendingJobs/TrendingJobs';
+import Categorys from './categorys/Categorys';
 
 const Home = () => {
     return (
         <div>
-            Home
-            This is rakib 
-            <h1>Project starting</h1>
-            <h2>First my branch change</h2>
+          <TrendingJobs />
+            <Categorys />
+            <TopCompany />
         </div>
     );
 };
