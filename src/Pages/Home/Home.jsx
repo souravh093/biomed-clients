@@ -1,12 +1,13 @@
-import React from "react";
-import TrendingJobs from "./TrendingJobs/TrendingJobs";
+import React from 'react';
+import Categorys from './categorys/Categorys';
 
 const Home = () => {
-  return (
-    <div>
-      <TrendingJobs />
-    </div>
-  );
+    return (
+        <div>
+            Home
+            <Categorys />
+        </div>
+    );
 };
 
 export default Home;
