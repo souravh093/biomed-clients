@@ -1,11 +1,10 @@
 import React from 'react';
+import TopCompany from './TopCompany/TopCompany';
 
 const Home = () => {
     return (
         <div>
-            Home
-            This is rakib 
-            <h1>Project starting</h1>
+            <TopCompany></TopCompany>
         </div>
     );
 };
