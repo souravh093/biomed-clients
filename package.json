@@ -13,11 +13,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
-<<<<<<< HEAD
-    "react-wavify": "^1.8.3"
-=======
+    "react-wavify": "^1.8.3",
     "swiper": "^10.1.0"
->>>>>>> f83fa387680d9bedea5ac64cd0c4c074692e2719
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
