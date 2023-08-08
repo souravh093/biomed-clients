@@ -4,6 +4,7 @@ import Categorys from './categorys/Categorys';
 const Home = () => {
     return (
         <div>
+            Home
             <Categorys />
         </div>
     );
