@@ -63,7 +63,7 @@ const TrendingJobs = () => {
             <SwiperSlide className="border rounded-xl" key={job._id} job={job}>
               <img className="rounded-t-xl w-full" src={job.job_image} alt="" />
               <div className="p-2 h-100 overflow-hidden space-y-2">
-                <h2 className="text-base text-gray-500">{job.job_title}</h2>
+                <h2 className="text-base text-gray-500 pt-4">{job.job_title}</h2>
                 <Link to="/">
                   <p className="mb-1 text-xl font-semibold hover:text-[#5BBB7B] hover:underline duration-500 cursor-pointer">
                     {`${job.job_text.slice(0, 50)}...`}
