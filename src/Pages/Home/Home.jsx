@@ -5,6 +5,7 @@ import CategoryMenu from './CategoryMenu/CategoryMenu';
 import TopCompany from './TopCompany/TopCompany';
 import TrendingJobs from './TrendingJobs/TrendingJobs';
 import Categorys from './categorys/Categorys';
+import FrequentlyAskQuestion from './FrequentlyAskQuestion/FrequentlyAskQuestion';
 import PreferenceJobs from './PreferenceJobs/PreferenceJobs';
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <AboutUs/>
             <TopCompany />
             <PreferenceJobs />
+            <FrequentlyAskQuestion />
         </div>
     );
 };
