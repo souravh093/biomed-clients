@@ -1,8 +1,9 @@
 import React from 'react';
+import Container from '../../../components/Shared/Container/Container';
 
 const Banner = () => {
     return (
-        <div >
+        <Container>
             <div className='grid grid-cols-1 md:grid-cols-2'>
 
                 <div className=' md:px-10'>
@@ -16,7 +17,7 @@ const Banner = () => {
                 </div>
 
             </div>
-        </div>
+        </Container>
     );
 };
 
