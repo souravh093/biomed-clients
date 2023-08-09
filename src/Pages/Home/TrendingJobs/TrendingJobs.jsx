@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { MdLocationOn } from 'react-icons/md';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
+
 
 // Swiper styles
 import "swiper/css";
@@ -39,6 +41,7 @@ const TrendingJobs = () => {
             delay: 5000,
             disableOnInteraction: false,
           }}
+          loop={true}
           pagination={{ clickable: true }}
           navigation={true}
           modules={[Autoplay, FreeMode, Navigation, Pagination]}
@@ -62,14 +65,21 @@ const TrendingJobs = () => {
             <SwiperSlide className="border rounded-xl" key={job._id} job={job}>
               <img className="rounded-t-xl w-full" src={job.job_image} alt="" />
               <div className="p-2 h-100 overflow-hidden space-y-2">
-                <h2 className="text-base text-gray-500">{job.job_title}</h2>
-                <Link to='/'><p className="mb-1 text-xl font-semibold hover:text-[#5BBB7B] hover:underline duration-500 cursor-pointer">
-                  {`${job.job_text.slice(0, 50)}...`}
-                </p></Link>
-                <p className="text-lg">
-                  Location:{" "}
-                  <span className="text-gray-500">{job.location}</span>
-                </p>
+                <h2 className="text-base text-gray-500 pt-4">
+                  {job.job_title}
+                </h2>
+                <Link to="/">
+                  <p className="mb-1 text-xl font-semibold hover:text-[#5BBB7B] hover:underline duration-500 cursor-pointer">
+                    {`${job.job_text.slice(0, 50)}...`}
+                  </p>
+                </Link>
+                <div className="flex items-center">
+                <MdLocationOn className="text-xl"/>
+                  <p className="text-lg">
+                    Location:{" "}
+                    <span className="text-gray-500">{job.location}</span>
+                  </p>
+                </div>
                 <hr className="mx-10 my-2 border-t border-gray-300" />
               </div>
 
