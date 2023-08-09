@@ -1,0 +1,48 @@
+.marquee-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-content.paused {
+    animation-play-state: paused;
+}
+
+.logo-card {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logo-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-card {
+        padding: 20px;
+
+    }
+}
