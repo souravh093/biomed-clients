@@ -19,6 +19,8 @@ const Home = () => {
             <TopCompany />
             <FrequentlyAskQuestion />
             <PreferenceJobs />
+            <PreferenceJobs />
+            <FrequentlyAskQuestion />
         </div>
     );
 };
