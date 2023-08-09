@@ -17,8 +17,6 @@ const Home = () => {
             <Categorys />
             <AboutUs/>
             <TopCompany />
-            <FrequentlyAskQuestion />
-            <PreferenceJobs />
             <PreferenceJobs />
             <FrequentlyAskQuestion />
         </div>
