@@ -38,15 +38,15 @@ const AboutUs = () => {
             <div className="mb-4">
               <div className="flex items-center mb-2">
                 <span className="text-green-500 mr-2 text-lg">&#10003;</span>
-                <p>Quality and excellence in task evaluation</p>
+                <p>Quality and excellence in task evaluation.</p>
               </div>
               <div className="flex items-center mb-2 text-lg">
                 <span className="text-green-500 mr-2">&#10003;</span>
-                <p>Innovation and creativity in our approach</p>
+                <p>Innovation and creativity in our approach.</p>
               </div>
               <div className="flex items-center">
                 <span className="text-green-500 mr-2 text-lg">&#10003;</span>
-                <p>Enhancing job seeker and employer interactions</p>
+                <p>Enhancing job seeker and employer interactions.</p>
               </div>
             </div>
             <Link to="/">
