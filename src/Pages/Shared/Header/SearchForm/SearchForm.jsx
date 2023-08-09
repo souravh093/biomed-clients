@@ -2,7 +2,8 @@ import React from "react";
 
 const SearchForm = () => {
   return (
-    <form className="w-80">
+    <div className="2xl:w-80">
+      <form>
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
@@ -25,7 +26,7 @@ const SearchForm = () => {
           type="search"
           id="default-search"
           className="block w-full p-4 pl-10 text-sm outline-none text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-[#5BBB7B] focus:border-[#5BBB7B]"
-          placeholder="Search Mockups, Logos..."
+          placeholder="Search jobs"
           required
         />
         <button
@@ -36,6 +37,7 @@ const SearchForm = () => {
         </button>
       </div>
     </form>
+    </div>
   );
 };
 
