@@ -11,7 +11,7 @@ import Categorys from './categorys/Categorys';
 const Home = () => {
     return (
         <div>
-            <CategoryMenu/>
+            <CategoryMenu />
             <Banner />
             <TrendingJobs />
             <Categorys />
