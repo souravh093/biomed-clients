@@ -38,19 +38,19 @@ const AboutUs = () => {
             <div className="mb-4">
               <div className="flex items-center mb-2">
                 <span className="text-green-500 mr-2 text-lg">&#10003;</span>
-                <p>Quality and excellence in task evaluation</p>
+                <p>Quality and excellence in task evaluation.</p>
               </div>
               <div className="flex items-center mb-2 text-lg">
                 <span className="text-green-500 mr-2">&#10003;</span>
-                <p>Innovation and creativity in our approach</p>
+                <p>Innovation and creativity in our approach.</p>
               </div>
               <div className="flex items-center">
                 <span className="text-green-500 mr-2 text-lg">&#10003;</span>
-                <p>Enhancing job seeker and employer interactions</p>
+                <p>Enhancing job seeker and employer interactions.</p>
               </div>
             </div>
             <Link to="/">
-              <button className="flex items-center justify-center gap-1 text-[#5BBB7B] border-[3px] border-[#5BBB7B] hover:bg-[#5BBB7B] hover:text-white hover:border-[#5BBB7B] rounded px-5 py-3 duration-500 text-lg font-semibold">
+              <button className="flex items-center justify-center gap-1 text-[#5BBB7B] border-[3px] border-[#5BBB7B] hover:bg-[#5BBB7B] hover:text-white hover:border-[#5BBB7B] rounded px-2 py-2 md:px-5 md:py-3 duration-500 text-sm md:text-lg font-semibold">
                 More About Us <BsArrowUpRight className="mt-1" />
               </button>
             </Link>
