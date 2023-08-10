@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const PreferenceItem = ({ data }) => {
   const {
@@ -22,7 +22,7 @@ const PreferenceItem = ({ data }) => {
             <h2 className="text-lg font-semibold text-gray-800">{job_name}</h2>
             <h3 className="text-sm text-gray-600">{company_name}</h3>
           </div>
-        </div>
+        </div> 
         <hr className="my-4 border-t border-gray-300" />
         <div className="text-gray-700">
           <div className="flex items-center mb-2">

@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import axios from "axios";
+import React from "react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import PreferenceItem from "./PreferenceItem/PreferenceItem";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const PreferenceJobs = () => {
   const { isLoading, data: preference = [] } = useQuery({
