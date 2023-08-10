@@ -11,11 +11,11 @@ import Categorys from './categorys/Categorys';
 const Home = () => {
     return (
         <div>
-            <CategoryMenu/>
+            <CategoryMenu />
             <Banner />
             <TrendingJobs />
             <Categorys />
-            <AboutUs/>
+            <AboutUs />
             <TopCompany />
             <PreferenceJobs />
             <FrequentlyAskQuestion />
