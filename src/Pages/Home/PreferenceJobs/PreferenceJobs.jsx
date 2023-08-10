@@ -3,18 +3,11 @@ import axios from "axios";
 import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import PreferenceItem from "./PreferenceItem/PreferenceItem";
-<<<<<<< HEAD
-=======
-import {  Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
->>>>>>> 95bd389f0b4ffbc44558be2ece5dbe16e82954e2
 
 const PreferenceJobs = () => {
   const { isLoading, data: preference = [] } = useQuery({
