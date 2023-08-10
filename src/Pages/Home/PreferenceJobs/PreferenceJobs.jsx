@@ -8,6 +8,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import PreferenceItem from "./PreferenceItem/PreferenceItem";
+<<<<<<< HEAD
+=======
+import {  Pagination, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+>>>>>>> 95bd389f0b4ffbc44558be2ece5dbe16e82954e2
 
 const PreferenceJobs = () => {
   const { isLoading, data: preference = [] } = useQuery({
@@ -38,10 +45,10 @@ const PreferenceJobs = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={3}
+          slidesPerView={4}
           loop={true} 
           pagination={{ clickable: true }}
-          modules={[Autoplay,  Navigation, Pagination]}
+          modules={[Autoplay, Pagination]}
           className="mySwiper"
           breakpoints={{
             320: {
