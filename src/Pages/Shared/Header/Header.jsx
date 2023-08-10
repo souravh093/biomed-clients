@@ -5,6 +5,7 @@ import SearchForm from "./SearchForm/SearchForm";
 import { Link } from "react-router-dom";
 import { FaAlignJustify } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import logo from "../../../assets/logo.png"
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -13,11 +14,9 @@ const Header = () => {
       <Container>
         <nav className="flex items-center justify-between py-5">
           <div className="flex items-center gap-10 2xl:gap-16">
-            <div>
-              <h2 className="uppercase font-bold text-3xl text-[#5BBB7B]">
-                Biomed.
-              </h2>
-            </div>
+            <Link to="/">
+              <img src={logo} alt="" />
+            </Link>
             <div>
               <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
