@@ -11,14 +11,14 @@ import Categorys from './categorys/Categorys';
 const Home = () => {
     return (
         <div>
-            <CategoryMenu/>
+            <CategoryMenu />
             <Banner />
             <TrendingJobs />
             <Categorys />
             <AboutUs/>
-            <TopCompany />
             <PreferenceJobs />
             <FrequentlyAskQuestion />
+            <TopCompany />
         </div>
     );
 };

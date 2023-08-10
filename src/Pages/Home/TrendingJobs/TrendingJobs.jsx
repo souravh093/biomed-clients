@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { MdLocationOn } from 'react-icons/md';
+import React from "react";
+import { MdLocationOn } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
-
 
 // Swiper styles
 import "swiper/css";
@@ -12,20 +11,24 @@ import "swiper/css/pagination";
 import "./TrendingJobs.css";
 
 // Required modules
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Container from "../../../components/Shared/Container/Container";
 
 const TrendingJobs = () => {
-  const [jobs, setJobs] = useState([]);
+  const { isLoading, data: jobs = [] } = useQuery({
+    queryKey: ["jobs"],
+    queryFn: async () => {
+      const res = await axios("TrendingJobsData/trendingJobs.json");
+      return res.data;
+    },
+  });
 
-  useEffect(() => {
-    fetch("TrendingJobsData/trendingJobs.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-      });
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container>
@@ -74,7 +77,7 @@ const TrendingJobs = () => {
                   </p>
                 </Link>
                 <div className="flex items-center">
-                <MdLocationOn className="text-xl"/>
+                  <MdLocationOn className="text-xl" />
                   <p className="text-lg">
                     Location:{" "}
                     <span className="text-gray-500">{job.location}</span>
