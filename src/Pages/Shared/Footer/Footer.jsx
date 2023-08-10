@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
         <hr className="h-px md:my-7 my-4 w-11/12 md:w-full border-0 bg-gray-600"></hr>
         <div className="md:flex md:justify-between md:mt-16 mb-5 mt-9 space-y-10">
-          <div>
+          <div className="mb-5">
             <p className="font-semibold text-xl mb-3">About</p>
             <div>
               <p>About Us</p>
