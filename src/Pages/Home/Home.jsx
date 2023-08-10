@@ -16,9 +16,9 @@ const Home = () => {
             <TrendingJobs />
             <Categorys />
             <AboutUs/>
-            <TopCompany />
             <PreferenceJobs />
             <FrequentlyAskQuestion />
+            <TopCompany />
         </div>
     );
 };
