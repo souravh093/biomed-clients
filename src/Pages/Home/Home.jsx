@@ -15,10 +15,10 @@ const Home = () => {
             <Banner />
             <TrendingJobs />
             <Categorys />
-            <AboutUs />
-            <TopCompany />
+            <AboutUs/>
             <PreferenceJobs />
             <FrequentlyAskQuestion />
+            <TopCompany />
         </div>
     );
 };
