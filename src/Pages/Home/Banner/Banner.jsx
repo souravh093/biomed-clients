@@ -25,7 +25,6 @@ const Banner = () => {
             className="player"
             loop
             autoplay
-            style={{ height: '700px', width: '700px' }}
           />
         </div>
       </div>
