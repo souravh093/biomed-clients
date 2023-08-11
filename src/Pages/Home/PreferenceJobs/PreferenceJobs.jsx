@@ -4,7 +4,7 @@ import axios from "axios";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import PreferenceItem from "./PreferenceItem/PreferenceItem";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import {  Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -38,10 +38,10 @@ const PreferenceJobs = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={3}
+          slidesPerView={4}
           loop={true} 
           pagination={{ clickable: true }}
-          modules={[Autoplay,  Navigation, Pagination]}
+          modules={[Autoplay, Pagination]}
           className="mySwiper"
           breakpoints={{
             320: {
