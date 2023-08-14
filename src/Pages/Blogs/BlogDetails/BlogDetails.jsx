@@ -26,7 +26,7 @@ const BlogDetails = () => {
   return (
     <Container>
       <img
-        className="lg:w-9/12 md:h-[400px] lg:h-[500px] mx-auto"
+        className="w-full md:h-[400px] lg:h-[600px] mx-auto"
         src={selectedBlog.image}
         alt=""
       />
