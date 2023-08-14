@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ blogItems }) => {
-  const { title, image, writer, writing_date, blog } = blogItems;
+  const {_id, title, image, writer, writing_date, blog } = blogItems;
   console.log(blogItems);
   return (
-    <Link to="/blogs">
+    <Link to={`/blogDetails/${_id}`}>
       <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full h-full mx-auto cursor-pointer">
         <div className="group relative overflow-hidden">
           <div className="group-hover:bg-purple-500/30 w-full h-full absolute z-40 transition-all duration-300"></div>
