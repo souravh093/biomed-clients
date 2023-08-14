@@ -5,6 +5,7 @@ import Cover from "../../components/Shared/Cover/Cover";
 
 import blogImg from "../../assets/cover_images/blog_cover.jpg";
 import Container from "../../components/Shared/Container/Container";
+import BlogCard from "./BlogCard/BlogCard";
 
 const Blogs = () => {
   const { isLoading, data: blogs = [] } = useQuery({
@@ -26,23 +27,11 @@ const Blogs = () => {
         title={"Blogs"}
         text={"We Hope This Will Help You!"}
       ></Cover>
-      {blogs.map((blog) => (
-        <div key={blog._id}>
-          {blog.blog.map((item) => (
-            <div key={item.id}>
-              <p>{item.intro}</p>
-              <p>{item.description}</p>
-              <ul>
-                {item.list.map((listItem, index) => (
-                  <li key={index}>{listItem.list_item}</li>
-                ))}
-              </ul>
-              <p>{item.conclusion}</p>
-            </div>
-          ))}
-          <br />
-        </div>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 py-10">
+        {blogs.map((blogItems) => (
+          <BlogCard key={blogItems._id} blogItems={blogItems} />
+        ))}
+      </div>
     </Container>
   );
 };
