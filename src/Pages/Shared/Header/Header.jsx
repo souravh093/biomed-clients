@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaAlignJustify } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.png";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
 import SearchForm from "./SearchForm/SearchForm";
-import { Link } from "react-router-dom";
-import { FaAlignJustify } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import logo from "../../../assets/logo.png"
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -22,7 +22,7 @@ const Header = () => {
                 <MenuItem name={"Home"} path={"/"} />
                 <MenuItem name={"Browse Jobs"} path={"/"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
-                <MenuItem name={"Blog"} path={"/"} />
+                <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
               </ul>
             </div>
@@ -60,7 +60,7 @@ const Header = () => {
                 <MenuItem name={"Home"} path={"/"} />
                 <MenuItem name={"Browse Jobs"} path={"/"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
-                <MenuItem name={"Blog"} path={"/"} />
+                <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
               </ul>
             </div>
