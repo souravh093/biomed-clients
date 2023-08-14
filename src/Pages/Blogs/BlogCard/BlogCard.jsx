@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 
 const BlogCard = ({ blogItems }) => {
   const {_id, title, image, writer, writing_date, blog } = blogItems;
-  console.log(blogItems);
+  
+  const dateObject = new Date(writing_date);
+  const formattedDate = dateObject.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
   return (
     <Link to={`/blogDetails/${_id}`}>
       <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full h-full mx-auto cursor-pointer">
@@ -20,7 +27,7 @@ const BlogCard = ({ blogItems }) => {
                   <div className="flex justify-between items-center pt-2">
                     <p className=" font-semibold">{writer}</p>
                     <p className="text-gray-600 font-semibold ">
-                      {writing_date}
+                      {formattedDate}
                     </p>
                   </div>
                 </div>
@@ -34,20 +41,4 @@ const BlogCard = ({ blogItems }) => {
 };
 
 export default BlogCard;
-{
-  /* <div key={blog._id}>
-            {blog.blog.map((item) => (
-              <div key={item.id}>
-                <p>{item.intro}</p>
-                <p>{item.description}</p>
-                <ul>
-                  {item.list.map((listItem, index) => (
-                    <li key={index}>{listItem.list_item}</li>
-                  ))}
-                </ul>
-                <p>{item.conclusion}</p>
-              </div>
-            ))}
-            <br />
-          </div> */
-}
+
