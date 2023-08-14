@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -31,14 +35,18 @@ const Header = () => {
               <Link to={"/seller"}>Become a Seller</Link>
             </ul>
             <div>
-              <ul className="flex items-center space-x-6">
-                <MenuItem name={"Login"} path={"/login"} />
-                <span className="bg-primary text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
-                  <Link to={"/register"} className="font-medium">
-                    Sign Up
-                  </Link>
-                </span>
-              </ul>
+              {user ? (
+                <ProfileDropdown />
+              ) : (
+                <ul className="flex items-center space-x-6">
+                  <MenuItem name={"Login"} path={"/login"} />
+                  <span className="bg-primary text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+                    <Link to={"/register"} className="font-medium">
+                      Sign Up
+                    </Link>
+                  </span>
+                </ul>
+              )}
             </div>
           </div>
 
@@ -77,11 +85,10 @@ const Header = () => {
             <div>
               <ul className="flex items-center space-x-6">
                 <MenuItem name={"Login"} path={"/login"} />
-                <span className="bg-[#5BBB7B] text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
-                  <Link to={"/register"} className="font-medium">
-                    Sign Up
-                  </Link>
-                </span>
+                
+                <Link to={"/register"} className="bg-[#5BBB7B] text-gray-100 font-medium px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+                  Sign Up
+                </Link>
               </ul>
             </div>
           </div>

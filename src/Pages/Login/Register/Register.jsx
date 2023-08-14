@@ -5,9 +5,13 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import axios from "axios";
+
+const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -16,17 +20,28 @@ const Register = () => {
   } = useForm();
   const password = watch("password");
 
+  const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+
   const onSubmit = (data) => {
-    createUser(data.email, data.password).then((result) => {
-      console.log(result.user);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    axios.post(imageUrl, formData).then((dataImage) => {
+      createUser(data.email, data.password).then(() => {
+        updateUser(data.name, dataImage.data.data.display_url).then(
+          (result) => {
+            console.log(result.user);
+          }
+        );
+      });
     });
     console.log(data);
   };
   return (
     <Container>
-      <div className="grid grid-cols-2 my-10 items-center">
+      <div className="grid lg:grid-cols-2 my-10 items-center">
         <div>
-          <div className="mb-10">
+          <div className="mb-10 px-10 lg:px-0">
             <h1 className="text-4xl font-semibold mb-5">Sign up</h1>
             <p>
               If you already have an account register <br /> You can{" "}
@@ -36,7 +51,7 @@ const Register = () => {
             </p>
           </div>
 
-          <div className="pr-40">
+          <div className="px-10 lg:px-0 lg:pr-40">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-3"
@@ -167,7 +182,7 @@ const Register = () => {
             </form>
           </div>
         </div>
-        <div className="bg-[#23ccc4]">
+        <div className="bg-[#23ccc4] hidden lg:block">
           <img className="shadow-md bg-cover" src={loginImg} alt="" />
         </div>
       </div>
