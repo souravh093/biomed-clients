@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useRef } from "react";
 import avatar from "../../assets/placeholder.jpg";
+import { Link } from "react-router-dom";
 
 const ProfileDropdown = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -60,9 +61,11 @@ const ProfileDropdown = () => {
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
               Edit Profile
             </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              Dashboard
-            </li>
+            <Link to={"/dashboard"}>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Dashboard
+              </li>
+            </Link>
             <li
               onClick={logoutHandler}
               className="px-4 py-2 hover:bg-red-500 hover:text-gray-100 cursor-pointer"

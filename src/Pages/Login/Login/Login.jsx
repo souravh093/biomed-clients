@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, googleLoginUser, resetPassword } = useContext(AuthContext);
@@ -25,13 +26,14 @@ const Login = () => {
   const handleGoogle = () => {
     googleLoginUser().then((result) => {
       console.log(result.user);
+      toast.success("Successfully login with Google")
     });
   };
 
   const resetPass = () => {
     const targetEmail = document.getElementById("email").value;
     resetPassword(targetEmail);
-    alert("Check you email");
+    toast.success("Check your email")
   };
 
   return (
@@ -99,7 +101,7 @@ const Login = () => {
               </div>
             </form>
 
-            <div className="mb-4 text-right">
+            <div className="mt-4 text-right">
               <div onClick={resetPass} className="text-primary hover:underline">
                 Reset Password
               </div>

@@ -32,7 +32,7 @@ const Header = () => {
           </div>
           <div className="hidden xl:flex items-center gap-10">
             <ul className="text-primary font-normal xl:font-medium hover:text-hover">
-              <Link to={"/seller"}>Become a Seller</Link>
+              <Link to={"/seller"}>Post a Job</Link>
             </ul>
             <div>
               {user ? (
