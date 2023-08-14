@@ -1,44 +1,50 @@
-import React from "react";
+import React from 'react';
 
 const SearchForm = () => {
-  return (
-    <div className="2xl:w-80">
-      <form>
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg
-            className="w-4 h-4 text-gray-500"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-            />
-          </svg>
+    return (
+        <div className="lg:flex">
+            <div className="border rounded-lg p-4 max-w-2xl">
+                <form className="space-y-4">
+                    <div className=" flex flex-col lg:flex-row lg:flex lg:items-center lg:space-x-4 gap-2 lg:gap-0">
+                        <div className="flex-grow">
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    name="filter-title"
+                                    placeholder="What are you looking for?"
+                                    className="w-full py-2 pl-5 pr-4 outline-none rounded-lg border-r"
+                                />
+                            </div>
+                        </div>
+                        <div className="lg:w-1/3">
+                            <select
+                                name="filter-category"
+                                id="XBpUo_category"
+                                className="w-full py-2 pl-2 pr-8 rounded-lg outline-none"
+                            >
+                                <option value="">Categories</option>
+                                <option value="47">Design & Creative</option>
+                                <option value="46">Development & IT</option>
+                                <option value="48">Digital Marketing</option>
+                                <option value="51">Finance & Accounting</option>
+                                <option value="53">Programming & Tech</option>
+                                <option value="55">Trending</option>
+                                <option value="54">Writing & Translation</option>
+                            </select>
+                        </div>
+                        <div className="flex-shrink">
+                            <button
+                                type="submit"
+                                className="px-10 w-full py-4 bg-primary text-white rounded-md hover:bg-hover focus:outline-none focus:ring focus:border-focus focus:ring-opacity-50 "
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <input
-          type="search"
-          id="default-search"
-          className="block w-full p-4 pl-10 text-sm outline-none text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-[#5BBB7B] focus:border-[#5BBB7B]"
-          placeholder="Search jobs"
-          required
-        />
-        <button
-          type="submit"
-          className="text-white absolute right-2.5 bottom-2.5 bg-[#5BBB7B] hover:bg-[#52aa6f] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2"
-        >
-          Search
-        </button>
-      </div>
-    </form>
-    </div>
-  );
+    );
 };
 
 export default SearchForm;
