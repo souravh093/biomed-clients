@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
-import SearchForm from "./SearchForm/SearchForm";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -28,7 +27,9 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden xl:flex items-center gap-10">
-            <SearchForm />
+            <ul className="text-primary font-normal xl:font-medium hover:text-hover">
+              <Link to={"/seller"}>Become a Seller</Link>
+            </ul>
             <div>
               <ul className="flex items-center space-x-6">
                 <MenuItem name={"Login"} path={"/login"} />
@@ -53,7 +54,11 @@ const Header = () => {
       </Container>
 
       {toggle && (
-        <div className={`absolute flex flex-col items-center ${toggle && "transition-all ease-in-out duration-200" } bg-[#80faa9] w-full py-5 animate-fadeIn`}>
+        <div
+          className={`absolute flex flex-col items-center ${
+            toggle && "transition-all ease-in-out duration-200"
+          } bg-[#80faa9] w-full py-5 animate-fadeIn`}
+        >
           <div className="flex justify-center items-center gap-16 xl:hidden">
             <div className="mb-10">
               <ul className="flex flex-col text-2xl gap-3 items-center xl:hidden">
@@ -66,7 +71,9 @@ const Header = () => {
             </div>
           </div>
           <div className="flex xl:hidden flex-col items-center gap-10">
-            <SearchForm />
+            <ul className="text-2xl border px-3 py-2 bg-white text-primary rounded-md shadow font-normal xl:font-medium">
+              <Link to={"/seller"}>Become a Seller</Link>
+            </ul>
             <div>
               <ul className="flex items-center space-x-6">
                 <MenuItem name={"Login"} path={"/login"} />

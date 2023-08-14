@@ -5,6 +5,8 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import Seller from "../Pages/Seller/Seller";
+import Contact from "../Pages/Contact/Contact";
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/seller",
+                element: <Seller />
+            },
+            {
+                path: "/contact",
+                element: <Contact></Contact>
             }
         ]
     }
