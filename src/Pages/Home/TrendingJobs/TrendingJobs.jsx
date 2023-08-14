@@ -1,5 +1,4 @@
 import React from "react";
-import { MdLocationOn } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 
@@ -13,9 +12,9 @@ import "./TrendingJobs.css";
 // Required modules
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Container from "../../../components/Shared/Container/Container";
+import TrendingSlide from "./TrendingSlide/TrendingSlide";
 
 const TrendingJobs = () => {
   const { isLoading, data: jobs = [] } = useQuery({
@@ -65,40 +64,8 @@ const TrendingJobs = () => {
           }}
         >
           {jobs.map((job) => (
-            <SwiperSlide className="border rounded-xl" key={job._id} job={job}>
-              <img className="rounded-t-xl w-full" src={job.job_image} alt="" />
-              <div className="p-2 h-100 overflow-hidden space-y-2">
-                <h2 className="text-base text-gray-500 pt-4">
-                  {job.job_title}
-                </h2>
-                <Link to="/">
-                  <p className="mb-1 text-xl font-semibold hover:text-[#5BBB7B] hover:underline duration-500 cursor-pointer">
-                    {`${job.job_text.slice(0, 50)}...`}
-                  </p>
-                </Link>
-                <div className="flex items-center">
-                  <MdLocationOn className="text-xl" />
-                  <p className="text-lg">
-                    Location:{" "}
-                    <span className="text-gray-500">{job.location}</span>
-                  </p>
-                </div>
-                <hr className="mx-10 my-2 border-t border-gray-300" />
-              </div>
-
-              <div className="flex justify-between items-center p-2">
-                <div className="flex items-center gap-2 hover:text-[#5BBB7B] duration-500 cursor-pointer">
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src={job.ceo_image}
-                    alt=""
-                  />
-                  <p className="text-lg">{job.ceo_name}</p>
-                </div>
-                <p className="text-lg">
-                  <span className="text-gray-500">Salary:</span> {job.salary}
-                </p>
-              </div>
+            <SwiperSlide key={job._id}>
+              <TrendingSlide job={job} />
             </SwiperSlide>
           ))}
         </Swiper>
