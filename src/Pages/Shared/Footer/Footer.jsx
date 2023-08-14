@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -68,7 +69,7 @@ const Footer = () => {
                 <p>FAQ Freeio</p>
                 <p>Contact Us</p>
                 <p>Services</p>
-                <p>Terms of Service</p>
+                <Link to="terms">Terms of Service</Link>
             </div>
         </div>
         <div className="mt-4 md:mt-0">
