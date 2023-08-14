@@ -9,10 +9,6 @@ export default {
       colors: {
         primary: "#5BBB7B"
       },
-      fontFamily: {
-        sans: ['var(--font-family-sans)', 'sans-serif'],
-        serif: ['var(--font-family-serif)', 'serif'],
-      },
     },
   },
   plugins: [],
