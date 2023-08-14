@@ -9,6 +9,8 @@ import Terms from "../components/Terms/Terms";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Seller from "../Pages/Seller/Seller";
 import Contact from "../Pages/Contact/Contact";
+import Dashboard from "../Layout/Dashboard";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 
 
 const router = createBrowserRouter([
@@ -48,6 +50,16 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact></Contact>
+            }
+        ]
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "/dashboard/dashboard-home",
+                element: <DashboardHome />
             }
         ]
     }
