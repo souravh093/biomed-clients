@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import MyProfile from "../Dashboard/MyProfile/MyProfile";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/my-profile",
+        element: <MyProfile />,
       },
     ],
   },
