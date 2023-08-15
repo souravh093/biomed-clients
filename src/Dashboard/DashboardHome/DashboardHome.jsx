@@ -3,8 +3,17 @@ import { BiBriefcase, BiMessageDetail } from "react-icons/bi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { GoBookmark } from "react-icons/go";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DashboardHome = () => {
+    const chartData = [
+        { month: 'January', views: 150 },
+        { month: 'February', views: 220 },
+        { month: 'March', views: 300 },
+        { month: 'April', views: 200 },
+        { month: 'May', views: 450 },
+        { month: 'June', views: 600 },
+      ];
   return (
     <div className="p-6">
       <div>
@@ -14,6 +23,7 @@ const DashboardHome = () => {
           <HiOutlineMenuAlt3 /> Menu
         </button>
       </div>
+      {/* Box Section */}
       <div className="mt-6 space-y-8 md:space-y-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center gap-6">
         {/* box-1 */}
         <div className="p-8 flex justify-between w-full bg-white rounded-lg items-center">
@@ -41,7 +51,9 @@ const DashboardHome = () => {
             <BiMessageDetail className="text-yellow-500  text-5xl" />
           </div>
           <div>
-            <p className="text-yellow-500 text-4xl font-semibold text-end">74</p>
+            <p className="text-yellow-500 text-4xl font-semibold text-end">
+              74
+            </p>
             <p>Messages</p>
           </div>
         </div>
@@ -56,6 +68,23 @@ const DashboardHome = () => {
           </div>
         </div>
       </div>
+
+     <div>
+         {/* Chart Section */}
+      <div className="mt-8 bg-white rounded-lg p-8">
+        <h3 className="text-xl font-semibold mb-3">Your Profile Views</h3>
+        <LineChart width={600} height={300} data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="views" stroke="#8884d8" activeDot={{ r: 8 }} />
+        </LineChart>
+      </div>
+
+      {/* Notification Section */}
+     </div>
     </div>
   );
 };
