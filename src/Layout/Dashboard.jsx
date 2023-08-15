@@ -1,17 +1,17 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "../Dashboard/Shared/Navbar/Navbar";
 import Sidebar from "../Dashboard/Shared/Sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-5">
-        <div className="col-span-1 bg-red-100">
+      <div className="grid grid-cols-4 lg:grid-cols-5">
+        <div className="col-span-1 bg-red-100 hidden lg:block">
           <Sidebar />
         </div>
-        <div className="col-span-4 bg-red-200">
+        <div className="col-span-4 bg-slate-100">
           <Outlet />
         </div>
       </div>
