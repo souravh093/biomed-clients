@@ -59,7 +59,7 @@ const Register = () => {
 
   return (
     <Container>
-      <div className="grid lg:grid-cols-2 my-10  h-[calc(100vh-250px)]">
+      <div className="grid lg:grid-cols-2 my-10">
         <div className="h-full">
           <div className="mb-10 px-10 lg:px-0">
             <h1 className="text-4xl font-semibold mb-5">Sign up</h1>
