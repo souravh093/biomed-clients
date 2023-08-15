@@ -19,7 +19,7 @@ const Notifications = () => {
     <div className="mt-8 bg-white rounded-lg p-8 shadow-sm">
       <h3 className="text-xl font-semibold mb-3">Notifications</h3>
       <div>
-        {notifications.slice(0, 5).map((notification) => (
+        {notifications.slice(0, 6).map((notification) => (
           <div key={notification._id} className="flex items-center gap-2">
             <div className="bg-green-100 p-3 rounded-full">
               <BiBriefcase className="text-primary text-lg" />

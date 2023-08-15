@@ -2,12 +2,13 @@ import React from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import Notifications from "./Notifications/Notifications";
 import ProfileViews from "./ProfileViews/ProfileViews";
+import RecentApplicants from "./RecentApplicants/RecentApplicants";
 import TopBox from "./TopBox/TopBox";
 
 const DashboardHome = () => {
   return (
     <div className="p-6">
-        {/* Heading Section */}
+      {/* Heading Section */}
       <div>
         <h2 className="text-3xl font-semibold">Dashboard Home!</h2>
         <p className="text-gray-600 text-base py-3">Ready to jump?</p>
@@ -17,12 +18,15 @@ const DashboardHome = () => {
       </div>
       {/* Box Section */}
       <TopBox />
-      
+
       {/* Chart Section &  Notification Section */}
       <div className="lg:flex items-start gap-4 w-full">
         <ProfileViews />
         <Notifications />
       </div>
+
+      {/* Recent Applicants Section */}
+      <RecentApplicants />
     </div>
   );
 };
