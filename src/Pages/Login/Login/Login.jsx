@@ -1,15 +1,26 @@
-import React from "react";
-import loginImg from "../../../assets/login.svg";
+import React, { useState } from "react";
+import loginImg from "../../../assets/login.jpg";
 import Container from "../../../components/Shared/Container/Container";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { saveUser } from "../../../api/auth";
 
 const Login = () => {
   const { loginUser, googleLoginUser, resetPassword } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const [error, setError] = useState("");
+
+  const [toggle, setToggle] = useState(false);
 
   const {
     register,
@@ -18,22 +29,34 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    loginUser(data.email, data.password).then((result) => {
-      console.log(result.user);
-    });
+    loginUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Successfully login");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => setError(error.message));
   };
 
   const handleGoogle = () => {
-    googleLoginUser().then((result) => {
-      console.log(result.user);
-      toast.success("Successfully login with Google")
-    });
+    googleLoginUser()
+      .then((result) => {
+        console.log(result.user);
+        saveUser(result.user);
+        navigate(from, { replace: true });
+        toast.success("Successfully login with Google");
+      })
+      .catch((error) => setError(error.message));
   };
 
   const resetPass = () => {
     const targetEmail = document.getElementById("email").value;
-    resetPassword(targetEmail);
-    toast.success("Check your email")
+    resetPassword(targetEmail)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Check your email");
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -73,19 +96,31 @@ const Login = () => {
                 )}
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 relative">
                 <label htmlFor="password" className="block mb-1">
                   Password
                 </label>
                 <input
-                  type="password"
+                  type={toggle ? "text" : "password"}
                   id="password"
                   placeholder="Enter your password"
-                  className="w-full p-2 border-b border-gray-300 rounded outline-none"
+                  className="w-full p-2 border-b text-gray-600 border-gray-300 rounded outline-none"
                   {...register("password", {
                     required: "Password is required",
                   })}
                 />
+
+                <div
+                  onClick={() => setToggle(!toggle)}
+                  className="absolute cursor-pointer right-0 bottom-2"
+                >
+                  {toggle ? (
+                    <AiFillEye className="text-xl text-gray-600" />
+                  ) : (
+                    <AiFillEyeInvisible className="text-xl text-gray-600" />
+                  )}
+                </div>
+
                 {errors.password && (
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
@@ -101,7 +136,8 @@ const Login = () => {
               </div>
             </form>
 
-            <div className="mt-4 text-right">
+            <div className="mt-4 flex justify-between">
+              <p className="text-red-500">{error}</p>
               <div onClick={resetPass} className="text-primary hover:underline">
                 Reset Password
               </div>
