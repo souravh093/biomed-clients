@@ -1,23 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
 import Blogs from "../Pages/Blogs/Blogs";
+import Contact from "../Pages/Contact/Contact";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
-import Terms from "../components/Terms/Terms";
-import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-import Seller from "../Pages/Seller/Seller";
-<<<<<<< HEAD
-import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
-
-=======
-import Contact from "../Pages/Contact/Contact";
-import Dashboard from "../Layout/Dashboard";
-import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
-import PrivateClient from "./PrivateClient";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
->>>>>>> 4e684494529c2edca0004d6178334f3a36d472b6
+import Seller from "../Pages/Seller/Seller";
+import Terms from "../components/Terms/Terms";
+import PrivateClient from "./PrivateClient";
 
 const router = createBrowserRouter([
   {
@@ -27,34 +22,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-<<<<<<< HEAD
-        element: <Root />,
-        children: [
-            {
-                path: "/",
-                element: <Home />
-            },
-            {
-                path: "/login",
-                element: <Login />
-            },
-            {
-                path: "/register",
-                element: <Register />
-            },
-            {
-                path: "/seller",
-                element: <Seller />
-            },
-            {
-                path: '/browseJobs',
-                element: <BrowseJobs />
-            }
-
-        ]
-    }
-])
-=======
         element: <Home />,
       },
       {
@@ -106,6 +73,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
->>>>>>> 4e684494529c2edca0004d6178334f3a36d472b6
 
 export default router;
