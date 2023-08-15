@@ -20,7 +20,7 @@ const TrendingJobs = () => {
   const { isLoading, data: jobs = [] } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const res = await axios("TrendingJobsData/trendingJobs.json");
+      const res = await axios("/TrendingJobsData/trendingJobs.json");
       return res.data;
     },
   });
