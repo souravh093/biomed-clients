@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const PreferenceItem = ({ data }) => {
   const {

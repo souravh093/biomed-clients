@@ -13,15 +13,18 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getCandidateRole, getClientRole } from "../api/auth";
 
 const auth = getAuth(app);
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [clientRole, setClientRole] = useState(null);
+  const [candidateRole, setCandidateRole] = useState(null)
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -57,24 +60,40 @@ const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
+      setUser(currentUser);
     });
     return () => {
-        return unsubscribe();
+      return unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      getClientRole(user?.email).then((data) => setClientRole(data));
     }
-  }, [])
+  });
+
+  useEffect(() => {
+    if (user) {
+      getCandidateRole(user?.email).then((data) => setCandidateRole(data));
+    }
+  });
+
 
   const authInfo = {
     user,
     loading,
+    clientRole,
+    candidateRole,
+    setCandidateRole,
     setLoading,
     createUser,
     loginUser,
     updateUser,
     logoutUser,
+    resetPassword,
     googleLoginUser,
-    resetPassword
-  }
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaAlignJustify } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.png";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
-import { Link } from "react-router-dom";
-import { FaAlignJustify } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import logo from "../../../assets/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
+  const { user, candidateRole } = useContext(AuthContext);
+  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -21,22 +26,30 @@ const Header = () => {
                 <MenuItem name={"Home"} path={"/"} />
                 <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
+                <MenuItem name={"Blog"} path={"/blogs"} />
+                <MenuItem name={"Contact"} path={"/"} />
               </ul>
             </div>
           </div>
           <div className="hidden xl:flex items-center gap-10">
-            <ul className="text-primary font-normal xl:font-medium hover:text-hover">
-              <Link to={"/seller"}>Become a Seller</Link>
-            </ul>
-            <div>
-              <ul className="flex items-center space-x-6">
-                <MenuItem name={"Login"} path={"/login"} />
-                <span className="bg-primary text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
-                  <Link to={"/register"} className="font-medium">
-                    Sign Up
-                  </Link>
-                </span>
+            {!candidateRole && (
+              <ul className="text-primary font-normal xl:font-medium hover:text-hover">
+                <Link to={"/seller"}>Post a Job</Link>
               </ul>
+            )}
+            <div>
+              {user ? (
+                <ProfileDropdown />
+              ) : (
+                <ul className="flex items-center space-x-6">
+                  <MenuItem name={"Login"} path={"/login"} />
+                  <span className="bg-primary text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+                    <Link to={"/register"} className="font-medium">
+                      Sign Up
+                    </Link>
+                  </span>
+                </ul>
+              )}
             </div>
           </div>
 
@@ -63,7 +76,7 @@ const Header = () => {
                 <MenuItem name={"Home"} path={"/"} />
                 <MenuItem name={"Browse Jobs"} path={"/"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
-                <MenuItem name={"Blog"} path={"/"} />
+                <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
               </ul>
             </div>
@@ -75,11 +88,13 @@ const Header = () => {
             <div>
               <ul className="flex items-center space-x-6">
                 <MenuItem name={"Login"} path={"/login"} />
-                <span className="bg-[#5BBB7B] text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
-                  <Link to={"/register"} className="font-medium">
-                    Sign Up
-                  </Link>
-                </span>
+
+                <Link
+                  to={"/register"}
+                  className="bg-[#5BBB7B] text-gray-100 font-medium px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer"
+                >
+                  Sign Up
+                </Link>
               </ul>
             </div>
           </div>

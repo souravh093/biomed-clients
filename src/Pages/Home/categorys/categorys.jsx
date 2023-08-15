@@ -11,8 +11,6 @@ const Categorys = () => {
       .then((data) => setCategorysData(data));
   }, []);
 
-  console.log(categorysData);
-
   return (
     <Container>
       <SectionTitle

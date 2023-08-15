@@ -1,19 +1,18 @@
-import React from "react";
-import loginImg from "../../../assets/login.jpg";
+import React, { useContext } from "react";
 import Container from "../../../components/Shared/Container/Container";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
-import { saveUser } from "../../../api/auth";
+import { saveClient } from "../../../api/auth";
+import loginImg from "../../../assets/login.jpg"
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
-const Register = () => {
+const RegisterClient = () => {
   const { createUser, updateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ const Register = () => {
           updateUser(data.name, dataImage.data.data.display_url)
             .then(() => {
               console.log(result?.user);
-              saveUser(result?.user);
+              saveClient(result?.user);
               toast.success("Successfully Sign Up");
               navigate(from, { replace: true });
             })
@@ -56,13 +55,12 @@ const Register = () => {
         .catch((error) => setError(error.message));
     });
   };
-
   return (
     <Container>
-      <div className="grid lg:grid-cols-2 my-10  h-[calc(100vh-250px)]">
-        <div className="h-full">
+      <div className="grid lg:grid-cols-2 my-10 items-center ">
+        <div>
           <div className="mb-10 px-10 lg:px-0">
-            <h1 className="text-4xl font-semibold mb-5">Sign up</h1>
+            <h1 className="text-4xl font-semibold mb-5">Register as a client.</h1>
             <p>
               If you already have an account register <br /> You can{" "}
               <Link to={"/login"} className="text-primary">
@@ -94,7 +92,7 @@ const Register = () => {
 
               <div className="mb-4">
                 <label htmlFor="email" className="block mb-1">
-                  Email
+                  Official Email Id
                 </label>
                 <input
                   type="email"
@@ -184,18 +182,18 @@ const Register = () => {
 
               <div className="mb-4">
                 <label htmlFor="image" className="block mb-1">
-                  Upload Image
+                  Upload Company Logo
                 </label>
                 <input
                   type="file"
                   id="image"
                   className="block w-full border text-gray-500
-                  file:mr-4 file:py-4 file:px-4
-                  file:rounded-md file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-gray-200 file:text-gray-700
-                  hover:file:bg-gray-100
-                "
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
                   {...register("image", {
                     required: "Image is required",
                     validate: {
@@ -225,12 +223,12 @@ const Register = () => {
             <p className="mt-1 text-red-500">{error}</p>
           </div>
         </div>
-        <div className="hidden lg:block">
-          <img className="shadow-md object-cover " src={loginImg} alt="" />
+        <div className="bg-[#23ccc4] hidden lg:block">
+          <img className="shadow-md bg-cover" src={loginImg} alt="" />
         </div>
       </div>
     </Container>
   );
 };
 
-export default Register;
+export default RegisterClient;
