@@ -2,7 +2,6 @@ import React from 'react';
 
 const SingleCategory = ({items}) => {
     const {icon,service_number, sub_title, title} = items;
-    console.log(items)
     return (
         <div className='border px-9 py-10 hover:border-slate-600 rounded-md transition'>
             <div className='mb-6'>

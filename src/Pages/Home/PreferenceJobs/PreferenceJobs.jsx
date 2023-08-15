@@ -22,8 +22,6 @@ const PreferenceJobs = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(preference);
-
   return (
     <div className="bg-[#f4fdf4] py-10">
       <Container>

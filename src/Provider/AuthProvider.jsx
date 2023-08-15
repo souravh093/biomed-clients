@@ -79,14 +79,13 @@ const AuthProvider = ({ children }) => {
     }
   });
 
-  console.log(clientRole)
-  console.log(candidateRole)
 
   const authInfo = {
     user,
     loading,
     clientRole,
     candidateRole,
+    setCandidateRole,
     setLoading,
     createUser,
     loginUser,
