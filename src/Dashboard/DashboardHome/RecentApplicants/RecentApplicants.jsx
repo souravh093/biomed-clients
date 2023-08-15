@@ -18,11 +18,11 @@ const RecentApplicants = () => {
   return (
     <div className="mt-8 bg-white rounded-lg p-8 shadow-sm">
       <h3 className="text-xl font-semibold mb-3">Recent Applicants</h3>
-      {applicants.map((applicant) => (
-        <div key={applicant._id}>
-          <ApplicantsCard applicant={applicant} />
-        </div>
-      ))}
+      <div className="grid md:grid-cols-2 md:gap-6">
+        {applicants.map((applicant) => (
+          <ApplicantsCard key={applicant._id} applicant={applicant} />
+        ))}
+      </div>
     </div>
   );
 };
