@@ -15,7 +15,7 @@ const Footer = () => {
             <div className="md:container md:mx-auto ms-5">
                 <div className="md:flex md:justify-between mx-auto md:pt-9 pt-5">
                     <div className="flex gap-5">
-                        <p>Terms of Service</p>
+                        <Link to="/terms">Terms of Service</Link>
                         <p>Privacy Policy</p>
                         <p>Site Map</p>
                     </div>
@@ -43,7 +43,7 @@ const Footer = () => {
                             <p>About Us</p>
                             <p>Become Seller</p>
                             <p><Link to={"/"}>Blogs</Link></p>
-                            <p>Terms of Service</p>
+                            <Link to="/terms">Terms of Service</Link>
                         </div>
                     </div>
                     <div className="mt-3 md:mt-0">
@@ -67,7 +67,7 @@ const Footer = () => {
                             <p>FAQ Freeio</p>
                             <Link to='contact'><p>Contact Us</p></Link>
                             <p>Services</p>
-                            <p>Terms of Service</p>
+                            <Link to="/terms">Terms of Service</Link>
                         </div>
                     </div>
                     <div className="mt-4 md:mt-0">

@@ -5,6 +5,8 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import Terms from "../components/Terms/Terms";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Seller from "../Pages/Seller/Seller";
 import Contact from "../Pages/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -32,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>,
       },
       {
         path: "/register",

@@ -3,7 +3,6 @@ import axios from "axios";
 import React from "react";
 import Cover from "../../components/Shared/Cover/Cover";
 
-import blogImg from "../../assets/cover_images/blog_cover.jpg";
 import Container from "../../components/Shared/Container/Container";
 import BlogCard from "./BlogCard/BlogCard";
 
@@ -23,7 +22,6 @@ const Blogs = () => {
   return (
     <Container>
       <Cover
-        bgImg={blogImg}
         title={"Blogs"}
         text={"We Hope This Will Help You!"}
       ></Cover>
