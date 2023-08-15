@@ -9,53 +9,62 @@ import Seller from "../Pages/Seller/Seller";
 import Contact from "../Pages/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
-
+import PrivateClient from "./PrivateClient";
+import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 
 const router = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
         path: "/",
-        element: <Root />,
-        children: [
-            {
-                path: "/",
-                element: <Home />
-            },
-            {
-                path: "/blogs",
-                element: <Blogs />
-            },
-            {
-                path: "/blogDetails/:id",
-                element: <BlogDetails />
-            },
-            {
-                path: "/login",
-                element: <Login />
-            },
-            {
-                path: "/register",
-                element: <Register />
-            },
-            {
-                path: "/seller",
-                element: <Seller />
-            },
-            {
-                path: "/contact",
-                element: <Contact></Contact>
-            }
-        ]
-    },
-    {
-        path: "/dashboard",
-        element: <Dashboard />,
-        children: [
-            {
-                path: "/dashboard/dashboard-home",
-                element: <DashboardHome />
-            }
-        ]
-    }
-])
+        element: <Home />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/blogDetails/:id",
+        element: <BlogDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/seller",
+        element: (
+          <PrivateClient>
+            <Seller />
+          </PrivateClient>
+        ),
+      },
+      {
+        path: "/registerclient",
+        element: <RegisterClient />,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/dashboard-home",
+        element: <DashboardHome />,
+      },
+    ],
+  },
+]);
 
 export default router;
