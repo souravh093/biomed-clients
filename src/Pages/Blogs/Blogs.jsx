@@ -20,17 +20,16 @@ const Blogs = () => {
   }
   console.log(blogs);
   return (
-    <Container>
-      <Cover
-        title={"Blogs"}
-        text={"We Hope This Will Help You!"}
-      ></Cover>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 py-10">
-        {blogs.map((blogItems) => (
-          <BlogCard key={blogItems._id} blogItems={blogItems} />
-        ))}
-      </div>
-    </Container>
+    <>
+      <Cover title={"Blogs"} text={"We Hope This Will Help You!"}></Cover>
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 py-10">
+          {blogs.map((blogItems) => (
+            <BlogCard key={blogItems._id} blogItems={blogItems} />
+          ))}
+        </div>
+      </Container>
+    </>
   );
 };
 
