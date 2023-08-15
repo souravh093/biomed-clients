@@ -6,7 +6,7 @@ import avatar from "../../assets/placeholder.jpg";
 import { Link } from "react-router-dom";
 
 const ProfileDropdown = () => {
-  const { user, logoutUser } = useContext(AuthContext);
+  const { user, logoutUser, setCandidateRole } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -31,7 +31,9 @@ const ProfileDropdown = () => {
   };
 
   const logoutHandler = () => {
-    logoutUser();
+    logoutUser().then(() => {
+      setCandidateRole(false);
+    });
   };
 
   return (

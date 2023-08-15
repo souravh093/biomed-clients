@@ -10,8 +10,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
-  const { user, candidateRole, clientRole } = useContext(AuthContext);
-  console.log(clientRole)
+  const { user, candidateRole } = useContext(AuthContext);
+  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -32,7 +32,7 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden xl:flex items-center gap-10">
-            {candidateRole || (
+            {!candidateRole && (
               <ul className="text-primary font-normal xl:font-medium hover:text-hover">
                 <Link to={"/seller"}>Post a Job</Link>
               </ul>
