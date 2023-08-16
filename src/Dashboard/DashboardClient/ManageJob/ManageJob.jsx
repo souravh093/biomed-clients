@@ -69,7 +69,7 @@ const ManageJob = () => {
                 <td className="px-6 py-4 text-green-700 text-sm font-thin">
                     Active
                 </td>
-                <td className="px-6 py-4 text-[#1967d2] ">
+                <td className="px-6 py-4 text-[#1967d2]">
                     <div className='flex gap-3'>
                     <RiDeleteBin6Line/>
                     <MdOutlineModeEdit/>
