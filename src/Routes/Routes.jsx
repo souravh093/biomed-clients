@@ -7,12 +7,12 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import Terms from "../components/Terms/Terms";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-import Seller from "../Pages/Seller/Seller";
 import Contact from "../Pages/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import PrivateClient from "./PrivateClient";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
+import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 
 const router = createBrowserRouter([
   {
@@ -45,14 +45,6 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/seller",
-        element: (
-          <PrivateClient>
-            <Seller />
-          </PrivateClient>
-        ),
-      },
-      {
         path: "/registerclient",
         element: <RegisterClient />,
       },
@@ -69,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/post-job",
+        element: (
+          <PrivateClient>
+            <PostJob />
+          </PrivateClient>
+        ),
       },
     ],
   },

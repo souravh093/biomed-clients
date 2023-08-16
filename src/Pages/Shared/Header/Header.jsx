@@ -34,7 +34,7 @@ const Header = () => {
           <div className="hidden xl:flex items-center gap-10">
             {!candidateRole && (
               <ul className="text-primary font-normal xl:font-medium hover:text-hover">
-                <Link to={"/seller"}>Post a Job</Link>
+                <Link to={"/dashboard/post-job"}>Post a Job</Link>
               </ul>
             )}
             <div>
