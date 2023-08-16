@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import axios from "axios";
+import React from "react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 import PreferenceItem from "./PreferenceItem/PreferenceItem";
-import {  Pagination, Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const PreferenceJobs = () => {
   const { isLoading, data: preference = [] } = useQuery({
@@ -21,8 +21,6 @@ const PreferenceJobs = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
-  console.log(preference);
 
   return (
     <div className="bg-[#f4fdf4] py-10">

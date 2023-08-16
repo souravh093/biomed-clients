@@ -16,6 +16,7 @@ const Home = () => {
             <TrendingJobs />
             <Categorys />
             <AboutUs/>
+            <FrequentlyAskQuestion />
             <PreferenceJobs />
             <FrequentlyAskQuestion />
             <TopCompany />
