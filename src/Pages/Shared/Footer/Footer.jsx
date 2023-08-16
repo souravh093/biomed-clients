@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
         </div>
         <hr className="h-px md:mt-20 w-11/12 md:w-full border-0 bg-gray-600"></hr>
-        <p className="md:mt-4 mt-3">© Biomed {currentYear}. All rights reserved.</p>
+        <p className="md:mt-4 mt-3 pb-5">© Biomed {currentYear}. All rights reserved.</p>
       </div>
     </div>
   );
