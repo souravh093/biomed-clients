@@ -14,6 +14,7 @@ import Seller from "../Pages/Seller/Seller";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/applied-jobs",
         element: <AppliedJobs />
+      },
+      {
+        path: "/dashboard/shortlisted-jobs",
+        element: <ShortlistedJobs />
       }
     ],
   },
