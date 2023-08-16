@@ -21,7 +21,7 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to='/dashboard/applied-jobs' className="flex items-center gap-3">
             <PiBagSimpleBold /> Applied Jobs
           </Link>
         </li>
@@ -31,7 +31,7 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to='/dashboard/shortlisted-jobs' className="flex items-center gap-3">
             <FaRegBookmark /> Shortlisted Jobs
           </Link>
         </li>
@@ -47,7 +47,7 @@ const CandidateMenu = () => {
         </li>
       </ul>
     </div>
-    );
+  );
 };
 
 export default CandidateMenu;

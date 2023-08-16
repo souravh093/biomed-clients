@@ -1,19 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
 import Blogs from "../Pages/Blogs/Blogs";
+import Contact from "../Pages/Contact/Contact";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import Terms from "../components/Terms/Terms";
-import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-import Contact from "../Pages/Contact/Contact";
-import Dashboard from "../Layout/Dashboard";
-import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import PrivateClient from "./PrivateClient";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
-
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +71,14 @@ const router = createBrowserRouter([
           </PrivateClient>
         ),
       },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />
+      },
+      {
+        path: "/dashboard/shortlisted-jobs",
+        element: <ShortlistedJobs />
+      }
     ],
   },
 ]);

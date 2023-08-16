@@ -20,7 +20,7 @@ const DashboardHome = () => {
       <TopBox />
 
       {/* Chart Section &  Notification Section */}
-      <div className="lg:flex items-start gap-4 w-full">
+      <div className="xl:flex items-start gap-4 w-full">
         <ProfileViews />
         <Notifications />
       </div>

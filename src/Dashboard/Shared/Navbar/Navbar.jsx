@@ -1,7 +1,7 @@
-import React from "react";
-import logo from "../../../assets/logo.png";
+import React from 'react';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import MenuItem from "../../../Pages/Shared/Header/MenuItem/MenuItem";
+import logo from "../../../assets/logo.png";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Navbar = () => {

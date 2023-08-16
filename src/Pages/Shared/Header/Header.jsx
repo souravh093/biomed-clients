@@ -24,7 +24,7 @@ const Header = () => {
             <div>
               <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
