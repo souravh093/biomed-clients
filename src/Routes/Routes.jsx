@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
 import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/editProfile",
-        element: <EditProfile/>,
+        element: <EditProfile />,
       },
     ],
   },
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-profile",
         element: <MyProfile />,
+      },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />,
       },
     ],
   },
