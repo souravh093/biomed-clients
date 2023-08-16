@@ -13,6 +13,7 @@ import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Seller from "../Pages/Seller/Seller";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
       },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />
+      }
     ],
   },
 ]);
