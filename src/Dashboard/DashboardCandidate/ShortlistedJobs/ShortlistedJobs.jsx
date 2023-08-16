@@ -1,15 +1,15 @@
 import React from 'react';
 import { FaBriefcase, FaMapMarkerAlt, FaEye, FaRegTrashAlt } from "react-icons/fa";
 
-const AppliedJobs = () => {
+const ShortlistedJobs = () => {
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             <div className="p-12">
-                <h1 className="text-3xl font-semibold">Applied jobs!</h1>
+                <h1 className="text-3xl font-semibold">Shortlisted Jobs!</h1>
                 <p className="mt-2 text-gray-600 text-lg">Ready to jump back in?</p>
             </div>
             <div className="bg-white shadow-md p-8 mx-10 rounded-2xl">
-                <h2 className="text-xl font-semibold pb-10">My Applied Jobs</h2>
+                <h2 className="text-xl font-semibold pb-10">My Favorite Jobs</h2>
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50 text-green-400">
                         <tr>
@@ -58,4 +58,4 @@ const AppliedJobs = () => {
     );
 };
 
-export default AppliedJobs;
+export default ShortlistedJobs;

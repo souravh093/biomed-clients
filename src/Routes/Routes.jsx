@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
 import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
+import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
@@ -13,10 +15,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
-import Seller from "../Pages/Seller/Seller";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,14 +48,6 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/seller",
-        element: (
-          <PrivateClient>
-            <Seller />
-          </PrivateClient>
-        ),
-      },
-      {
         path: "/registerclient",
         element: <RegisterClient />,
       },
@@ -84,6 +76,22 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/applied-jobs",
         element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/post-job",
+        element: (
+          <PrivateClient>
+            <PostJob />
+          </PrivateClient>
+        ),
+      },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/shortlisted-jobs",
+        element: <ShortlistedJobs />,
       },
     ],
   },

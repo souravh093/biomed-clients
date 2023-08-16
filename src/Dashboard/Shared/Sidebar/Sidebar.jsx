@@ -5,9 +5,9 @@ import ClientMenu from "../../DashboardClient/ClientMenu/ClientMenu";
 import CandidateMenu from "../../DashboardCandidate/CandidateMenu/CandidateMenu";
 
 const Sidebar = () => {
-  const {user, clientRole, candidateRole} = useContext(AuthContext);
+  const { user, clientRole, candidateRole } = useContext(AuthContext);
   return (
-    <div>
+    <div className="fixed">
       {
         clientRole ? (
           <ClientMenu />
