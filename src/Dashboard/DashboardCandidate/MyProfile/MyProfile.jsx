@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { BiEdit } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
@@ -28,11 +29,11 @@ const MyProfile = () => {
                 src={user.photoURL}
                 alt=""
               />
-              <div>
+              <Link to='/editProfile'>
                 <p className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
                   <BiEdit /> <span>Edit</span>
                 </p>
-              </div>
+              </Link>
             </div>
             <div className="space-y-3">
               <p className="flex flex-col text-sm">
@@ -43,11 +44,11 @@ const MyProfile = () => {
               </p>
             </div>
           </div>
-          <div>
+          <Link to='/editProfile'>
             <p className="hidden md:flex items-center gap-1 text-xl cursor-pointer text-primary pt-1 md:mt-0">
               <BiEdit /> <span>Edit</span>
             </p>
-          </div>
+          </Link>
         </div>
         {/* Additional Info */}
         <div className="py-10 md:flex items-center justify-around">

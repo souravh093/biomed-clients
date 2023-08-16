@@ -1,8 +1,8 @@
 import React from 'react';
-import { AiOutlineHome, AiOutlineUser, AiOutlineLogout } from "react-icons/ai";
-import { PiBagSimpleBold } from "react-icons/pi";
-import { IoIosPaper } from "react-icons/io";
+import { AiOutlineHome, AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
+import { IoIosPaper } from "react-icons/io";
+import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to={'/dashboard/my-profile'} className="flex items-center gap-3">
             <AiOutlineUser /> My Profile
           </Link>
         </li>

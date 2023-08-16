@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
+import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
-import MyProfile from "../Dashboard/MyProfile/MyProfile";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/editProfile",
+        element: <EditProfile/>,
       },
     ],
   },
