@@ -8,16 +8,14 @@ import Register from "../Pages/Login/Register/Register";
 import Terms from "../components/Terms/Terms";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Seller from "../Pages/Seller/Seller";
-<<<<<<< HEAD
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 
-=======
 import Contact from "../Pages/Contact/Contact";
 import Dashboard from "../Layout/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import PrivateClient from "./PrivateClient";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
->>>>>>> 4e684494529c2edca0004d6178334f3a36d472b6
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 
 const router = createBrowserRouter([
   {
@@ -27,34 +25,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-<<<<<<< HEAD
-        element: <Root />,
-        children: [
-            {
-                path: "/",
-                element: <Home />
-            },
-            {
-                path: "/login",
-                element: <Login />
-            },
-            {
-                path: "/register",
-                element: <Register />
-            },
-            {
-                path: "/seller",
-                element: <Seller />
-            },
-            {
-                path: '/browseJobs',
-                element: <BrowseJobs />
-            }
-
-        ]
-    }
-])
-=======
         element: <Home />,
       },
       {
@@ -103,9 +73,12 @@ const router = createBrowserRouter([
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
       },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />
+      }
     ],
   },
 ]);
->>>>>>> 4e684494529c2edca0004d6178334f3a36d472b6
 
 export default router;
