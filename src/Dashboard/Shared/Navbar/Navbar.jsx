@@ -6,7 +6,7 @@ import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown
 
 const Navbar = () => {
   return (
-    <nav className="px-20 py-5 flex items-center justify-between shadow-md">
+    <nav className="px-20 py-5 flex items-center justify-between shadow-md fixed w-full bg-white ">
       <div className="flex items-center gap-10">
         <img src={logo} alt="" />
         <ul>

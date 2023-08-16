@@ -3,13 +3,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useRef } from "react";
 import avatar from "../../assets/placeholder.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfileDropdown = () => {
   const { user, logoutUser, setCandidateRole } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+  const navigate = useNavigate();
 
   const openDropdown = () => {
     clearTimeout(timeoutRef.current);
@@ -33,6 +34,7 @@ const ProfileDropdown = () => {
   const logoutHandler = () => {
     logoutUser().then(() => {
       setCandidateRole(false);
+      navigate("/")
     });
   };
 

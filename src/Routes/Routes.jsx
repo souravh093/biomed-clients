@@ -9,13 +9,12 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
-import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
-import Seller from "../Pages/Seller/Seller";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
+import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,14 +46,6 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/seller",
-        element: (
-          <PrivateClient>
-            <Seller />
-          </PrivateClient>
-        ),
-      },
-      {
         path: "/registerclient",
         element: <RegisterClient />,
       },
@@ -71,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/post-job",
+        element: (
+          <PrivateClient>
+            <PostJob />
+          </PrivateClient>
+        ),
       },
       {
         path: "/dashboard/applied-jobs",

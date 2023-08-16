@@ -9,10 +9,13 @@ import { Link } from "react-router-dom";
 
 const ClientMenu = () => {
   return (
-    <div className="px-10 py-5 h-screen fixed">
+    <div className="px-10 py-5 h-screen">
       <ul className="text-xl">
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to={"/dashboard/dashboard-home"} className="flex items-center gap-3">
+          <Link
+            to={"/dashboard/dashboard-home"}
+            className="flex items-center gap-3"
+          >
             <AiOutlineHome /> Dashboard
           </Link>
         </li>
@@ -22,7 +25,7 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to={"/dashboard/post-job"} className="flex items-center gap-3">
             <CiPaperplane /> Post A New Job
           </Link>
         </li>
