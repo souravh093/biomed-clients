@@ -26,7 +26,7 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to={'/dashboard/my-profile'} className="flex items-center gap-3">
             <AiOutlineUser /> My Profile
           </Link>
         </li>

@@ -1,4 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
+import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
+import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
@@ -9,13 +14,12 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
-import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
-import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
-import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
-import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
 import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +58,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
+      {
+        path: "/editProfile",
+        element: <EditProfile />,
+      },
     ],
   },
   {
@@ -63,6 +71,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/my-profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />,
       },
       {
         path: "/dashboard/post-job",
@@ -75,10 +91,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/company-profile",
         element: <CompanyProfile />,
-      },
-      {
-        path: "/dashboard/applied-jobs",
-        element: <AppliedJobs />,
       },
       {
         path: "/dashboard/shortlisted-jobs",
