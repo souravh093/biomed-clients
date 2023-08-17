@@ -57,7 +57,7 @@ const ProfileDropdown = () => {
       >
         <img
           referrerPolicy="no-referrer"
-          src={updateData.image ? updateData.image : user.photoURL}
+          src={updateData?.image ? updateData?.image : user?.photoURL}
           alt="Profile"
           className="w-full h-full object-cover"
         />

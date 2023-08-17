@@ -5,10 +5,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import Notifications from "../../DashboardHome/Notifications/Notifications";
-import ProfileViews from "../../DashboardHome/ProfileViews/ProfileViews";
-import RecentApplicants from "../../DashboardHome/RecentApplicants/RecentApplicants";
 import CandidateBox from "./CandidateBox/CandidateBox";
+import CandidateNotification from "./CandidateNotification/CandidateNotification";
+import CandidateProfileViews from "./CandidateProfileViews/CandidateProfileViews";
+import RecentAppliedJobs from "./RecentAppliedJobs/RecentAppliedJobs";
 
 const CandidateHome = () => {
   const { user } = useContext(AuthContext);
@@ -25,7 +25,7 @@ const CandidateHome = () => {
       {/* Heading Section */}
       <div>
         <h2 className="text-3xl font-semibold">
-          Howdy, {updateData.name2 ? updateData.name2 : user.displayName}!
+          Howdy, {updateData?.name2 || user?.displayName}!
         </h2>
         <p className="text-gray-600 text-base py-3">Ready to jump?</p>
         <button className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
@@ -37,12 +37,12 @@ const CandidateHome = () => {
 
       {/* Chart Section &  Notification Section */}
       <div className="xl:flex items-start gap-4 w-full">
-        <ProfileViews />
-        <Notifications />
+        <CandidateProfileViews/>
+        <CandidateNotification/>
       </div>
 
       {/* Recent Applicants Section */}
-      <RecentApplicants />
+      <RecentAppliedJobs />
     </div>
   );
 };
