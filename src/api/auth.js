@@ -1,11 +1,12 @@
 // save user with role
-export const saveUser = (user) => {
+export const saveUser = (user, updateData) => {
   console.log(user);
   const currentUser = {
     email: user?.email,
     name: user?.displayName,
     image: user?.photoURL,
     candidate: true,
+    updateData,
   };
 
   fetch(`http://localhost:5000/users/${user?.email}`, {

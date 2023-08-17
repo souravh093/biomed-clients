@@ -1,54 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext, useState } from "react";
-import toast from "react-hot-toast";
+import React, { useContext } from "react";
 import { BiEdit } from "react-icons/bi";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import EditForm from "./EditForm/EditForm";
 
 const MyProfile = () => {
-  const [control, setControl] = useState(false);
-  const [showEditForm, setShowEditForm] = useState(false);
   const { user } = useContext(AuthContext);
 
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/users/${user?.email}`);
+      const res = await axios(`http://localhost:5000/user/${user?.email}`);
       return res.data;
     },
   });
-  console.log(myProfileData.email);
+  
+  const { updateData } = myProfileData;
 
-  // update profile functionality
-  const handleUpdateProfileData = (profileData) => {
-    axios
-      .patch(
-        `http://localhost:5000/updateProfile/${profileData?._id}`,
-        profileData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        const result = response.data;
-        console.log(result);
 
-        if (result.modifiedCount > 0) {
-          setControl(!control);
-        }
-
-        toast.success("Profile updated successfully");
-        closeModal();
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("Failed to update Profile. Please try again.");
-      });
-  };
 
   return (
     <div className="px-10 py-6">
@@ -70,32 +41,34 @@ const MyProfile = () => {
             <div className="mb-3 md:mb-0">
               <img
                 className="rounded-full h-32 w-32 mx-auto md:mx-0"
-                src={myProfileData.image}
+                src={updateData?.image ? updateData?.image : myProfileData?.image}
                 alt=""
               />
-              <button
-                className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
-                onClick={() => setShowEditForm(true)}
-              >
-                <BiEdit /> <span>Edit</span>
-              </button>
+              <Link to="/dashboard/editProfile">
+                <button
+                  className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
+                >
+                  <BiEdit /> <span>Edit</span>
+                </button>
+              </Link>
             </div>
             <div className="space-y-3">
               <p className="flex flex-col text-sm">
-                Full Name <span className="text-xl">{myProfileData.name}</span>
+                Full Name <span className="text-xl">{updateData?.name2 ? updateData?.name2 : myProfileData?.name}</span>
               </p>
               <p className="flex flex-col text-sm">
-                Email Address{" "}
-                <span className="text-xl">{myProfileData.email}</span>
+                Email Address <span className="text-xl">{updateData?.email ? updateData?.email : myProfileData?.email}</span>
               </p>
             </div>
           </div>
-          <button
-            className="hidden lg:flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
-            onClick={() => setShowEditForm(true)}
-          >
-            <BiEdit /> <span>Edit</span>
-          </button>
+          <Link to="/dashboard/editProfile">
+            <button
+              className="hidden lg:flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
+            
+            >
+              <BiEdit /> <span>Edit</span>
+            </button>
+          </Link>
         </div>
         {/* Additional Info */}
         <div className="mx-0 md:mx-10 xl:mx-24">
@@ -105,32 +78,31 @@ const MyProfile = () => {
               <p className="flex flex-col text-sm">
                 Job Title{" "}
                 <span className="text-xl">
-                  {myProfileData.jobTitle ? myProfileData.jobTitle : "none"}
+                  {updateData?.jobTitle ? updateData?.jobTitle : "none"}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Experience{" "}
                 <span className="text-xl">
-                  {myProfileData.experience ? myProfileData.experience : 0}{" "}
-                  Years
+                  {updateData?.experience ? updateData?.experience : 0}{" "}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Education Levels{" "}
                 <span className="text-xl">
-                  {myProfileData.education ? myProfileData.education : "none"}
+                  {updateData?.education ? updateData?.education : "none"}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Country{" "}
                 <span className="text-xl">
-                  {myProfileData.country ? myProfileData.country : "none"}
+                  {updateData?.country ? updateData?.country : "none"}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 City{" "}
                 <span className="text-xl">
-                  {myProfileData.city ? myProfileData.city : "none"}
+                  {updateData?.city ? updateData?.city : "none"}
                 </span>
               </p>
             </div>
@@ -139,83 +111,69 @@ const MyProfile = () => {
               <p className="flex flex-col text-sm">
                 Phone{" "}
                 <span className="text-xl">
-                  {myProfileData.phone ? myProfileData.phone : 0}
+                  {updateData?.phone ? updateData?.phone : 0}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Age{" "}
                 <span className="text-xl">
-                  {myProfileData.age ? myProfileData.age : 0} Years
+                  {updateData?.age ? updateData?.age : 0} Years
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Language{" "}
                 <span className="text-xl">
-                  {myProfileData.language ? myProfileData.language : "none"}
+                  {updateData?.language ? updateData?.language : "none"}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Current Salary($){" "}
                 <span className="text-xl">
-                  {myProfileData.currentSalary
-                    ? myProfileData.currentSalary
-                    : 0}
+                  {updateData?.currentSalary ? updateData?.currentSalary : 0}
                 </span>
               </p>
               <p className="flex flex-col text-sm">
                 Expected Salary($){" "}
                 <span className="text-xl">
-                  {myProfileData.expectedSalary
-                    ? myProfileData.expectedSalary
-                    : 0}
+                  {updateData?.expectedSalary ? updateData?.expectedSalary : 0}
                 </span>
               </p>
             </div>
           </div>
           {/* Links Part */}
           <div>
-            <p className="flex flex-col text-sm">
-              Website Link{" "}
+            <div>
+              <p className="flex flex-col text-sm">Website Link </p>
               <span className="text-xl text-blue-600 hover:underline cursor-pointer">
-                {myProfileData.website ? myProfileData.website : "none"}
+                {updateData?.website ? updateData?.website : "none"}
               </span>
-            </p>
-            <p className="flex flex-col text-sm">
-              Facebook Link{" "}
+            </div>
+            <div>
+              <p className="flex flex-col text-sm">Facebook Link </p>
               <span className="text-xl text-blue-600 hover:underline cursor-pointer">
-                {myProfileData.facebook ? myProfileData.facebook : "none"}
+                {updateData?.facebook ? updateData?.facebook : "none"}
               </span>
-            </p>
-            <p className="flex flex-col text-sm">
-              LinkedIn Link{" "}
+            </div>
+            <div>
+              <p className="flex flex-col text-sm">LinkedIn Link </p>
               <span className="text-xl text-blue-600 hover:underline cursor-pointer">
-                {myProfileData.linkedin ? myProfileData.linkedin : "none"}
+                {updateData?.linkedin ? updateData?.linkedin : "none"}
               </span>
-            </p>
+            </div>
           </div>
           {/* About Me Part */}
           <div className="mt-10">
             <p className="flex flex-col text-xl">
               About Me{" "}
               <span className="text-base text-slate-600">
-                {myProfileData.description
-                  ? myProfileData.description
+                {updateData?.description
+                  ? updateData?.description
                   : "Nothing Write Yet!"}
               </span>
             </p>
           </div>
         </div>
       </div>
-
-      {showEditForm && (
-        <EditForm
-          handleUpdateProfileData={handleUpdateProfileData}
-          onClose={() => {
-            setShowEditForm(false);
-          }}
-          myProfileData={myProfileData}
-        />
-      )}
     </div>
   );
 };

@@ -1,9 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+import { saveUser } from "../../../../api/auth";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const EditForm = () => {
+  const { user } = useContext(AuthContext);
+  const { data: myProfileData = [] } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axios(`http://localhost:5000/user/${user?.email}`);
+      return res.data;
+    },
+  });
+  const { updateData } = myProfileData;
+  console.log("updateData", updateData);
 
   const {
     register,
@@ -37,9 +51,29 @@ const EditForm = () => {
         description: data.description,
         image: dataImage.data.data.display_url,
       };
-      handleUpdateProfileData(profileData);
+      saveUser(user, profileData);
     });
   };
+
+  // const handleUpdateProfileData = (profileData) => {
+  //   axios
+
+  //     .then((response) => {
+  //       const result = response.data;
+  //       console.log(result);
+
+  //       if (result.modifiedCount > 0) {
+  //         setControl(!control);
+  //       }
+
+  //       toast.success("Profile updated successfully");
+  //       closeModal();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       toast.error("Failed to update Profile. Please try again.");
+  //     });
+  // };
 
   return (
     <div className="bg-white p-6 rounded-md my-6">
@@ -53,25 +87,18 @@ const EditForm = () => {
             type="file"
             id="image"
             className="block w-full border text-gray-500
-                  file:mr-4 file:py-4 file:px-4
-                  file:rounded-md file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-gray-200 file:text-gray-700
-                  hover:file:bg-gray-100
-                "
+            file:mr-4 file:py-4 file:px-4
+            file:rounded-md file:border-0
+            file:text-sm file:font-semibold
+            file:bg-gray-200 file:text-gray-700
+            hover:file:bg-gray-100
+          "
             {...register("image", {
-              required: "Image is required",
-              validate: {
-                fileSize: (file) =>
-                  file[0]?.size < 1048576 || "Image size must be less than 1MB",
-                fileType: (file) =>
-                  /jpeg|png|gif/.test(file[0]?.type) ||
-                  "Unsupported image format (jpeg/png/gif only)",
-              },
+              required: "Please upload an image",
             })}
           />
           {errors.image && (
-            <p className="text-red-500">{errors.image.message}</p>
+            <span className="text-red-500">{errors.image.message}</span>
           )}
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -81,13 +108,11 @@ const EditForm = () => {
             <input
               type="text"
               id="name"
+              defaultValue={updateData?.name2 || ""}
               placeholder="Your Full Name"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("name", { required: "Name is required" })}
+              {...register("name")}
             />
-            {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
-            )}
           </div>
           {/*Job Title Field */}
           <div className="mb-4">
@@ -96,13 +121,11 @@ const EditForm = () => {
             <input
               type="text"
               id="jobTitle"
+              defaultValue={updateData?.jobTitle || ""}
               placeholder="Job Title"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("jobTitle", { required: "Title is required" })}
+              {...register("jobTitle")}
             />
-            {errors.jobTitle && (
-              <p className="text-red-500">{errors.jobTitle.message}</p>
-            )}
           </div>
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -112,13 +135,11 @@ const EditForm = () => {
             <input
               type="number"
               id="phone"
+              defaultValue={updateData?.phone || ""}
               placeholder="Your Phone"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("phone", { required: "Phone Number is required" })}
+              {...register("phone")}
             />
-            {errors.phone && (
-              <p className="text-red-500">{errors.phone.message}</p>
-            )}
           </div>
           {/*Email Field */}
           <div className="mb-4">
@@ -127,13 +148,11 @@ const EditForm = () => {
             <input
               type="email"
               id="email"
+              defaultValue={updateData?.email || ""}
               placeholder="Your Email"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("email", { required: "Email is required" })}
+              {...register("email")}
             />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
           </div>
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -143,13 +162,11 @@ const EditForm = () => {
             <input
               type="text"
               id="education"
+              defaultValue={updateData?.education || ""}
               placeholder="Your Last Education"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("education", { required: "Education is required" })}
+              {...register("education")}
             />
-            {errors.education && (
-              <p className="text-red-500">{errors.education.message}</p>
-            )}
           </div>
           {/*Language Field */}
           <div className="mb-4">
@@ -158,13 +175,11 @@ const EditForm = () => {
             <input
               type="text"
               id="language"
+              defaultValue={updateData?.language || ""}
               placeholder="Language"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("language", { required: "Language is required" })}
+              {...register("language")}
             />
-            {errors.language && (
-              <p className="text-red-500">{errors.language.message}</p>
-            )}
           </div>
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -191,9 +206,6 @@ const EditForm = () => {
                 70-100K+
               </option>
             </select>
-            {errors.currentSalary && (
-              <p className="text-red-500">{errors.currentSalary.message}</p>
-            )}
           </div>
           {/*Expected Salary Field */}
           <div className="mb-4 cursor-pointer">
@@ -218,9 +230,6 @@ const EditForm = () => {
                 70-100K+
               </option>
             </select>
-            {errors.expectedSalary && (
-              <p className="text-red-500">{errors.expectedSalary.message}</p>
-            )}
           </div>
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -247,9 +256,6 @@ const EditForm = () => {
                 15+ Years
               </option>
             </select>
-            {errors.experience && (
-              <p className="text-red-500">{errors.experience.message}</p>
-            )}
           </div>
           {/*Age Field */}
           <div className="mb-4 cursor-pointer">
@@ -274,7 +280,6 @@ const EditForm = () => {
                 38-42 Years
               </option>
             </select>
-            {errors.age && <p className="text-red-500">{errors.age.message}</p>}
           </div>
         </div>
 
@@ -285,13 +290,11 @@ const EditForm = () => {
             <input
               type="text"
               id="country"
+              defaultValue={updateData?.country || ""}
               placeholder="Enter Country Name"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("country", { required: "Title is required" })}
+              {...register("country")}
             />
-            {errors.country && (
-              <p className="text-red-500">{errors.country.message}</p>
-            )}
           </div>
           {/*City Field */}
           <div className="mb-4">
@@ -299,13 +302,11 @@ const EditForm = () => {
             <input
               type="text"
               id="city"
+              defaultValue={updateData?.city || ""}
               placeholder="Enter City Name"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("city", { required: "City is required" })}
+              {...register("city")}
             />
-            {errors.city && (
-              <p className="text-red-500">{errors.city.message}</p>
-            )}
           </div>
         </div>
         {/*Website Field */}
@@ -314,13 +315,11 @@ const EditForm = () => {
           <input
             type="text"
             id="website"
+            defaultValue={updateData?.website || ""}
             placeholder="Enter Website Link"
             className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-            {...register("website", { required: "Website is required" })}
+            {...register("website")}
           />
-          {errors.website && (
-            <p className="text-red-500">{errors.website.message}</p>
-          )}
         </div>
         <div className="lg:grid grid-cols-2 gap-4">
           {/*Facebook Field */}
@@ -329,13 +328,11 @@ const EditForm = () => {
             <input
               type="text"
               id="facebook"
+              defaultValue={updateData?.facebook || ""}
               placeholder="Enter Facebook Link"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("facebook", { required: "Facebook is required" })}
+              {...register("facebook")}
             />
-            {errors.facebook && (
-              <p className="text-red-500">{errors.facebook.message}</p>
-            )}
           </div>
           {/*LinkedIn Field */}
           <div className="mb-4">
@@ -343,13 +340,11 @@ const EditForm = () => {
             <input
               type="text"
               id="linkedin"
+              defaultValue={updateData?.linkedin || ""}
               placeholder="Enter LinkedIn Link"
               className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("linkedin", { required: "LinkedIn is required" })}
+              {...register("linkedin")}
             />
-            {errors.linkedin && (
-              <p className="text-red-500">{errors.linkedin.message}</p>
-            )}
           </div>
         </div>
         {/* Description */}
@@ -357,15 +352,11 @@ const EditForm = () => {
           <label htmlFor="description p-10">Description</label>
           <textarea
             id="description"
+            defaultValue={updateData?.description || ""}
             placeholder="Enter job description"
-            class="w-full h-60 px-5 py-4 rounded-md outline-none bg-slate-100 border focus:border-blue-700 transition"
-            {...register("description", {
-              required: "Description is required",
-            })}
+            className="w-full h-60 px-5 py-4 rounded-md outline-none bg-slate-100 border focus:border-blue-700 transition"
+            {...register("description")}
           ></textarea>
-          {errors.description && (
-            <p className="text-red-500">{errors.description.message}</p>
-          )}
         </div>
 
         <button
