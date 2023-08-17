@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { saveUser } from "../../../../api/auth";
 
@@ -31,49 +32,43 @@ const EditForm = () => {
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
-    axios.post(imageUrl, formData).then((dataImage) => {
-      const profileData = {
-        name2: data.name,
-        city: data.city,
-        country: data.country,
-        education: data.education,
-        email: data.email,
-        currentSalary: data.currentSalary,
-        expectedSalary: data.expectedSalary,
-        experience: data.experience,
-        age: data.age,
-        facebook: data.facebook,
-        jobTitle: data.jobTitle,
-        language: data.language,
-        linkedin: data.linkedin,
-        phone: data.phone,
-        website: data.website,
-        description: data.description,
-        image: dataImage.data.data.display_url,
-      };
-      saveUser(user, profileData);
-    });
+    axios
+      .post(imageUrl, formData)
+      .then((dataImage) => {
+        const profileData = {
+          name2: data.name,
+          city: data.city,
+          country: data.country,
+          education: data.education,
+          email: data.email,
+          currentSalary: data.currentSalary,
+          expectedSalary: data.expectedSalary,
+          experience: data.experience,
+          age: data.age,
+          facebook: data.facebook,
+          jobTitle: data.jobTitle,
+          language: data.language,
+          linkedin: data.linkedin,
+          phone: data.phone,
+          website: data.website,
+          description: data.description,
+          image: dataImage.data.data.display_url,
+        };
+
+        return saveUser(user, profileData);
+      })
+      .then((response) => {
+        if (response.data.modifiedCount == 1) {
+          toast.success("Profile updated successfully");
+        } else {
+          toast.error("Failed to update Profile. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.success("Profile updated successfully");
+      });
   };
-
-  // const handleUpdateProfileData = (profileData) => {
-  //   axios
-
-  //     .then((response) => {
-  //       const result = response.data;
-  //       console.log(result);
-
-  //       if (result.modifiedCount > 0) {
-  //         setControl(!control);
-  //       }
-
-  //       toast.success("Profile updated successfully");
-  //       closeModal();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       toast.error("Failed to update Profile. Please try again.");
-  //     });
-  // };
 
   return (
     <div className="bg-white p-6 rounded-md my-6">
@@ -240,19 +235,19 @@ const EditForm = () => {
               className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("experience")}
             >
-              <option className="cursor-pointer py-2" value="0-2years">
+              <option className="cursor-pointer py-2" value="0-2">
                 0-2 Years
               </option>
-              <option className="cursor-pointer py-2" value="2-5years">
+              <option className="cursor-pointer py-2" value="2-5">
                 2-5 Years
               </option>
-              <option className="cursor-pointer py-2" value="5-10years">
+              <option className="cursor-pointer py-2" value="5-10">
                 5-10 Years
               </option>
-              <option className="cursor-pointer py-2" value="10-15years">
+              <option className="cursor-pointer py-2" value="10-15">
                 10-15 Years
               </option>
-              <option className="cursor-pointer py-2" value="15+years">
+              <option className="cursor-pointer py-2" value="15+">
                 15+ Years
               </option>
             </select>
@@ -264,19 +259,19 @@ const EditForm = () => {
               className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("age")}
             >
-              <option className="cursor-pointer py-2" value="18-22years">
+              <option className="cursor-pointer py-2" value="18-22">
                 18-22 Years
               </option>
-              <option className="cursor-pointer py-2" value="23-27years">
+              <option className="cursor-pointer py-2" value="23-27">
                 23-27 Years
               </option>
-              <option className="cursor-pointer py-2" value="28-32years">
+              <option className="cursor-pointer py-2" value="28-32">
                 28-32 Years
               </option>
-              <option className="cursor-pointer py-2" value="33-37years">
+              <option className="cursor-pointer py-2" value="33-37">
                 33-37 Years
               </option>
-              <option className="cursor-pointer py-2" value="38-42years">
+              <option className="cursor-pointer py-2" value="38-42">
                 38-42 Years
               </option>
             </select>

@@ -84,7 +84,7 @@ const MyProfile = () => {
               <p className="flex flex-col text-sm">
                 Experience{" "}
                 <span className="text-xl">
-                  {updateData?.experience ? updateData?.experience : 0}{" "}
+                  {updateData?.experience ? updateData?.experience : 0}{" "}Years
                 </span>
               </p>
               <p className="flex flex-col text-sm">
