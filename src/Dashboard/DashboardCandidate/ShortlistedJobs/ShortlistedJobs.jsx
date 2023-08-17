@@ -3,10 +3,10 @@ import axios from 'axios';
 import React from 'react';
 import { FaBriefcase, FaMapMarkerAlt, FaEye, FaRegTrashAlt } from "react-icons/fa";
 
-const AppliedJobs = () => {
+const ShortlistedJobs = () => {
 
-    const { isLoading, data: appliedJobs = [] } = useQuery({
-        queryKey: ["appliedJobs"],
+    const { isLoading, data: shortListedJobs = [] } = useQuery({
+        queryKey: ["shortListedJobs"],
         queryFn: async () => {
             const res = await axios("/public/appliedjobs.json");
             return res.data;
@@ -18,14 +18,16 @@ const AppliedJobs = () => {
     }
 
 
+
+
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             <div className="p-6 md:p-12">
-                <h1 className="text-2xl md:text-3xl font-semibold">Applied jobs!</h1>
+                <h1 className="text-2xl md:text-3xl font-semibold">Shortlisted jobs!</h1>
                 <p className="mt-1 md:mt-2 text-gray-600 text-base md:text-lg">Ready to jump back in?</p>
             </div>
             <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
-                <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">My Applied Jobs</h2>
+                <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">My Favorite Jobs</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50 text-green-400">
@@ -38,7 +40,7 @@ const AppliedJobs = () => {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {
-                                appliedJobs.map(singleJob => (
+                                shortListedJobs.map(singleJob => (
                                     <tr key={singleJob._id}>
                                         <td className="py-2 md:py-4">
                                             <div className="flex items-center">
@@ -81,4 +83,4 @@ const AppliedJobs = () => {
     );
 };
 
-export default AppliedJobs;
+export default ShortlistedJobs;

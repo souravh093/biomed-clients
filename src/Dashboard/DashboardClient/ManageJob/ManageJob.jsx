@@ -6,8 +6,8 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 const ManageJob = () => {
     return (
         <div className="md:p-20 p-5">
-            <h2 className="md:text-3xl text-2xl font-semibold">Manage jobs!</h2>
-            <p className="md:mt-4 mt-2 text-sm">Ready to jump back in?</p>
+            <h2 className="md:text-3xl text-2xl font-medium">Manage jobs!</h2>
+            <p className="md:mt-2 mt-2 text-sm font-thin">Ready to jump back in?</p>
             <div className="md:mt-10 mt-7 bg-white md:p-7 p-5 rounded-xl shadow-sm">
                 <div className="md:flex md:justify-between">
                     <p className="text-lg">My Job Listings</p>

@@ -5,10 +5,9 @@ import CandidateMenu from "../../DashboardCandidate/CandidateMenu/CandidateMenu"
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const {user, clientRole, candidateRole} = useContext(AuthContext);
+  const { user, clientRole, candidateRole } = useContext(AuthContext);
   return (
-    <div className="bg-red-600">
-      <Link to='/dashboard/manage-jobs'>Manage Jobs</Link>
+    <div className="fixed">
       {
         clientRole ? (
           <ClientMenu />

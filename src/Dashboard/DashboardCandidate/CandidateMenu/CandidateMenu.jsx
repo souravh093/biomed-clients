@@ -1,14 +1,14 @@
 import React from 'react';
-import { AiOutlineHome, AiOutlineUser, AiOutlineLogout } from "react-icons/ai";
-import { PiBagSimpleBold } from "react-icons/pi";
-import { IoIosPaper } from "react-icons/io";
+import { AiOutlineHome, AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
+import { IoIosPaper } from "react-icons/io";
+import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const CandidateMenu = () => {
     return (
-        <div className="px-10 py-5 h-screen ">
+        <div className="px-10 py-5 h-screen">
       <ul className="text-xl">
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link className="flex items-center gap-3">
@@ -16,12 +16,12 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to={'/dashboard/my-profile'} className="flex items-center gap-3">
             <AiOutlineUser /> My Profile
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to='/dashboard/applied-jobs' className="flex items-center gap-3">
             <PiBagSimpleBold /> Applied Jobs
           </Link>
         </li>
@@ -31,7 +31,7 @@ const CandidateMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to='/dashboard/shortlisted-jobs' className="flex items-center gap-3">
             <FaRegBookmark /> Shortlisted Jobs
           </Link>
         </li>
@@ -47,7 +47,7 @@ const CandidateMenu = () => {
         </li>
       </ul>
     </div>
-    );
+  );
 };
 
 export default CandidateMenu;
