@@ -1,15 +1,13 @@
-import React from "react";
-import loginImg from "../../../assets/login.jpg";
-import Container from "../../../components/Shared/Container/Container";
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import axios from "axios";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 import { saveUser } from "../../../api/auth";
+import loginImg from "../../../assets/login.jpg";
+import Container from "../../../components/Shared/Container/Container";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -59,7 +57,7 @@ const Register = () => {
 
   return (
     <Container>
-      <div className="grid lg:grid-cols-2 my-10  h-[calc(100vh-250px)]">
+      <div className="grid lg:grid-cols-2 my-10">
         <div className="h-full">
           <div className="mb-10 px-10 lg:px-0">
             <h1 className="text-4xl font-semibold mb-5">Sign up</h1>

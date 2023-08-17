@@ -7,10 +7,10 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-4 lg:grid-cols-5">
-        <div className="col-span-1 bg-red-100 hidden lg:block">
+      <div className="grid grid-cols-4 lg:grid-cols-5 pt-[94px]">
+        <aside className="col-span-1 hidden lg:block ">
           <Sidebar />
-        </div>
+        </aside>
         <div className="col-span-4 bg-slate-100">
           <Outlet />
         </div>

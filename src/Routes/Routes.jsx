@@ -1,20 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
+import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
+import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
+import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
 import Blogs from "../Pages/Blogs/Blogs";
+import Contact from "../Pages/Contact/Contact";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
+import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
-import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-import Seller from "../Pages/Seller/Seller";
+import PrivateClient from "./PrivateClient";
+import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 
-import Contact from "../Pages/Contact/Contact";
-import Dashboard from "../Layout/Dashboard";
-import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
-import PrivateClient from "./PrivateClient";
-import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +39,11 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
       },
+
+      {
+        path: '/browseJobs',
+        element: <BrowseJobs /> 
+      },
       {
         path: "/login",
         element: <Login />,
@@ -47,14 +57,6 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/seller",
-        element: (
-          <PrivateClient>
-            <Seller />
-          </PrivateClient>
-        ),
-      },
-      {
         path: "/registerclient",
         element: <RegisterClient />,
       },
@@ -63,9 +65,9 @@ const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
       {
-        path: '/browseJobs',
-        element: <BrowseJobs />
-    }
+        path: "/editProfile",
+        element: <EditProfile />,
+      },
     ],
   },
   {
@@ -75,6 +77,30 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/my-profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "/dashboard/applied-jobs",
+        element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/post-job",
+        element: (
+          <PrivateClient>
+            <PostJob />
+          </PrivateClient>
+        ),
+      },
+      {
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile />,
+      },
+      {
+        path: "/dashboard/shortlisted-jobs",
+        element: <ShortlistedJobs />,
       },
     ],
   },

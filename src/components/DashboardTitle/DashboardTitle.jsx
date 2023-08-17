@@ -1,0 +1,17 @@
+import React from "react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+
+const DashboardTitle = ({ title, slogan }) => {
+  return (
+    <div className="mb-20">
+      <h2 className="text-4xl font-semibold mb-3">{title}</h2>
+      <p>{slogan}</p>
+
+      <button className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
+        <HiOutlineMenuAlt3 /> Menu
+      </button>
+    </div>
+  );
+};
+
+export default DashboardTitle;

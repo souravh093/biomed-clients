@@ -20,13 +20,13 @@ const PreferenceJobs = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
-  }
+  } 
 
   return (
     <div className="bg-[#f4fdf4] py-10">
       <Container>
         <SectionTitle
-          heading={"Preference jobs"}
+          heading={"Preference Jobs"}
           text={"Here is your preference jobs"}
         />
         <Swiper

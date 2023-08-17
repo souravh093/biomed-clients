@@ -6,7 +6,7 @@ const Singlebrowsejobs = ({ jobsdata }) => {
   const { title, company, jobType, time, salary, experience, image, location } =
     jobsdata;
   return (
-    <div className="border mt-10 rounded-lg hover:shadow-lg">
+    <div className="border mt-20 rounded-lg hover:shadow-lg">
       <div className="flex h-52 gap-2 items-center px-7">
         <div className="w-[20%] ">logo</div>
         <div className="w-[70%]">
