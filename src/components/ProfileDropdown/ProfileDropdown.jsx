@@ -6,7 +6,8 @@ import avatar from "../../assets/placeholder.jpg";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProfileDropdown = () => {
-  const { user, logoutUser, setCandidateRole } = useContext(AuthContext);
+  const { user, logoutUser, setCandidateRole, candidateRole, clientRole } =
+    useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -34,7 +35,7 @@ const ProfileDropdown = () => {
   const logoutHandler = () => {
     logoutUser().then(() => {
       setCandidateRole(false);
-      navigate("/")
+      navigate("/");
     });
   };
 
@@ -65,11 +66,19 @@ const ProfileDropdown = () => {
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
               Edit Profile
             </li>
-            <Link to={"/dashboard"}>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Dashboard
-              </li>
-            </Link>
+            {clientRole ? (
+              <Link to={"/dashboard/dashboard-home"}>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Dashboard
+                </li>
+              </Link>
+            ) : (
+              <Link to={"/dashboard"}>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Dashboard
+                </li>
+              </Link>
+            )}
             <li
               onClick={logoutHandler}
               className="px-4 py-2 hover:bg-red-500 hover:text-gray-100 cursor-pointer"

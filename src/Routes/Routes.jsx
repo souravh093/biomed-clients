@@ -17,6 +17,9 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -86,8 +89,8 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/applied-jobs",
-        element: <AppliedJobs />,
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile />,
       },
       {
         path: "/dashboard/shortlisted-jobs",

@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const JobForm = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { user } = useContext(AuthContext);
+
+  const [skillOptions, setSkillOptions] = useState(null);
+  const [jobOptions, setJobOptions] = useState(null);
+  const [experienceOptions, setExperienceOptions] = useState(null);
+  const [offerOptions, setOfferOptions] = useState(null);
+  const [industryOptions, setIndustryOptions] = useState(null);
+  const [qualificationOptions, setQualificationOptions] = useState(null);
+  const [genderOptions, setGenderOptions] = useState(null);
+  const [carrierOptions, setCarrierOptions] = useState(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const options = [
+  const skills = [
     { value: "react", label: "React" },
     { value: "javascript", label: "JavaScript" },
     { value: "vu.js", label: "Vu.js" },
@@ -80,6 +90,34 @@ const JobForm = () => {
     { value: "executive", label: "Executive" },
   ];
 
+  const onSubmit = (data) => {
+    const currentData = {
+      name: data.name,
+      email: user?.email,
+      description: data.description,
+      username: data.username,
+      country: data.country,
+      city: data.city,
+      deadline: data.deadline,
+      address: data.address,
+      skills: skillOptions,
+      job: jobOptions.value,
+      carrier: carrierOptions.value,
+      offer: offerOptions.value,
+      experience: experienceOptions.value,
+      qualification: qualificationOptions.value,
+      gender: genderOptions.value,
+      industry: industryOptions.value,
+    };
+
+    axios.post("http://localhost:5000/jobs", currentData).then((data) => {
+      if (data.data.insertedId) {
+        reset();
+        toast.success("Successfully Added Job");
+      }
+    });
+  };
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -96,7 +134,6 @@ const JobForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="name">Job Title</label>
-
           <input
             type="text"
             id="name"
@@ -122,20 +159,17 @@ const JobForm = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className="mb-4">
             <label htmlFor="name">Email Address</label>
 
             <input
               type="email"
               id="email"
+              defaultValue={user?.email}
               placeholder="email"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("email", { required: "Title is required" })}
             />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -146,7 +180,7 @@ const JobForm = () => {
               id="username"
               placeholder="username"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("name", { required: "Title is required" })}
+              {...register("username", { required: "Username is required" })}
             />
             {errors.username && (
               <p className="text-red-500">{errors.username.message}</p>
@@ -157,113 +191,89 @@ const JobForm = () => {
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
+              defaultValue={skillOptions}
+              onChange={setSkillOptions}
+              options={skills}
               styles={customStyles}
               isMulti
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Job Type</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={jobOptions}
+              onChange={setJobOptions}
               options={jobsTypes}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Experience</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={experienceOptions}
+              onChange={setExperienceOptions}
               options={experience}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Carrier Label</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={carrierOptions}
+              onChange={setCarrierOptions}
               options={carrierLabel}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Offered Salary</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={offerOptions}
+              onChange={setOfferOptions}
               options={offerSalary}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Gender</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={genderOptions}
+              onChange={setGenderOptions}
               options={gender}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Industry</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={industryOptions}
+              onChange={setIndustryOptions}
               options={industry}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Qualification</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={qualificationOptions}
+              onChange={setQualificationOptions}
               options={qualification}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
         </div>
         <div className="mb-4">
@@ -280,7 +290,7 @@ const JobForm = () => {
             <p className="text-red-500">{errors.deadline.message}</p>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className="mb-4">
             <label htmlFor="name">Country</label>
 

@@ -1,18 +1,15 @@
 import React from 'react';
 import { IoMdNotificationsOutline } from "react-icons/io";
-import MenuItem from "../../../Pages/Shared/Header/MenuItem/MenuItem";
 import logo from "../../../assets/logo.png";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="px-20 py-5 flex items-center justify-between shadow-md fixed w-full bg-white ">
-      <div className="flex items-center gap-10">
+    <nav className="lg:px-20 px-6 py-5 flex items-center justify-between shadow-md fixed w-full z-10 bg-white ">
+      <Link to={"/"} className="flex items-center gap-10">
         <img src={logo} alt="" />
-        <ul>
-          <MenuItem name={"Home"} path={"/"} />
-        </ul>
-      </div>
+      </Link>
       <div className="flex items-center gap-10">
         <div className="relative">
           <IoMdNotificationsOutline className="text-2xl font-bold" />
