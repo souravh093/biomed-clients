@@ -4,34 +4,10 @@ import Singlebrowsejobs from "./Singlebrowsejobs";
 import { BiSearch } from "react-icons/bi";
 
 import { Switch } from "@headlessui/react";
-import { RadioGroup } from '@headlessui/react'
-
-
-const plans = [
-  {
-    name: 'Startup',
-    ram: '12GB',
-    cpus: '6 CPUs',
-    disk: '160 GB SSD disk',
-  },
-  {
-    name: 'Business',
-    ram: '16GB',
-    cpus: '8 CPUs',
-    disk: '512 GB SSD disk',
-  },
-  {
-    name: 'Enterprise',
-    ram: '32GB',
-    cpus: '12 CPUs',
-    disk: '1024 GB SSD disk',
-  },
-]
 
 
 const BrowseJobs = () => {
   const [enabled, setEnabled] = useState(false);
-  const [selected, setSelected] = useState(plans[0])
 
   const [browseJobsData, setBrowseJobsData] = useState([]);
   useEffect(() => {
@@ -47,7 +23,7 @@ const BrowseJobs = () => {
       <div className="flex gap-5">
         <div className="bg-[#F5F7FC] w-[450px] rounded-lg px-8">
           <div>
-            <h2>Search by Keywords</h2>
+            <h2 className="py-3">Search by Keywords</h2>
             <div className="relative">
               <input
                 type="text"
@@ -215,6 +191,7 @@ const BrowseJobs = () => {
 
 
         </div>
+
         {/* job card */}
         <div className=" w-[800px]">
           <h1>Helll</h1>
