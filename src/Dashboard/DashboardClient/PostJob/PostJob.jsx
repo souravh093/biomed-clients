@@ -1,7 +1,7 @@
 import React from "react";
-import { PiBagSimpleBold } from "react-icons/pi";
 import { GiConfirmed } from "react-icons/gi";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
+import { PiBagSimpleBold } from "react-icons/pi";
 import JobForm from "./JobForm/JobForm";
 
 const PostJob = () => {

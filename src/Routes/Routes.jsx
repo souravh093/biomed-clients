@@ -55,10 +55,6 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
-      {
-        path: "/editProfile",
-        element: <EditProfile />,
-      },
     ],
   },
   {
@@ -92,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/shortlisted-jobs",
         element: <ShortlistedJobs />,
+      },
+      {
+        path: "/dashboard/editProfile",
+        element: <EditProfile />,
       },
     ],
   },
