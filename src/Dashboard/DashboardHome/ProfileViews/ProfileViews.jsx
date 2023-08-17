@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-    CartesianGrid,
-    Legend,
-    Line,
-    LineChart,
-    Tooltip,
-    XAxis,
-    YAxis,
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 const ProfileViews = () => {

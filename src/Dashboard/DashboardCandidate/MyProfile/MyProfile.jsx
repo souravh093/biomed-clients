@@ -30,7 +30,7 @@ const MyProfile = () => {
           <p className="text-gray-600 text-base py-3">Ready to jump?</p>
         </div>
       </div>
-      <button className="text-base text-primary hover:text-green-600 lg:flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 hidden">
+      <button className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
         <HiOutlineMenuAlt3 /> Menu
       </button>
 
@@ -45,11 +45,11 @@ const MyProfile = () => {
                 alt=""
               />
               <Link to="/dashboard/editProfile">
-                <button
+                <p
                   className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
                 >
                   <BiEdit /> <span>Edit</span>
-                </button>
+                </p>
               </Link>
             </div>
             <div className="space-y-3">

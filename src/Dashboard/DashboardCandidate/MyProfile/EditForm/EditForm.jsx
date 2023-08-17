@@ -3,12 +3,14 @@ import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { saveUser } from "../../../../api/auth";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const EditForm = () => {
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
@@ -60,6 +62,7 @@ const EditForm = () => {
       .then((response) => {
         if (response.data.modifiedCount == 1) {
           toast.success("Profile updated successfully");
+          navigate("/dashboard/my-profile");
         } else {
           toast.error("Failed to update Profile. Please try again.");
         }
@@ -67,6 +70,7 @@ const EditForm = () => {
       .catch((error) => {
         console.log(error);
         toast.success("Profile updated successfully");
+        navigate("/dashboard/my-profile");
       });
   };
 

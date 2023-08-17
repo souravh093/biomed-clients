@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import CandidateHome from "../Dashboard/DashboardCandidate/CandidateHome/CandidateHome";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
 import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
 import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
@@ -17,7 +19,6 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
-import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 
 
 const router = createBrowserRouter([
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/candidate-home",
+        element: <CandidateHome />,
       },
       {
         path: "/dashboard/my-profile",
