@@ -5,6 +5,8 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
+
 const JobForm = () => {
   const { user } = useContext(AuthContext);
 
@@ -91,30 +93,45 @@ const JobForm = () => {
   ];
 
   const onSubmit = (data) => {
-    const currentData = {
-      name: data.name,
-      email: user?.email,
-      description: data.description,
-      username: data.username,
-      country: data.country,
-      city: data.city,
-      deadline: data.deadline,
-      address: data.address,
-      skills: skillOptions,
-      job: jobOptions.value,
-      carrier: carrierOptions.value,
-      offer: offerOptions.value,
-      experience: experienceOptions.value,
-      qualification: qualificationOptions.value,
-      gender: genderOptions.value,
-      industry: industryOptions.value,
-    };
+    const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
 
-    axios.post("http://localhost:5000/jobs", currentData).then((data) => {
-      if (data.data.insertedId) {
-        reset();
-        toast.success("Successfully Added Job");
-      }
+    const formData1 = new FormData();
+    formData1.append("image", data.image1[0]);
+
+    const formData2 = new FormData();
+    formData2.append("image", data.image2[0]);
+
+    Promise.all([
+      axios.post(imageUrl, formData1),
+      axios.post(imageUrl, formData2),
+    ]).then(([dataImage1, dataImage2]) => {
+      const currentData = {
+        name: data.name,
+        email: user?.email,
+        description: data.description,
+        username: data.username,
+        country: data.country,
+        city: data.city,
+        deadline: data.deadline,
+        address: data.address,
+        skills: skillOptions,
+        job: jobOptions.value,
+        carrier: carrierOptions.value,
+        offer: offerOptions.value,
+        experience: experienceOptions.value,
+        qualification: qualificationOptions.value,
+        gender: genderOptions.value,
+        industry: industryOptions.value,
+        logo: dataImage1.data.data.display_url,
+        thumbnail: dataImage2.data.data.display_url,
+      };
+
+      axios.post("http://localhost:5000/jobs", currentData).then((data) => {
+        if (data.data.insertedId) {
+          reset();
+          toast.success("Successfully Added Job");
+        }
+      });
     });
   };
 
@@ -132,6 +149,68 @@ const JobForm = () => {
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid grid-cols-2 gap-10">
+          <div className="mb-4">
+            <label htmlFor="image" className="block mb-1">
+              Upload Company Logo
+            </label>
+            <input
+              type="file"
+              id="image"
+              className="block w-full border text-gray-500
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
+              {...register("image1", {
+                required: "Image is required",
+                validate: {
+                  fileSize: (file) =>
+                    file[0]?.size < 1048576 ||
+                    "Image size must be less than 1MB",
+                  fileType: (file) =>
+                    /jpeg|png|gif/.test(file[0]?.type) ||
+                    "Unsupported image format (jpeg/png/gif only)",
+                },
+              })}
+            />
+            {errors.image && (
+              <p className="text-red-500">{errors.image.message}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="thumbnail" className="block mb-1">
+              Upload Company Thumbnail
+            </label>
+            <input
+              type="file"
+              id="thumbnail"
+              className="block w-full border text-gray-500
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
+              {...register("image2", {
+                required: "Thumbnail is required",
+                validate: {
+                  fileSize: (file) =>
+                    file[0]?.size < 1048576 ||
+                    "thumbnail size must be less than 1MB",
+                  fileType: (file) =>
+                    /jpeg|png|gif/.test(file[0]?.type) ||
+                    "Unsupported image format (jpeg/png/gif only)",
+                },
+              })}
+            />
+            {errors.image && (
+              <p className="text-red-500">{errors.image.message}</p>
+            )}
+          </div>
+        </div>
         <div className="mb-4">
           <label htmlFor="name">Job Title</label>
           <input
