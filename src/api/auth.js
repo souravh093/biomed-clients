@@ -1,10 +1,11 @@
 // save user with role
-export const saveUser = (user) => {
+export const saveUser = (user, updateData) => {
   console.log(user);
   const currentUser = {
     email: user?.email,
     name: user?.displayName,
     image: user?.photoURL,
+    updateData,
     candidate: true,
   };
 

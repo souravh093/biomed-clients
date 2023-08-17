@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import axios from "axios";
+import { saveUser } from "../../../../api/auth";
+
+const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const CompanyForm = () => {
   const { user } = useContext(AuthContext);
@@ -30,22 +34,29 @@ const CompanyForm = () => {
   ];
 
   const onSubmit = (data) => {
-    const clientProfile = {
-      companyName: data.companyName,
-      companyEmail: data.email,
-      companyPhone: data.number,
-      website: data.website,
-      teamSize: teamOptions.label,
-      allow: allowOptions.label,
-      aboutCompany: data.aboutCompany,
-      facebook: data.facebook,
-      twitter: data.twitter,
-      linkedin: data.linkedin,
-      github: data.github,
-      country: data.country,
-      address: data.address,
-    };
-    console.log(clientProfile);
+    const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    axios.post(imageUrl, formData).then((dataImage) => {
+      const clientProfile = {
+        companyName: data.companyName,
+        companyEmail: data.email,
+        companyPhone: data.number,
+        website: data.website,
+        teamSize: teamOptions.label,
+        allow: allowOptions.label,
+        aboutCompany: data.aboutCompany,
+        facebook: data.facebook,
+        twitter: data.twitter,
+        linkedin: data.linkedin,
+        github: data.github,
+        country: data.country,
+        address: data.address,
+        image: dataImage.data.data.display_url,
+      };
+      saveUser(user, clientProfile);
+    });
   };
 
   const customStyles = {
@@ -61,6 +72,35 @@ const CompanyForm = () => {
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-4">
+          <label htmlFor="image" className="block mb-1">
+            Upload Company Logo
+          </label>
+          <input
+            type="file"
+            id="image"
+            className="block w-full border text-gray-500
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
+            {...register("image", {
+              required: "Image is required",
+              validate: {
+                fileSize: (file) =>
+                  file[0]?.size < 1048576 || "Image size must be less than 1MB",
+                fileType: (file) =>
+                  /jpeg|png|gif/.test(file[0]?.type) ||
+                  "Unsupported image format (jpeg/png/gif only)",
+              },
+            })}
+          />
+          {errors.image && (
+            <p className="text-red-500">{errors.image.message}</p>
+          )}
+        </div>
         <div className="grid grid-cols-2 gap-10">
           <div className="mb-4">
             <label htmlFor="name">Company name (optional)</label>
