@@ -6,8 +6,11 @@ import { IoIosPaper } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const ClientMenu = () => {
+  const { logoutUser } = useContext(AuthContext);
   return (
     <div className="px-10 py-5 h-screen">
       <ul className="text-xl">
@@ -20,7 +23,7 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link to={"/dashboard/company-profile"} className="flex items-center gap-3">
             <AiOutlineUser /> Company Profile
           </Link>
         </li>
@@ -49,7 +52,7 @@ const ClientMenu = () => {
             <RiMessage2Line /> Messages
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li onClick={() => logoutUser() } className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link className="flex items-center gap-3">
             <AiOutlineLogout /> Logout
           </Link>

@@ -20,7 +20,7 @@ const PreferenceJobs = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
-  }
+  } 
 
   return (
     <div className="bg-[#f4fdf4] py-10">

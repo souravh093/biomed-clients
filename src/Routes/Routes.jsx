@@ -15,6 +15,7 @@ import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,13 +73,17 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/company-profile",
+        element: <CompanyProfile />,
+      },
+      {
         path: "/dashboard/applied-jobs",
-        element: <AppliedJobs />
+        element: <AppliedJobs />,
       },
       {
         path: "/dashboard/shortlisted-jobs",
-        element: <ShortlistedJobs />
-      }
+        element: <ShortlistedJobs />,
+      },
     ],
   },
 ]);
