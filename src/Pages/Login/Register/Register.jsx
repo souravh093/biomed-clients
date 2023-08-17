@@ -209,7 +209,7 @@ const Register = () => {
                 {errors.image && (
                   <p className="text-red-500">{errors.image.message}</p>
                 )}
-              </div>
+              </div> 
 
               <div className="flex items-center justify-between">
                 <button

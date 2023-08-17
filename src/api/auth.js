@@ -7,6 +7,7 @@ export const saveUser = (user, updateData) => {
     image: user?.photoURL,
     updateData,
     candidate: true,
+    updateData,
   };
 
   fetch(`http://localhost:5000/users/${user?.email}`, {
