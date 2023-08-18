@@ -19,6 +19,8 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
+import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 
 
 const router = createBrowserRouter([
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/shortlisted-jobs",
         element: <ShortlistedJobs />,
+      },
+      {
+        path:'/dashboard/manage-jobs',
+        element:<ManageJob/>
+      },
+      {
+        path:'/dashboard/shortlisted-resumes',
+        element:<ShortlistedResumes/>
       },
       {
         path: "/dashboard/editProfile",
