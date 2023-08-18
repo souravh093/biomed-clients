@@ -20,7 +20,6 @@ const ShortlistedResumes = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log(shortlistedResumes);
     const options = [
         { value: "Newest", label: "Newest" },
         { value: "Last 12 Months", label: "Last 12 Months" },
