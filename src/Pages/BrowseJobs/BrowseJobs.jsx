@@ -1,49 +1,58 @@
 import { useEffect, useState } from "react";
 import Container from "../../components/Shared/Container/Container";
+
+import CreatableSelect from "react-select/creatable";
 import Singlebrowsejobs from "./Singlebrowsejobs";
 import { BiSearch } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
-import { BsBriefcase } from "react-icons/bs";
-
 import { Switch } from "@headlessui/react";
-import { Combobox } from "@headlessui/react";
 
-const people = [
-  "Durward Reynolds",
-  "Kenton Towne",
-  "Therese Wunsch",
-  "Benedict Kessler",
-  "Katelyn Rohan",
+const skills = [
+  { value: "react", label: "React" },
+  { value: "javascript", label: "JavaScript" },
+  { value: "vu.js", label: "Vu.js" },
+  { value: "angular", label: "Angular" },
+  { value: "reactnative", label: "React Native" },
+  { value: "wordpress", label: "WordPress" },
+  { value: "laravel", label: "Laravel" },
+  { value: "devops", label: "Devops" },
+  { value: "python", label: "Python" },
 ];
+
+
+const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    border: "none",
+    boxShadow: "none",
+    "&:hover": {
+      border: "none",
+    },
+  }),
+};
 
 const BrowseJobs = () => {
   const [enabled, setEnabled] = useState(false);
   const [bnenabled, setBenabled] = useState(false);
   const [cenabled, setCenabled] = useState(false);
 
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
-  const [query, setQuery] = useState("");
-
-  const filteredPeople =
-    query === ""
-      ? people
-      : people.filter((person) => {
-          return person.toLowerCase().includes(query.toLowerCase());
-        });
+  
+  const [skillOptions, setSkillOptions] = useState(null);
 
   const [browseJobsData, setBrowseJobsData] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/jobs")
       .then((res) => res.json())
       .then((data) => setBrowseJobsData(data));
   }, []);
 
-  console.log('some data', browseJobsData);
+  console.log("some data", browseJobsData);
 
   return (
     <Container>
-      <div className="flex gap-20 mt-20">
-        <div className="bg-[#F5F7FC] w-[400px] h-[800px] mx-auto rounded-lg px-8">
+      <div className="flex gap-5 mt-20">
+        <div className="bg-[#F5F7FC] w-[400px] h-[800px] mx-auto rounded-lg px-8 hidden md:block">
           <div>
             <h2 className="py-3 mt-7">Search by Keywords</h2>
             <div className="relative">
@@ -131,21 +140,17 @@ const BrowseJobs = () => {
           <div>
             <h2 className="py-3 mt-5">Category</h2>
             <div className="relative">
-              <Combobox value={selectedPerson} onChange={setSelectedPerson}>
-                <Combobox.Input
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-                <Combobox.Options>
-                  {filteredPeople.map((person) => (
-                    <Combobox.Option key={person} value={person}>
-                      {person}
-                    </Combobox.Option>
-                  ))}
-                </Combobox.Options>
-              </Combobox>
-              <button className="absolute top-0 left-0 bottom-0 w-10 pl-4">
-                <BsBriefcase></BsBriefcase>
-              </button>
+            <div className="mb-4">
+
+            <CreatableSelect
+              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              defaultValue={skillOptions}
+              onChange={setSkillOptions}
+              options={skills}
+              styles={customStyles}
+              isMulti
+            />
+          </div>
             </div>
           </div>
 
@@ -177,7 +182,7 @@ const BrowseJobs = () => {
 
         {/* job card */}
         <div className=" w-[800px] mx-auto">
-          <h1>Helll</h1>
+          <h1></h1>
           {browseJobsData.map((jobsdata, index) => (
             <Singlebrowsejobs
               key={index}

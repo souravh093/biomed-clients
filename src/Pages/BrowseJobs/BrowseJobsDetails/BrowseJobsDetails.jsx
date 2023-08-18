@@ -1,6 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Container from "../../../components/Shared/Container/Container";
-import { CgWorkAlt } from "react-icons/cg";
 import { BsBookmarkPlus } from "react-icons/bs";
 import { AiOutlineShareAlt, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiShareFill, PiBriefcaseThin } from "react-icons/pi";
@@ -12,26 +11,18 @@ import { BsHourglassSplit } from "react-icons/bs";
 
 const BrowseJobsDetails = () => {
   const {
-    address,
-    carrier,
-    city,
+    
     country,
     deadline,
     description,
-    email,
+    
     experience,
-    gender,
-    industry,
     jobType,
     logo,
     offer,
-    qualification,
     skills,
     startDate,
-    thumbnail,
     title,
-    username,
-    _id,
     companyName,
   } = useLoaderData();
 
