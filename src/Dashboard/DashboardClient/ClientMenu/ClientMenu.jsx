@@ -10,12 +10,16 @@ import { PiBagSimpleBold } from "react-icons/pi";
 import { IoIosPaper } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
 import { RiMessage2Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const ClientMenu = () => {
+  const navigate = useNavigate();
   const { logoutUser, setDashboardToggle } = useContext(AuthContext);
+  const handleDashboardLogout = () => {
+    logoutUser().then(() => navigate("/"));
+  };
   return (
     <div className="px-10 py-5 h-screen z-20 bg-white">
       <div className="flex justify-end lg:hidden ">
@@ -38,6 +42,7 @@ const ClientMenu = () => {
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
+            onClick={() => setDashboardToggle(false)}
             to={"/dashboard/company-profile"}
             className="flex items-center gap-3"
           >
@@ -54,27 +59,39 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link
+            onClick={() => setDashboardToggle(false)}
+            className="flex items-center gap-3"
+          >
             <PiBagSimpleBold /> Manage Jobs
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link
+            onClick={() => setDashboardToggle(false)}
+            className="flex items-center gap-3"
+          >
             <IoIosPaper /> All Applications
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link
+            onClick={() => setDashboardToggle(false)}
+            className="flex items-center gap-3"
+          >
             <FaRegBookmark /> Shortlisted Resume
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link className="flex items-center gap-3">
+          <Link
+            onClick={() => setDashboardToggle(false)}
+            className="flex items-center gap-3"
+          >
             <RiMessage2Line /> Messages
           </Link>
         </li>
         <li
-          onClick={() => logoutUser()}
+          onClick={handleDashboardLogout}
           className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600"
         >
           <Link className="flex items-center gap-3">

@@ -7,7 +7,6 @@ export const saveUser = (user, updateData) => {
     image: user?.photoURL,
     updateData,
     candidate: true,
-    updateData,
   };
 
   fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
