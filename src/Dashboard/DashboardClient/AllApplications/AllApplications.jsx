@@ -78,7 +78,7 @@ const AllApplications = () => {
                     </div>
                 </div>
                 <div className='bg-[#F5F7FC] p-5 pt-5 rounded-2xl'>
-                <div className='flex  justify-around  font-semibold'>
+                <div className='flex  justify-between gap-x-2  font-semibold'>
                 <p className='bg-[#E6EDF9] p-1 text-blue-600'>Total(s):6</p>
                     <p  className=' text-green-600'>
                         Approved:2
@@ -102,7 +102,7 @@ const AllApplications = () => {
                         <FaArrowLeft size={18} className={page > 1 ? "flex text-[#696969] hover:text-[#1967d2] items-center cursor-pointer" : "opacity-0"} onClick={() => selectPageHandler(page - 1)}></FaArrowLeft>
                         {
                             [...Array(shortlistedResumes.length / 6)].map((_, i) => {
-                                return <div className={page === i + 1 ? "text-white bg-[#1967D2] w-11 h-11 rounded-full flex items-center justify-center" : "text-[#696969]"} key={i}>
+                                return <div className={page === i + 1 ? "text-white bg-primary hover:bg-hover w-11 h-11 rounded-full flex items-center justify-center" : "text-[#696969]"} key={i}>
                                     <button onClick={() => selectPageHandler(i + 1)}>{i + 1}</button>
                                 </div>
                             })
@@ -112,7 +112,7 @@ const AllApplications = () => {
                     </div>
                 }
             </div>
-            <p className='text-center mt-20'>© 2023 Biomed by <span className='text-[#1967d2]'>ib-themes.</span> All Right Reserved.</p>
+            <p className='text-center mt-20'>© 2023 Biomed by <span className='text-green-400'>ib-themes.</span> All Right Reserved.</p>
         </div>
     );
 };
