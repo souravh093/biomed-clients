@@ -51,7 +51,7 @@ const AllApplications = () => {
 
     return (
         <div className='md:p-20 p-5'>
-            <h1 className='md:text-3xl text-2xl font-medium'>Shortlisted Resumes!</h1>
+            <h1 className='md:text-3xl text-2xl font-medium'>All Applicants!</h1>
             <p className='md:mt-2 mt-2 text-sm font-thin text-[#696969]'>Ready to jump back in?</p>
             <div className='md:mt-10 mt-7 bg-white md:p-7 p-5 rounded-xl shadow-sm'>
                 <div className='md:flex md:justify-between py-2'>
