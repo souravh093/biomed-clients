@@ -19,11 +19,13 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import UploadResume from "../Dashboard/DashboardCandidate/UploadResume/UploadResume";
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
+import AllApplications from "../Dashboard/DashboardClient/AllApplications/AllApplications";
 
 
 const router = createBrowserRouter([
@@ -97,6 +99,10 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
       },
       {
+        path: "/dashboard/upload-resume",
+        element: <UploadResume />
+      },
+      {
         path: "/dashboard/post-job",
         element: (
           <PrivateClient>
@@ -119,6 +125,10 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/manage-jobs',
         element:<ManageJob/>
+      },
+      {
+        path:"/dashboard/all-applications",
+        element:<AllApplications/>
       },
       {
         path:'/dashboard/shortlisted-resumes',
