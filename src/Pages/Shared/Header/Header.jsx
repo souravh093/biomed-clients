@@ -11,7 +11,6 @@ import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
-  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -82,9 +81,11 @@ const Header = () => {
             </div>
           </div>
           <div className="flex xl:hidden flex-col items-center gap-10">
-            <ul className="text-2xl border px-3 py-2 bg-white text-primary rounded-md shadow font-normal xl:font-medium">
-              <Link to={"/seller"}>Become a Seller</Link>
-            </ul>
+            {!candidateRole && (
+              <ul className="text-primary font-normal xl:font-medium hover:text-hover">
+                <Link to={"/dashboard/post-job"}>Post a Job</Link>
+              </ul>
+            )}
             <div>
               {user ? (
                 <ProfileDropdown />
