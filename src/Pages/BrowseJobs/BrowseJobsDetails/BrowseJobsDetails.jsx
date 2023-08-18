@@ -2,84 +2,98 @@ import { Link, useLoaderData } from "react-router-dom";
 import Container from "../../../components/Shared/Container/Container";
 import { CgWorkAlt } from "react-icons/cg";
 import { BsBookmarkPlus } from "react-icons/bs";
-import { AiOutlineShareAlt } from "react-icons/ai";
-import { PiShareFill } from "react-icons/pi";
+import { AiOutlineShareAlt, AiOutlineUsergroupAdd } from "react-icons/ai";
+import { PiShareFill, PiBriefcaseThin } from "react-icons/pi";
+import { FiPlayCircle } from "react-icons/fi";
+import { LiaMoneyCheckAltSolid, LiaBusinessTimeSolid } from "react-icons/lia";
+import { BiBriefcaseAlt } from "react-icons/bi";
+import { TbHomeDot } from "react-icons/tb";
+import { BsHourglassSplit } from "react-icons/bs";
 
 const BrowseJobsDetails = () => {
   const {
-    _id,
-    name,
-    email,
-    description,
-    username,
-    country,
-    city,
-    deadline,
     address,
-    skills,
-    job,
     carrier,
-    offer,
+    city,
+    country,
+    deadline,
+    description,
+    email,
     experience,
-    qualification,
     gender,
     industry,
+    jobType,
     logo,
+    offer,
+    qualification,
+    skills,
+    startDate,
     thumbnail,
+    title,
+    username,
+    _id,
+    companyName,
   } = useLoaderData();
+
+  console.log(useLoaderData());
 
   return (
     <Container>
       <section className="my-10 ">
         <h1 className="text-center md:text-2xl font-semibold text-[#666]">
-          {name}
+          {jobType} Based: {title}
         </h1>
-        <div className="w-[900px] mx-auto border px-7 py-7 rounded-lg">
-          <div>
-            <h2>{name}</h2>
-            <h3>{city}</h3>
+        <div className="w-[900px] mx-auto border px-7 py-7 rounded-lg mt-7">
+          <div className="mb-5 flex justify-between">
+            <div>
+              <h2 className=" text-lg font-semibold text-[#666]">{title}</h2>
+              <p className="text-lg font-semibold text-[#666]">{companyName}</p>
+            </div>
+            <div>
+              <img src={logo} className="rounded-full" alt="" />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <CgWorkAlt></CgWorkAlt>
-            <p>{country}</p>
+          <div className="flex items-center gap-2 my-3 ">
+            <TbHomeDot></TbHomeDot>
+            <p>{jobType}</p>
           </div>
 
-          <div className="flex gap-16">
+          <div className="flex gap-16 my-4">
             <div>
               <div className="flex items-center gap-2">
-                <CgWorkAlt></CgWorkAlt>
-                <p>{country}</p>
+                <FiPlayCircle></FiPlayCircle>
+                <p className="text-sm">START DATE</p>
               </div>
-              <p>Immediately</p>
+              <p>{startDate}</p>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CgWorkAlt></CgWorkAlt>
-                <p>{country}</p>
+                <LiaMoneyCheckAltSolid></LiaMoneyCheckAltSolid>
+                <p>CTC (ANNUAL)</p>
               </div>
-              <p>Immediately</p>
+              <p>{offer}</p>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CgWorkAlt></CgWorkAlt>
-                <p>{country}</p>
+                <BiBriefcaseAlt></BiBriefcaseAlt>
+                <p>EXPERIENCE</p>
               </div>
-              <p>Immediately</p>
+              <p>{experience}</p>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <CgWorkAlt></CgWorkAlt>
-                <p>{country}</p>
+                <BsHourglassSplit></BsHourglassSplit>
+                <p>APPLY BY</p>
               </div>
-              <p>Immediately</p>
+              <p>{deadline}</p>
             </div>
           </div>
 
           <div className="flex justify-between mb-5">
             <div className="flex items-center gap-2">
-              <CgWorkAlt></CgWorkAlt>
-              <p>{country}</p>
+              <AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>
+              <p>{4} applicants</p>
             </div>
             <div className="flex gap-5">
               <BsBookmarkPlus></BsBookmarkPlus>
@@ -110,59 +124,47 @@ const BrowseJobsDetails = () => {
               <h5 className="">Activity on Internshala</h5>
               <div className="flex gap-7">
                 <div className="flex items-center gap-2">
-                  <CgWorkAlt></CgWorkAlt>
+                  <LiaBusinessTimeSolid></LiaBusinessTimeSolid>
                   <p>{country}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <CgWorkAlt></CgWorkAlt>
+                  <PiBriefcaseThin></PiBriefcaseThin>
                   <p>{country}</p>
                 </div>
               </div>
             </div>
 
-            <div>
+            <div className="mt-4">
               <h4>About the job</h4>
               <p>Key responsibilities:</p>
-              <p>
-                1. Work with development teams and product managers to ideate
-                software solutions <br /> 2. Design client-side and server-side
-                architecture <br /> 3. Build the front-end of applications through
-                appealing visual design <br /> 4. Develop and manage well-functioning
-                databases and applications <br /> 5. Write effective APIs <br /> 6. Test
-                software to ensure responsiveness and efficiency <br /> 7.
-                Troubleshoot, debug, and upgrade software <br /> 8. Create security and
-                data protection settings <br /> 9. Build features and applications with
-                a mobile responsive design <br /> 10. Write reusable, testable, and
-                efficient code <br /> 11. Work on the design and implementation of
-                low-latency, high-availability, and performant applications
-              </p>
-
-              
+              <p>{description}</p>
             </div>
 
             <div>
-                <h3 className="mb-3 mt-5">Skill(s) required</h3>
-                <span className="bg-slate-400 py-1 px-2  rounded-full text-sm">JavaScript</span>
-
+              <h3 className="mb-3 mt-5">Skill(s) required</h3>
+              {skills.map((skill, index) => (
+                <span key={index} className="bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm">
+                  {skill.value}
+                </span>
+              ))}
             </div>
 
-            <div>
-                <h3>Salary</h3>
-                <p>Annual CTC: $20000 /year</p>
-                <p>Annual CTC breacup</p>
-                <p>1. Fixed pay: $1600 /year</p>
-                <p>2. Variable pay: $4000 /year</p>
-
+            <div className="mt-5">
+              <h3 className="">Salary</h3>
+              <p>Annual CTC: {offer} /year</p>
             </div>
 
-            <div>
-                <h3>Number of openings</h3>
-                <p>3</p>
+            <div className="mt-5">
+              <h3>Number of openings</h3>
+              <p>{3}</p>
             </div>
 
-            
-
+            <div className="mt-5">
+              <button className="bg-primary block mx-auto text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer ">
+                Apply Now
+              </button>
+            </div>
           </div>
         </div>
       </section>

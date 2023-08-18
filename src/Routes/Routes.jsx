@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import CandidateHome from "../Dashboard/DashboardCandidate/CandidateHome/CandidateHome";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
 import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
 import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
+import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
@@ -17,7 +19,7 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
-import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
+// import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
 
@@ -70,10 +72,6 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
-      {
-        path: "/editProfile",
-        element: <EditProfile />,
-      },
     ],
   },
   {
@@ -83,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/dashboard-home",
         element: <DashboardHome />,
+      },
+      {
+        path: "/dashboard/candidate-home",
+        element: <CandidateHome />,
       },
       {
         path: "/dashboard/my-profile",
@@ -107,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/shortlisted-jobs",
         element: <ShortlistedJobs />,
+      },
+      {
+        path: "/dashboard/editProfile",
+        element: <EditProfile />,
       },
     ],
   },
