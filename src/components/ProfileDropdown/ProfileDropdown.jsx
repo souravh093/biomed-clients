@@ -81,6 +81,12 @@ const ProfileDropdown = () => {
                   Dashboard
                 </li>
               </Link>
+            ) : candidateRole ? (
+              <Link to={"/dashboard/candidate-home"}>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Dashboard
+                </li>
+              </Link>
             ) : (
               <Link to={"/dashboard"}>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">

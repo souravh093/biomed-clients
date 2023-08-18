@@ -7,10 +7,9 @@ export const saveUser = (user, updateData) => {
     image: user?.photoURL,
     updateData,
     candidate: true,
-    updateData,
   };
 
-  fetch(`http://localhost:5000/users/${user?.email}`, {
+  fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -30,7 +29,7 @@ export const saveClient = (user) => {
     client: true,
   };
 
-  fetch(`http://localhost:5000/users/${user?.email}`, {
+  fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -43,14 +42,14 @@ export const saveClient = (user) => {
 
 // get client role
 export const getClientRole = async (email) => {
-  const res = await fetch(`http://localhost:5000/users/${email}`);
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
   const user = await res.json();
   return user?.client;
 };
 
 // get candidate
 export const getCandidateRole = async (email) => {
-  const res = await fetch(`http://localhost:5000/users/${email}`);
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
   const user = await res.json();
   return user?.candidate;
 };
