@@ -18,6 +18,7 @@ const JobForm = () => {
   const [qualificationOptions, setQualificationOptions] = useState(null);
   const [genderOptions, setGenderOptions] = useState(null);
   const [carrierOptions, setCarrierOptions] = useState(null);
+  const [startDateOptions, setStartDateOptions] = useState(null);
 
   const {
     register,
@@ -44,6 +45,13 @@ const JobForm = () => {
     { value: "internship", label: "Internship" },
     { value: "contract", label: "Contract" },
     { value: "partTime", label: "Part-Time" },
+  ];
+
+  const startDate = [
+    { value: "immediately", label: "Immediately" },
+    { value: "withinTwoWeeks", label: "Within Two Weeks" },
+    { value: "withinOneMonth", label: "Within One Month" },
+    { value: "flexible", label: "Flexible" },
   ];
 
   const experience = [
@@ -106,7 +114,8 @@ const JobForm = () => {
       axios.post(imageUrl, formData2),
     ]).then(([dataImage1, dataImage2]) => {
       const currentData = {
-        name: data.name,
+        title: data.name,
+        companyName: data.company,
         email: user?.email,
         description: data.description,
         username: data.username,
@@ -115,18 +124,19 @@ const JobForm = () => {
         deadline: data.deadline,
         address: data.address,
         skills: skillOptions,
-        job: jobOptions.value,
-        carrier: carrierOptions.value,
-        offer: offerOptions.value,
-        experience: experienceOptions.value,
-        qualification: qualificationOptions.value,
-        gender: genderOptions.value,
-        industry: industryOptions.value,
+        jobType: jobOptions.label,
+        carrier: carrierOptions.label,
+        offer: offerOptions.label,
+        experience: experienceOptions.label,
+        qualification: qualificationOptions.label,
+        gender: genderOptions.label,
+        industry: industryOptions.label,
+        startDate: startDateOptions.label,
         logo: dataImage1.data.data.display_url,
         thumbnail: dataImage2.data.data.display_url,
       };
 
-      axios.post("http://localhost:5000/jobs", currentData).then((data) => {
+      axios.post("https://biomed-server.vercel.app/jobs", currentData).then((data) => {
         if (data.data.insertedId) {
           reset();
           toast.success("Successfully Added Job");
@@ -149,7 +159,7 @@ const JobForm = () => {
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2  lg:gap-10">
           <div className="mb-4">
             <label htmlFor="image" className="block mb-1">
               Upload Company Logo
@@ -211,6 +221,7 @@ const JobForm = () => {
             )}
           </div>
         </div>
+
         <div className="mb-4">
           <label htmlFor="name">Job Title</label>
           <input
@@ -221,6 +232,33 @@ const JobForm = () => {
             {...register("name", { required: "Title is required" })}
           />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-5">
+          <div className="mb-4">
+            <label htmlFor="name">Company Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter Company Name"
+              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              {...register("company", { required: "Company is required" })}
+            />
+            {errors.company && (
+              <p className="text-red-500">{errors.company.message}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="name">Start Date</label>
+
+            <CreatableSelect
+              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              defaultValue={startDateOptions}
+              onChange={setStartDateOptions}
+              options={startDate}
+              styles={customStyles}
+            />
+          </div>
         </div>
         <div className="mb-4">
           <label htmlFor="description">Job Description</label>

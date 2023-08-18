@@ -11,7 +11,6 @@ import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
-  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -82,20 +81,24 @@ const Header = () => {
             </div>
           </div>
           <div className="flex xl:hidden flex-col items-center gap-10">
-            <ul className="text-2xl border px-3 py-2 bg-white text-primary rounded-md shadow font-normal xl:font-medium">
-              <Link to={"/seller"}>Become a Seller</Link>
-            </ul>
-            <div>
-              <ul className="flex items-center space-x-6">
-                <MenuItem name={"Login"} path={"/login"} />
-
-                <Link
-                  to={"/register"}
-                  className="bg-[#5BBB7B] text-gray-100 font-medium px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer"
-                >
-                  Sign Up
-                </Link>
+            {!candidateRole && (
+              <ul className="text-primary font-normal xl:font-medium hover:text-hover">
+                <Link to={"/dashboard/post-job"}>Post a Job</Link>
               </ul>
+            )}
+            <div>
+              {user ? (
+                <ProfileDropdown />
+              ) : (
+                <ul className="flex items-center space-x-6">
+                  <MenuItem name={"Login"} path={"/login"} />
+                  <span className="bg-primary text-gray-100 px-8 py-3 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+                    <Link to={"/register"} className="font-medium">
+                      Sign Up
+                    </Link>
+                  </span>
+                </ul>
+              )}
             </div>
           </div>
         </div>

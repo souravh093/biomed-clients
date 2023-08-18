@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { useRef } from "react";
-import avatar from "../../assets/placeholder.jpg";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const ProfileDropdown = () => {
   const { user, logoutUser, setCandidateRole, candidateRole, clientRole } =
     useContext(AuthContext);
+  const { data: myProfileData = [] } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axios(`https://biomed-server.vercel.app/user/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const { updateData } = myProfileData;
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -48,7 +57,7 @@ const ProfileDropdown = () => {
       >
         <img
           referrerPolicy="no-referrer"
-          src={user && user.photoURL ? user.photoURL : avatar}
+          src={updateData?.image ? updateData?.image : user?.photoURL}
           alt="Profile"
           className="w-full h-full object-cover"
         />
@@ -68,6 +77,12 @@ const ProfileDropdown = () => {
             </li>
             {clientRole ? (
               <Link to={"/dashboard/dashboard-home"}>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Dashboard
+                </li>
+              </Link>
+            ) : candidateRole ? (
+              <Link to={"/dashboard/candidate-home"}>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Dashboard
                 </li>
