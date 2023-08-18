@@ -6,6 +6,8 @@ import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import axios from "axios";
 import { saveUser } from "../../../../api/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -19,6 +21,8 @@ const CompanyForm = () => {
     formState: { errors },
     // reset,
   } = useForm();
+
+  const navigate = useNavigate();
 
   const teamSize = [
     { value: "smallTeam", label: "Small Team (1-10 members)" },
@@ -38,25 +42,39 @@ const CompanyForm = () => {
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
-    axios.post(imageUrl, formData).then((dataImage) => {
-      const clientProfile = {
-        companyName: data.companyName,
-        companyEmail: data.email,
-        companyPhone: data.number,
-        website: data.website,
-        teamSize: teamOptions.label,
-        allow: allowOptions.label,
-        aboutCompany: data.aboutCompany,
-        facebook: data.facebook,
-        twitter: data.twitter,
-        linkedin: data.linkedin,
-        github: data.github,
-        country: data.country,
-        address: data.address,
-        image: dataImage.data.data.display_url,
-      };
-      saveUser(user, clientProfile);
-    });
+    axios
+      .post(imageUrl, formData)
+      .then((dataImage) => {
+        const clientProfile = {
+          companyName: data.companyName,
+          companyEmail: data.email,
+          companyPhone: data.number,
+          website: data.website,
+          teamSize: teamOptions.label,
+          allow: allowOptions.label,
+          aboutCompany: data.aboutCompany,
+          facebook: data.facebook,
+          twitter: data.twitter,
+          linkedin: data.linkedin,
+          github: data.github,
+          country: data.country,
+          address: data.address,
+          image: dataImage.data.data.display_url,
+        };
+        saveUser(user, clientProfile);
+      })
+      .then((response) => {
+        if (response.data.modifiedCount == 1) {
+          toast.success("Profile updated successfully");
+          navigate("/dashboard/my-profile");
+        } else {
+          toast.error("Failed to update Profile. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.success(error.message);
+      });
   };
 
   const customStyles = {
@@ -69,6 +87,8 @@ const CompanyForm = () => {
       },
     }),
   };
+
+  
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>

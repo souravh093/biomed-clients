@@ -6,11 +6,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { FaFacebookF, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import canvas from "../../../../assets/placeholder.jpg"
+ 
 const CompanyView = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: companyView = [], isLoading } = useQuery({
+  const { data: companyView = [] } = useQuery({
     queryKey: ["companyView"],
     queryFn: async () => {
       const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
@@ -41,37 +42,37 @@ const CompanyView = () => {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <img
-                  src={companyView  .updateData?.image}
+                  src={updateData?.image ? updateData?.image : canvas}
                   alt="Company Logo"
                   className="w-16 h-16 rounded-full"
                 />
                 <div>
                   <h1 className="text-2xl font-semibold"></h1>
                   <p className="text-gray-500">
-                    Team Size: {updateData?.teamSize}
+                    Team Size: {updateData?.teamSize ? updateData?.teamSize : "no data"}
                   </p>
                 </div>
               </div>
               <div className="flex space-x-4">
                 <a
-                  href={updateData?.facebook}
+                  href={updateData?.facebook ? updateData?.facebook : null}
                   className="text-blue-500 text-2xl"
                 >
                   <FaFacebookF />
                 </a>
                 <a
-                  href={updateData?.twitter}
+                  href={updateData?.twitter ? updateData?.twitter : null}
                   className="text-blue-400 text-2xl"
                 >
                   <FaTwitter />
                 </a>
                 <a
-                  href={updateData?.linkedin}
+                  href={updateData?.linkedin ? updateData?.linkedin : null}
                   className="text-blue-700 text-2xl"
                 >
                   <FaLinkedin />
                 </a>
-                <a href={updateData?.github} className="text-gray-600 text-2xl">
+                <a href={updateData?.github ? updateData?.github : null} className="text-gray-600 text-2xl">
                   <FaGithub />
                 </a>
               </div>
@@ -79,12 +80,12 @@ const CompanyView = () => {
             <div className="mb-6">
               <h2>
                 <span className="text-lg font-semibold">Company name:</span>{" "}
-                {updateData?.companyName}
+                {updateData?.companyName ? updateData?.companyName : "none"}
               </h2>
             </div>
             <div>
               <h2 className="text-lg font-semibold mb-2">About Company</h2>
-              <p className="text-gray-600">{updateData?.aboutCompany}</p>
+              <p className="text-gray-600">{updateData?.aboutCompany ? updateData?.aboutCompany : "none"}</p>
             </div>
             <div className="mt-6">
               <h2 className="text-lg font-semibold mb-2">
@@ -93,15 +94,15 @@ const CompanyView = () => {
               <div className="flex items-center space-x-2">
                 <div>
                   <p className="text-gray-600">
-                    Address, {updateData?.address}
+                    Address, {updateData?.address ? updateData?.address : "none"}
                   </p>
                   <a
                     href={updateData?.website}
                     className="text-blue-500 hover:underline"
                   >
-                    {updateData?.website}
+                    {updateData?.website ? updateData?.website : "none"}
                   </a>
-                  <p className="text-gray-600">Email: {email}</p>
+                  <p className="text-gray-600">Email: {email ? email : "none"}</p>
                 </div>
               </div>
             </div>
