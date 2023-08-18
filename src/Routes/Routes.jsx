@@ -25,6 +25,7 @@ import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsD
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
+import AllApplications from "../Dashboard/DashboardClient/AllApplications/AllApplications";
 
 
 const router = createBrowserRouter([
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/manage-jobs',
         element:<ManageJob/>
+      },
+      {
+        path:"/dashboard/all-applications",
+        element:<AllApplications/>
       },
       {
         path:'/dashboard/shortlisted-resumes',

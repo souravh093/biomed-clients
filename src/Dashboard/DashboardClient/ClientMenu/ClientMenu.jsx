@@ -67,7 +67,7 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link
+          <Link to="/dashboard/all-applications"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
