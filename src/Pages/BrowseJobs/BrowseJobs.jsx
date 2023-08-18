@@ -33,12 +33,12 @@ const BrowseJobs = () => {
 
   const [browseJobsData, setBrowseJobsData] = useState([]);
   useEffect(() => {
-    fetch("browserjobsData/browserjobsData.json")
+    fetch("http://localhost:5000/jobs")
       .then((res) => res.json())
       .then((data) => setBrowseJobsData(data));
   }, []);
 
-  console.log(browseJobsData);
+  console.log('some data', browseJobsData);
 
   return (
     <Container>

@@ -19,6 +19,7 @@ import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
 import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
+import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path: '/browseJobs',
         element: <BrowseJobs /> 
+      },
+      {
+        path: '/jobsDatail/:id',
+        element: <BrowseJobsDetails />,
+        loader: ({params}) =>  fetch(`http://localhost:5000/job/${params.id}`)
       },
       {
         path: "/login",
