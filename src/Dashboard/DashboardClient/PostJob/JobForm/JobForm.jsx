@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+
+const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const JobForm = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { user } = useContext(AuthContext);
+
+  const [skillOptions, setSkillOptions] = useState(null);
+  const [jobOptions, setJobOptions] = useState(null);
+  const [experienceOptions, setExperienceOptions] = useState(null);
+  const [offerOptions, setOfferOptions] = useState(null);
+  const [industryOptions, setIndustryOptions] = useState(null);
+  const [qualificationOptions, setQualificationOptions] = useState(null);
+  const [genderOptions, setGenderOptions] = useState(null);
+  const [carrierOptions, setCarrierOptions] = useState(null);
+  const [startDateOptions, setStartDateOptions] = useState(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const options = [
+  const skills = [
     { value: "react", label: "React" },
     { value: "javascript", label: "JavaScript" },
     { value: "vu.js", label: "Vu.js" },
@@ -32,6 +45,13 @@ const JobForm = () => {
     { value: "internship", label: "Internship" },
     { value: "contract", label: "Contract" },
     { value: "partTime", label: "Part-Time" },
+  ];
+
+  const startDate = [
+    { value: "immediately", label: "Immediately" },
+    { value: "withinTwoWeeks", label: "Within Two Weeks" },
+    { value: "withinOneMonth", label: "Within One Month" },
+    { value: "flexible", label: "Flexible" },
   ];
 
   const experience = [
@@ -80,6 +100,51 @@ const JobForm = () => {
     { value: "executive", label: "Executive" },
   ];
 
+  const onSubmit = (data) => {
+    const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+
+    const formData1 = new FormData();
+    formData1.append("image", data.image1[0]);
+
+    const formData2 = new FormData();
+    formData2.append("image", data.image2[0]);
+
+    Promise.all([
+      axios.post(imageUrl, formData1),
+      axios.post(imageUrl, formData2),
+    ]).then(([dataImage1, dataImage2]) => {
+      const currentData = {
+        title: data.name,
+        companyName: data.company,
+        email: user?.email,
+        description: data.description,
+        username: data.username,
+        country: data.country,
+        city: data.city,
+        deadline: data.deadline,
+        address: data.address,
+        skills: skillOptions,
+        jobType: jobOptions.label,
+        carrier: carrierOptions.label,
+        offer: offerOptions.label,
+        experience: experienceOptions.label,
+        qualification: qualificationOptions.label,
+        gender: genderOptions.label,
+        industry: industryOptions.label,
+        startDate: startDateOptions.label,
+        logo: dataImage1.data.data.display_url,
+        thumbnail: dataImage2.data.data.display_url,
+      };
+
+      axios.post("https://biomed-server.vercel.app/jobs", currentData).then((data) => {
+        if (data.data.insertedId) {
+          reset();
+          toast.success("Successfully Added Job");
+        }
+      });
+    });
+  };
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -94,9 +159,71 @@ const JobForm = () => {
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid lg:grid-cols-2  lg:gap-10">
+          <div className="mb-4">
+            <label htmlFor="image" className="block mb-1">
+              Upload Company Logo
+            </label>
+            <input
+              type="file"
+              id="image"
+              className="block w-full border text-gray-500
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
+              {...register("image1", {
+                required: "Image is required",
+                validate: {
+                  fileSize: (file) =>
+                    file[0]?.size < 1048576 ||
+                    "Image size must be less than 1MB",
+                  fileType: (file) =>
+                    /jpeg|png|gif/.test(file[0]?.type) ||
+                    "Unsupported image format (jpeg/png/gif only)",
+                },
+              })}
+            />
+            {errors.image && (
+              <p className="text-red-500">{errors.image.message}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="thumbnail" className="block mb-1">
+              Upload Company Thumbnail
+            </label>
+            <input
+              type="file"
+              id="thumbnail"
+              className="block w-full border text-gray-500
+                file:mr-4 file:py-4 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-200 file:text-gray-700
+                hover:file:bg-gray-100
+              "
+              {...register("image2", {
+                required: "Thumbnail is required",
+                validate: {
+                  fileSize: (file) =>
+                    file[0]?.size < 1048576 ||
+                    "thumbnail size must be less than 1MB",
+                  fileType: (file) =>
+                    /jpeg|png|gif/.test(file[0]?.type) ||
+                    "Unsupported image format (jpeg/png/gif only)",
+                },
+              })}
+            />
+            {errors.image && (
+              <p className="text-red-500">{errors.image.message}</p>
+            )}
+          </div>
+        </div>
+
         <div className="mb-4">
           <label htmlFor="name">Job Title</label>
-
           <input
             type="text"
             id="name"
@@ -105,6 +232,33 @@ const JobForm = () => {
             {...register("name", { required: "Title is required" })}
           />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-5 lg:gap-5">
+          <div className="mb-4">
+            <label htmlFor="name">Company Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter Company Name"
+              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              {...register("company", { required: "Company is required" })}
+            />
+            {errors.company && (
+              <p className="text-red-500">{errors.company.message}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="name">Start Date</label>
+
+            <CreatableSelect
+              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              defaultValue={startDateOptions}
+              onChange={setStartDateOptions}
+              options={startDate}
+              styles={customStyles}
+            />
+          </div>
         </div>
         <div className="mb-4">
           <label htmlFor="description">Job Description</label>
@@ -122,20 +276,17 @@ const JobForm = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className="mb-4">
             <label htmlFor="name">Email Address</label>
 
             <input
               type="email"
               id="email"
+              defaultValue={user?.email}
               placeholder="email"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("email", { required: "Title is required" })}
             />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -146,7 +297,7 @@ const JobForm = () => {
               id="username"
               placeholder="username"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("name", { required: "Title is required" })}
+              {...register("username", { required: "Username is required" })}
             />
             {errors.username && (
               <p className="text-red-500">{errors.username.message}</p>
@@ -157,113 +308,89 @@ const JobForm = () => {
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
+              defaultValue={skillOptions}
+              onChange={setSkillOptions}
+              options={skills}
               styles={customStyles}
               isMulti
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Job Type</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={jobOptions}
+              onChange={setJobOptions}
               options={jobsTypes}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Experience</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={experienceOptions}
+              onChange={setExperienceOptions}
               options={experience}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Carrier Label</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={carrierOptions}
+              onChange={setCarrierOptions}
               options={carrierLabel}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Offered Salary</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={offerOptions}
+              onChange={setOfferOptions}
               options={offerSalary}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Gender</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={genderOptions}
+              onChange={setGenderOptions}
               options={gender}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Industry</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={industryOptions}
+              onChange={setIndustryOptions}
               options={industry}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Qualification</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              defaultValue={qualificationOptions}
+              onChange={setQualificationOptions}
               options={qualification}
               styles={customStyles}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
           </div>
         </div>
         <div className="mb-4">
@@ -280,7 +407,7 @@ const JobForm = () => {
             <p className="text-red-500">{errors.deadline.message}</p>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className="mb-4">
             <label htmlFor="name">Country</label>
 

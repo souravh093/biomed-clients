@@ -5,7 +5,7 @@ import CandidateMenu from "../../DashboardCandidate/CandidateMenu/CandidateMenu"
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const { user, clientRole, candidateRole } = useContext(AuthContext);
+  const { clientRole, candidateRole } = useContext(AuthContext);
   return (
     <div className="fixed">
       {

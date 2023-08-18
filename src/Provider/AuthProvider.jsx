@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [clientRole, setClientRole] = useState(null);
   const [candidateRole, setCandidateRole] = useState(null)
+  const [dashboardToggle, setDashboardToggle] = useState(false);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -85,6 +86,7 @@ const AuthProvider = ({ children }) => {
     loading,
     clientRole,
     candidateRole,
+    dashboardToggle,
     setCandidateRole,
     setLoading,
     createUser,
@@ -93,6 +95,7 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     resetPassword,
     googleLoginUser,
+    setDashboardToggle
   };
 
   return (
