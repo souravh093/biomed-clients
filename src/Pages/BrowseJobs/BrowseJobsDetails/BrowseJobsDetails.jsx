@@ -41,7 +41,7 @@ const BrowseJobsDetails = () => {
               <p className="text-lg font-semibold text-[#666]">{companyName}</p>
             </div>
             <div>
-              <img src={logo} className="rounded-full" alt="" />
+              <img src={logo} className="rounded-full w-[60px] h-[60px]" alt="" />
             </div>
           </div>
 
