@@ -18,6 +18,7 @@ import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
 import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
+import UploadResume from "../Dashboard/DashboardCandidate/UploadResume/UploadResume";
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/applied-jobs",
         element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/upload-resume",
+        element: <UploadResume />
       },
       {
         path: "/dashboard/post-job",

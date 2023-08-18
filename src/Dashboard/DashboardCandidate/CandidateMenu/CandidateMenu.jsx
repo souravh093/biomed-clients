@@ -3,6 +3,7 @@ import { AiOutlineHome, AiOutlineUser, AiOutlineLogout } from "react-icons/ai";
 import { PiBagSimpleBold } from "react-icons/pi";
 import { IoIosPaper } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
+import { GrNotes } from "react-icons/gr";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -49,6 +50,11 @@ const CandidateMenu = () => {
             className="flex items-center gap-3"
           >
             <FaRegBookmark /> Shortlisted Jobs
+          </Link>
+        </li>
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+          <Link to="/dashboard/upload-resume" className="flex items-center gap-3">
+            <GrNotes /> Upload Resume
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
