@@ -115,7 +115,7 @@ const JobForm = () => {
     ]).then(([dataImage1, dataImage2]) => {
       const currentData = {
         title: data.name,
-        companyName: data.companyName,
+        companyName: data.company,
         email: user?.email,
         description: data.description,
         username: data.username,
