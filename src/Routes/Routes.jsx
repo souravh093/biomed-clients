@@ -23,6 +23,7 @@ import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
+import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
 
 
 const router = createBrowserRouter([
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/company-profile",
         element: <CompanyProfile />,
+      },
+      {
+        path: "/dashboard/company-view",
+        element: <CompanyView />
       },
       {
         path: "/dashboard/shortlisted-jobs",

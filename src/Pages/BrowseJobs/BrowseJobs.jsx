@@ -42,7 +42,7 @@ const BrowseJobs = () => {
   const [browseJobsData, setBrowseJobsData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/jobs")
+    fetch("https://biomed-server.vercel.app/jobs")
       .then((res) => res.json())
       .then((data) => setBrowseJobsData(data));
   }, []);
