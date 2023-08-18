@@ -40,9 +40,7 @@ const ShortlistedJobs = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {shortListedJobs
-                                .slice(startIndex, endIndex)
-                                .map((singleJob) => (
+                            {shortListedJobs?.slice(startIndex, endIndex)?.map((singleJob) => (
                                     <tr key={singleJob._id}>
                                         <td className="py-2 md:py-4">
                                             <div className="flex items-center">

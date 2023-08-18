@@ -28,7 +28,7 @@ const ManageJob = () => {
             <tr>
                 <th scope="col" className="px-6 py-3">
                 Title
-                </th>
+                </th>n
                 <th scope="col" className="px-6 py-3">
                 Applications
                 </th>
@@ -44,8 +44,8 @@ const ManageJob = () => {
             </tr>
         </thead>
         <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr className="bg-white border-b ">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                     <div className='flex gap-4'>
                         <img src="https://i.ibb.co/yyx3Vvb/Manage-Job.png" alt=""/>
                         <div>
@@ -76,8 +76,8 @@ const ManageJob = () => {
                     </div>
                 </td>
             </tr>
-            <tr className="bg-white dark:bg-gray-800">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <tr className="bg-white ">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                     Sample
                 </th>
                 <td className="px-6 py-4">
