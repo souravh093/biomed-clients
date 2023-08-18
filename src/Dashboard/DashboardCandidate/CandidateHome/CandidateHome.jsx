@@ -14,7 +14,7 @@ const CandidateHome = () => {
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/user/${user?.email}`);
+      const res = await axios(`https://biomed-server.vercel.app/user/${user?.email}`);
       return res.data;
     },
   });

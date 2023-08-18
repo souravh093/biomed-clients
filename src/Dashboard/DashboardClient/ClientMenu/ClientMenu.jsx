@@ -59,7 +59,7 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link
+          <Link to='/dashboard/manage-jobs'
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -75,7 +75,7 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link
+          <Link to='/dashboard/shortlisted-resumes'
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
