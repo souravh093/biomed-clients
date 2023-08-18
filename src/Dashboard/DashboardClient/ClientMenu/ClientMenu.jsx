@@ -43,7 +43,7 @@ const ClientMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/company-profile"}
+            to={"/dashboard/company-view"}
             className="flex items-center gap-3"
           >
             <AiOutlineUser /> Company Profile
