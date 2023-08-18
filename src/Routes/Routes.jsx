@@ -19,6 +19,8 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
+import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 
@@ -40,6 +42,16 @@ const router = createBrowserRouter([
       {
         path: "/blogDetails/:id",
         element: <BlogDetails />,
+      },
+
+      {
+        path: '/browseJobs',
+        element: <BrowseJobs /> 
+      },
+      {
+        path: '/jobsDatail/:id',
+        element: <BrowseJobsDetails />,
+        loader: ({params}) =>  fetch(`http://localhost:5000/job/${params.id}`)
       },
       {
         path: "/login",
