@@ -11,6 +11,7 @@ import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
+  console.log(candidateRole)
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
