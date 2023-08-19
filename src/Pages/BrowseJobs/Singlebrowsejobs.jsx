@@ -6,7 +6,6 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Singlebrowsejobs = ({ jobsdata }) => {
-  console.log(jobsdata);
   const {
     experience,
     logo,
