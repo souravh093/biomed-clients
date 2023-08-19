@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Container from "../../components/Shared/Container/Container";
 import CreatableSelect from "react-select/creatable";
 import Singlebrowsejobs from "./Singlebrowsejobs";
 import { BiSearch } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
 import { Switch } from "@headlessui/react";
-import { useRef } from "react";
-import clsx from "clsx";
-import useLazyLoad from "../../hook/useLazyLoad";
-import { LoadingPosts } from "../../components/LoadingPosts/LoadingPosts";
+import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
 
 const skills = [
   { value: "react", label: "React" },
@@ -33,55 +32,21 @@ const customStyles = {
   }),
 };
 
-
 const BrowseJobs = () => {
+  const { user } = useContext(AuthContext);
   const [enabled, setEnabled] = useState(false);
   const [bnenabled, setBenabled] = useState(false);
   const [cenabled, setCenabled] = useState(false);
 
   const [skillOptions, setSkillOptions] = useState(null);
 
-  const [browseJobsData, setBrowseJobsData] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    fetchJobsData(currentPage);
-  }, [currentPage]);
-
-  const fetchJobsData = (page) => {
-    setLoading(true);
-    fetch(`https://biomed-server.vercel.app/jobs?page=${page}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBrowseJobsData((prevData) => [...prevData, ...data]);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  };
-
-  const triggerRef = useRef(null);
-
-  const handleScroll = () => {
-    const scrollContainer = triggerRef.current;
-    if (
-      scrollContainer &&
-      scrollContainer.getBoundingClientRect().bottom <= window.innerHeight
-    ) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { data: browseJobsData = [], isLoading } = useQuery({
+    queryKey: ["jobs", user?.email],
+    queryFn: async () => {
+      const res = await axios(`https://biomed-server.vercel.app/jobs`);
+      return res.data;
+    },
+  });
 
   return (
     <Container>
@@ -224,12 +189,6 @@ const BrowseJobs = () => {
                 jobsdata={jobsdata}
               ></Singlebrowsejobs>
             ))}
-          </div>
-          <div
-            ref={triggerRef}
-            className={clsx("trigger", { visible: loading })}
-          >
-            <LoadingPosts />
           </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [clientRole, setClientRole] = useState(null);
-  const [candidateRole, setCandidateRole] = useState(null)
+  const [candidateRole, setCandidateRole] = useState(null);
   const [dashboardToggle, setDashboardToggle] = useState(false);
 
   const createUser = (email, password) => {
@@ -62,6 +62,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       return unsubscribe();
@@ -80,7 +81,6 @@ const AuthProvider = ({ children }) => {
     }
   });
 
-
   const authInfo = {
     user,
     loading,
@@ -95,7 +95,7 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     resetPassword,
     googleLoginUser,
-    setDashboardToggle
+    setDashboardToggle,
   };
 
   return (
