@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,13 @@ import { saveUser } from "../../../../api/auth";
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const EditForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
+      const res = await axios(`http://localhost:5000/users/${user?.email}`);
       return res.data;
     },
   });
@@ -30,48 +31,54 @@ const EditForm = () => {
 
   const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
 
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
+  const onSubmit = async (data) => {
+    try {
+      setIsSubmitting(true);
+      const formData = new FormData();
+      formData.append("image", data?.image[0]);
 
-    axios
-      .post(imageUrl, formData)
-      .then((dataImage) => {
-        const profileData = {
-          name2: data.name,
-          city: data.city,
-          country: data.country,
-          education: data.education,
-          email: data.email,
-          currentSalary: data.currentSalary,
-          expectedSalary: data.expectedSalary,
-          experience: data.experience,
-          age: data.age,
-          facebook: data.facebook,
-          jobTitle: data.jobTitle,
-          language: data.language,
-          linkedin: data.linkedin,
-          phone: data.phone,
-          website: data.website,
-          description: data.description,
-          image: dataImage.data.data.display_url,
-        };
+      const dataImage = await axios.post(imageUrl, formData);
+      const profileData = {
+        name2: data?.name,
+        city: data?.city,
+        country: data?.country,
+        education: data?.education,
+        email: data?.email,
+        currentSalary: data?.currentSalary,
+        expectedSalary: data?.expectedSalary,
+        experience: data?.experience,
+        age: data?.age,
+        facebook: data?.facebook,
+        jobTitle: data?.jobTitle,
+        language: data?.language,
+        linkedin: data?.linkedin,
+        phone: data?.phone,
+        website: data?.website,
+        description: data?.description,
+        image: dataImage?.data?.data?.display_url,
+      };
 
-        return saveUser(user, profileData);
-      })
-      .then((response) => {
-        if (response.data.modifiedCount == 1) {
-          toast.success("Profile updated successfully");
-          navigate("/dashboard/my-profile");
-        } else {
-          toast.error("Failed to update Profile. Please try again.");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+      const response = await saveUser(user, profileData);
+
+      if (
+        response?.data?.acknowledged === true &&
+        response?.data?.modifiedCount === 1
+      ) {
+        console.log("Profile updated successfully");
         toast.success("Profile updated successfully");
         navigate("/dashboard/my-profile");
-      });
+      } else {
+        console.log("Failed to update Profile");
+        toast.error("Failed to update Profile. Please try again.");
+      }
+    } catch (error) {
+      console.log("Entering catch block");
+      console.error(error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      console.log("Finally block executed");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,8 +103,8 @@ const EditForm = () => {
               required: "Please upload an image",
             })}
           />
-          {errors.image && (
-            <span className="text-red-500">{errors.image.message}</span>
+          {errors?.image && (
+            <span className="text-red-500">{errors?.image.message}</span>
           )}
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -361,8 +368,9 @@ const EditForm = () => {
         <button
           className="bg-primary px-10 py-3 text-lg font-semibold rounded-md text-gray-50 mt-10"
           type="submit"
+          disabled={isSubmitting}
         >
-          Save
+          {isSubmitting ? "Saving..." : "Save"}
         </button>
       </form>
     </div>
