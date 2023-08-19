@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
-  AiOutlineHome,
-  AiOutlineUser,
-  AiOutlineLogout,
   AiOutlineClose,
+  AiOutlineHome,
+  AiOutlineLogout,
+  AiOutlineUser,
 } from "react-icons/ai";
 import { CiPaperplane } from "react-icons/ci";
-import { PiBagSimpleBold } from "react-icons/pi";
-import { IoIosPaper } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
+import { IoIosPaper } from "react-icons/io";
+import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const ClientMenu = () => {
@@ -34,7 +33,7 @@ const ClientMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/dashboard-home"}
+            to={"/dashboard/client-home"}
             className="flex items-center gap-3"
           >
             <AiOutlineHome /> Dashboard

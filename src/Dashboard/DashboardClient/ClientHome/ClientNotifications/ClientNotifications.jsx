@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { BiBriefcase } from "react-icons/bi";
 
-const Notifications = () => {
+const ClientNotifications = () => {
   const { isLoading, data: notifications = [] } = useQuery({
     queryKey: ["notifications"],
     queryFn: async () => {
@@ -41,4 +41,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default ClientNotifications;

@@ -9,7 +9,7 @@ import {
   YAxis,
 } from "recharts";
 
-const ProfileViews = () => {
+const ClientProfileViews = () => {
     const chartData = [
         { month: "January", views: 150 },
         { month: "February", views: 220 },
@@ -41,4 +41,4 @@ const ProfileViews = () => {
     );
 };
 
-export default ProfileViews;
+export default ClientProfileViews;
