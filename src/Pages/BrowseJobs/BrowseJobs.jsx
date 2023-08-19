@@ -51,7 +51,7 @@ const BrowseJobs = () => {
 
   return (
     <Container>
-      <div className="flex gap-5 mt-20">
+      <div className="flex gap-9 mt-20">
         <div className="bg-[#F5F7FC] w-[400px] h-[800px] mx-auto rounded-lg px-8 hidden md:block">
           <div>
             <h2 className="py-3 mt-7">Search by Keywords</h2>
