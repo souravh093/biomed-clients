@@ -26,6 +26,7 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateClient from "./PrivateClient";
+import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
 
 
 const router = createBrowserRouter([
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
         path: "/dashboard/editProfile",
         element: <EditProfile />,
       },
+      {
+        path: "/dashboard/client-message",
+        element: <ClientMessage />
+      }
     ],
   },
 ]);
