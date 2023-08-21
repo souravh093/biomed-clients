@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Container from "../../components/Shared/Container/Container";
 import JobsSidebar from "./JobsSidebar/JobsSidebar";
 
 const BrowseJobs = () => {
     const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
 
   return (
-    <div className="px-4 mb-4">
+    <Container className="mb-4">
       <button  onClick={() => setJobsSidebarToggle(true)} className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
         <HiOutlineMenuAlt3 /> Menu
       </button>
@@ -18,7 +19,7 @@ const BrowseJobs = () => {
         </aside>
         {
           jobsSidebarToggle && (
-            <aside className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll">
+            <aside className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll bg-white">
              <JobsSidebar />
             </aside>
           )
@@ -27,7 +28,7 @@ const BrowseJobs = () => {
           <Outlet />
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

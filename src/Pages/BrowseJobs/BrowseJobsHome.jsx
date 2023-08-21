@@ -16,7 +16,7 @@ const BrowseJobsHome = () => {
   });
  
   return (
-    <div className="px-4 xl:px-16">
+    <div>
         {/* job card */}
         <div>
           <div className="grid md:grid-cols-2 gap-5">
