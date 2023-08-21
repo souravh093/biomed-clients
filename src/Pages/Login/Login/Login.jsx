@@ -61,7 +61,7 @@ const Login = () => {
 
   return (
     <Container>
-      <div className="grid lg:grid-cols-2 my-10 items-center ">
+      <div className="grid lg:grid-cols-2 my-10 min-h-[calc(100vh-88px)]">
         <div>
           <div className="mb-10 px-10 lg:px-0">
             <h1 className="text-4xl font-semibold mb-5">Sign in</h1>
@@ -158,7 +158,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#23ccc4] hidden lg:block">
+        <div className="hidden lg:block">
           <img className="shadow-md bg-cover" src={loginImg} alt="" />
         </div>
       </div>

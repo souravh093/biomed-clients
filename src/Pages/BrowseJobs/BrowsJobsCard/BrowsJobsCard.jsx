@@ -19,6 +19,7 @@ const BrowsJobsCard = ({ jobsdata }) => {
     industry,
     startDate,
   } = jobsdata;
+
   return (
     <div className="border p-7 flex flex-col hover:border-hover transition rounded-md w-full">
       <div className="flex items-center justify-between mb-5">
