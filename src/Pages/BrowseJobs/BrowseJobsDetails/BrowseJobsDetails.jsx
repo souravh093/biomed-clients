@@ -1,13 +1,12 @@
+import { AiOutlineShareAlt, AiOutlineUsergroupAdd } from "react-icons/ai";
+import { BiBriefcaseAlt } from "react-icons/bi";
+import { BsBookmarkPlus, BsHourglassSplit } from "react-icons/bs";
+import { FiPlayCircle } from "react-icons/fi";
+import { LiaBusinessTimeSolid, LiaMoneyCheckAltSolid } from "react-icons/lia";
+import { PiBriefcaseThin, PiShareFill } from "react-icons/pi";
+import { TbHomeDot } from "react-icons/tb";
 import { Link, useLoaderData } from "react-router-dom";
 import Container from "../../../components/Shared/Container/Container";
-import { BsBookmarkPlus } from "react-icons/bs";
-import { AiOutlineShareAlt, AiOutlineUsergroupAdd } from "react-icons/ai";
-import { PiShareFill, PiBriefcaseThin } from "react-icons/pi";
-import { FiPlayCircle } from "react-icons/fi";
-import { LiaMoneyCheckAltSolid, LiaBusinessTimeSolid } from "react-icons/lia";
-import { BiBriefcaseAlt } from "react-icons/bi";
-import { TbHomeDot } from "react-icons/tb";
-import { BsHourglassSplit } from "react-icons/bs";
 import ApplyModal from "../../../components/Modal/ApplyModal/ApplyModal";
 import { useState } from "react";
 

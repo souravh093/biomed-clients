@@ -9,7 +9,7 @@ const ClientHome = () => {
   return (
     <div className="p-6">
       {/* Heading Section */}
-      <DashboardTitle title={"Dashboard Home!"} slogan={"Read to Jump"} />
+      <DashboardTitle title={"Dashboard Home!"} slogan={"Ready to Jump"} />
       {/* Box Section */}
       <ClientBox />
 
