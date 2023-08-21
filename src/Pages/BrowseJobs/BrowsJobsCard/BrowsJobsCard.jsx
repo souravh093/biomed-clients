@@ -1,11 +1,11 @@
-import { BsBookmarkPlus } from "react-icons/bs";
-import { FaIndustry, FaChair } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { BsBookmarkPlus } from "react-icons/bs";
+import { FaChair, FaIndustry } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 
 import { Link } from "react-router-dom";
 
-const Singlebrowsejobs = ({ jobsdata }) => {
+const BrowsJobsCard = ({ jobsdata }) => {
   const {
     experience,
     logo,
@@ -20,13 +20,13 @@ const Singlebrowsejobs = ({ jobsdata }) => {
     startDate,
   } = jobsdata;
   return (
-    <div className="border p-7 flex flex-col hover:border-hover transition rounded-md ">
+    <div className="border p-7 flex flex-col hover:border-hover transition rounded-md w-full">
       <div className="flex items-center justify-between mb-5">
         <div className="text-3xl font-bold text-gray-600">
           <h2>{title}</h2>
         </div>
         <div>
-          <BsBookmarkPlus className="text-2xl" />
+          <BsBookmarkPlus className="text-xl md:text-2xl" />
         </div>
       </div>
 
@@ -39,30 +39,30 @@ const Singlebrowsejobs = ({ jobsdata }) => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-5 mb-5">
-        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
-          <FaIndustry className="text-3xl text-primary" /> {industry}
+      <div className="grid md:grid-cols-2 justify-center gap-3 xl:gap-5 mb-5">
+        <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
+          <FaIndustry className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {industry}
         </div>
-        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
-          <MdLocationOn className="text-3xl text-primary" /> {country}
+        <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
+          <MdLocationOn className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {country}
         </div>
-        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
-          <AiOutlineClockCircle className="text-3xl text-primary" /> {2} days
+        <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
+          <AiOutlineClockCircle className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {2} days
           ago
         </div>
-        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
-          <FaChair className="text-3xl text-primary" /> {5} Vacancies
+        <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
+          <FaChair className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {5} Vacancies
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-5">
-        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+      <div className="flex flex-col xl:flex-row items-center justify-center space-y-2 xl:space-y-0 gap-3 mb-2">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
           {startDate}
         </div>
-        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
           {experience}
         </div>
-        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
           {jobType}
         </div>
       </div>
@@ -91,4 +91,4 @@ const Singlebrowsejobs = ({ jobsdata }) => {
   );
 };
 
-export default Singlebrowsejobs;
+export default BrowsJobsCard;

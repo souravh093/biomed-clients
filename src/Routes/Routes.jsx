@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 
       {
         path: '/browseJobs',
-        element: <BrowseJobs /> 
+        element:<BrowseJobs /> 
       },
       {
         path: '/jobsDatail/:id',

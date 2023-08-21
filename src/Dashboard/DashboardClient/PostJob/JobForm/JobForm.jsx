@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import axios from "axios";
-import { toast } from "react-hot-toast";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -40,7 +40,7 @@ const JobForm = () => {
   ];
 
   const jobsTypes = [
-    { value: "workFromHome", label: "Work From Home" },
+    { value: "remote", label: "Remote" },
     { value: "onsite", label: "Onsite" },
     { value: "internship", label: "Internship" },
     { value: "contract", label: "Contract" },
@@ -382,7 +382,7 @@ const JobForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="name">Qualification</label>
+            <label htmlFor="qualification">Qualification</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
@@ -394,11 +394,11 @@ const JobForm = () => {
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="name">Application Deadline Date</label>
+          <label htmlFor="deadline">Application Deadline Date</label>
 
           <input
-            type="text"
-            id="name"
+            type="date"
+            id="deadline"
             placeholder="Enter application deadline"
             className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
             {...register("deadline", { required: "Title is required" })}

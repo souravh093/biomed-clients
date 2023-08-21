@@ -20,7 +20,7 @@ const ClientMenu = () => {
     logoutUser().then(() => navigate("/"));
   };
   return (
-    <div className="px-10 py-5 h-screen z-20 bg-white">
+    <div className="px-10 py-5 h-screen bg-white relative z-50">
       <div className="flex justify-end lg:hidden ">
         <button
           className="bg-primary p-2 rounded-full text-white hover:bg-hover mb-3"

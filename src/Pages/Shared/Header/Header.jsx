@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaAlignJustify } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 import logo from "../../../assets/logo.png";
+import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
-import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
@@ -74,7 +73,7 @@ const Header = () => {
             <div className="mb-10">
               <ul className="flex flex-col text-2xl gap-3 items-center xl:hidden">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
