@@ -41,35 +41,35 @@ const ShortlistedJobs = () => {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {shortListedJobs?.slice(startIndex, endIndex)?.map((singleJob) => (
-                                    <tr key={singleJob._id}>
-                                        <td className="py-2 md:py-4">
-                                            <div className="flex items-center">
-                                                <img
-                                                    src={singleJob.image}
-                                                    alt="Job"
-                                                    className="w-12 h-12 md:w-14 md:h-14 rounded-xl mr-3 md:mr-4"
-                                                />
-                                                <div>
-                                                    <p className="font-semibold text-base md:text-lg">{singleJob.title}</p>
-                                                    <div className="flex mt-1 text-gray-600 text-xs md:text-base">
-                                                        <FaBriefcase className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                                                        <p>{singleJob.heading}</p>
-                                                        <FaMapMarkerAlt className="w-3 h-3 md:w-4 md:h-4 mx-1 md:mx-2" />
-                                                        <p>{singleJob.address}</p>
-                                                    </div>
+                                <tr key={singleJob._id}>
+                                    <td className="py-2 md:py-4">
+                                        <div className="flex items-center">
+                                            <img
+                                                src={singleJob.image}
+                                                alt="Job"
+                                                className="w-12 h-12 md:w-14 md:h-14 rounded-xl mr-3 md:mr-4"
+                                            />
+                                            <div>
+                                                <p className="font-semibold text-base md:text-lg">{singleJob.title}</p>
+                                                <div className="flex mt-1 text-gray-600 text-xs md:text-base">
+                                                    <FaBriefcase className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                                                    <p>{singleJob.heading}</p>
+                                                    <FaMapMarkerAlt className="w-3 h-3 md:w-4 md:h-4 mx-1 md:mx-2" />
+                                                    <p>{singleJob.address}</p>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td className="py-2 md:py-4">{singleJob.date}</td>
-                                        <td className="py-2 md:py-4">{singleJob.status}</td>
-                                        <td className="py-2 md:py-4">
-                                            <div className="flex space-x-1 md:space-x-2">
-                                                <span className="bg-gray-100 p-1 md:p-2 rounded-lg"><FaEye className="w-3 h-3 md:w-4 md:h-4" /></span>
-                                                <span className="bg-gray-100 p-1 md:p-2 rounded-lg"><FaRegTrashAlt className="w-3 h-3 md:w-4 md:h-4" /></span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                                        </div>
+                                    </td>
+                                    <td className="py-2 md:py-4">{singleJob.date}</td>
+                                    <td className="py-2 md:py-4">{singleJob.status}</td>
+                                    <td className="py-2 md:py-4">
+                                        <div className="flex space-x-1 md:space-x-2">
+                                            <span className="bg-gray-100 p-1 md:p-2 rounded-lg"><FaEye className="w-3 h-3 md:w-4 md:h-4" /></span>
+                                            <span className="bg-gray-100 p-1 md:p-2 rounded-lg"><FaRegTrashAlt className="w-3 h-3 md:w-4 md:h-4" /></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
