@@ -37,7 +37,7 @@ const JobsSidebar = () => {
 
   const [skillOptions, setSkillOptions] = useState(null);
   return (
-    <div className="px-10 py-5 h-screen bg-white">
+    <div className="px-4 md:px-10 py-5 h-screen bg-white">
         <div>
           <div className="flex justify-end lg:hidden">
             <button onClick={() => setJobsSidebarToggle(false)} className="bg-primary p-2 mt-2 rounded-full text-white hover:bg-hover">

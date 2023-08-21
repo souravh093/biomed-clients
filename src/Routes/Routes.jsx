@@ -18,6 +18,7 @@ import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
 import Blogs from "../Pages/Blogs/Blogs";
 import BrowseJobs from "../Pages/BrowseJobs/BrowseJobs";
 import BrowseJobsDetails from "../Pages/BrowseJobs/BrowseJobsDetails/BrowseJobsDetails";
+import BrowseJobsHome from "../Pages/BrowseJobs/BrowseJobsHome";
 import Contact from "../Pages/Contact/Contact";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
@@ -46,10 +47,16 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
       },
-
+ 
       {
         path: '/browseJobs',
-        element:<BrowseJobs /> 
+        element:<BrowseJobs />, 
+        children:[
+          {
+            path: "/browseJobs/browseJobs-home",
+            element: <BrowseJobsHome />,
+          },
+        ]
       },
       {
         path: '/jobsDatail/:id',

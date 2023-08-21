@@ -14,7 +14,7 @@ const BrowseJobsHome = () => {
       return res.data;
     },
   });
-
+ 
   return (
     <div className="px-4 xl:px-16">
         {/* job card */}

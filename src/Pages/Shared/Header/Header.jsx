@@ -23,7 +23,7 @@ const Header = () => {
             <div>
               <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/contact"} />
@@ -73,7 +73,7 @@ const Header = () => {
             <div className="mb-10">
               <ul className="flex flex-col text-2xl gap-3 items-center xl:hidden">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
