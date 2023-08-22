@@ -37,7 +37,7 @@ const JobsSidebar = () => {
 
   const [skillOptions, setSkillOptions] = useState(null);
   return (
-    <div className="px-4 md:px-10 py-5 h-screen bg-white">
+    <div className="px-4 md:px-10 py-5 h-screen dark:bg-slate-700 bg-white">
         <div>
           <div className="flex justify-end lg:hidden">
             <button onClick={() => setJobsSidebarToggle(false)} className="bg-primary p-2 mt-2 rounded-full text-white hover:bg-hover">
@@ -132,12 +132,13 @@ const JobsSidebar = () => {
           <div className="relative">
             <div className="mb-4">
               <CreatableSelect
-                className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+                className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
                 defaultValue={skillOptions}
                 onChange={setSkillOptions}
                 options={skills}
                 styles={customStyles}
                 isMulti
+                
               />
             </div>
           </div>

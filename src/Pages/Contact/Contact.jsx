@@ -22,12 +22,12 @@ const Contact = () => {
 
 
   return (
-    <Container className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+    <Container className="min-h-screen   bg-gray-100 flex flex-col justify-center items-center">
       {/* banner section */}
       <Cover title={"Contact Us"} text={"We would love to hear from you!"} />
 
       {/* form section */}
-      <div className="my-20 bg-white py-10 px-5 rounded-lg shadow-md flex flex-col md:flex-row">
+      <div className="my-20 dark:bg-slate-800 bg-white py-10 px-5 rounded-lg shadow-md flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex-shrink-0">
           <img
             src={img2}
@@ -46,7 +46,7 @@ const Contact = () => {
                 type="text"
                 id="name"
                 name="name"
-                className="w-full border rounded px-3 py-2"
+                className="w-full border dark:bg-slate-700 rounded px-3 py-2"
                 placeholder="Your Name"
                 required
               />
@@ -59,7 +59,7 @@ const Contact = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full border rounded px-3 py-2"
+                className="w-full border rounded px-3 dark:bg-slate-700 py-2"
                 placeholder="example@example.com"
                 required
               />
@@ -72,7 +72,7 @@ const Contact = () => {
                 id="message"
                 name="message"
                 rows="4"
-                className="w-full border rounded px-3 py-2"
+                className="w-full border dark:bg-slate-700 rounded px-3 py-2"
                 placeholder="Your message here..."
                 required
               />

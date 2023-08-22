@@ -52,7 +52,7 @@ const ProfileDropdown = () => {
 
 
   return (
-    <div className="relative inline-block">
+    <div className=" relative inline-block">
       <div
         className="w-12 h-12 rounded-full overflow-hidden cursor-pointer"
         onMouseEnter={toggleDropdown}
@@ -70,23 +70,23 @@ const ProfileDropdown = () => {
           ref={dropdownRef}
           onMouseEnter={openDropdown}
           onMouseLeave={closeDropdown}
-          className="absolute top-full right-0 mt-2  bg-white border border-gray-300 shadow-md rounded-md"
+          className="absolute top-full right-0 mt-2 dark:bg-gray-800 bg-white border border-gray-300 shadow-md rounded-md"
         >
           <ul className="py-2">
             <li className="px-4 py-2 ">{user?.displayName}</li>
             <li className="px-4 pt-2 pb-5">{user?.email}</li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+            <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
               Edit Profile
             </li>
             {clientRole ? (
               <Link to={"/dashboard/client-home"}>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
                   Dashboard
                 </li>
               </Link>
             ) : candidateRole ? (
               <Link to={"/dashboard/candidate-home"}>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
                   Dashboard
                 </li>
               </Link>

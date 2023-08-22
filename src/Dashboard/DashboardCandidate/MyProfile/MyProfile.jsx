@@ -22,19 +22,19 @@ const MyProfile = () => {
 
 
   return (
-    <div className="px-10 py-6">
+    <div className="px-10 dark:bg-gray-700 dark:text-white py-6">
       {/* Heading Section */}
       <div>
         <div>
-          <h2 className="text-3xl font-semibold">My Profile!</h2>
-          <p className="text-gray-600 text-base py-3">Ready to jump?</p>
+          <h2 className=" text-3xl font-semibold">My Profile!</h2>
+          <p className="dark:text-gray-400 text-gray-600 text-base py-3">Ready to jump?</p>
         </div>
       </div>
-      <button className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
+      <button className="text-base  text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
         <HiOutlineMenuAlt3 /> Menu
       </button>
 
-      <div key={myProfileData._id} className="bg-white p-6 rounded-md my-6">
+      <div key={myProfileData._id} className="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-md my-6">
         {/* Image Section */}
         <div className="md:flex justify-between">
           <div className="md:flex gap-6 items-center">

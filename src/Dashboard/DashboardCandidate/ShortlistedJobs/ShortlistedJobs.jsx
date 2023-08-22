@@ -22,16 +22,16 @@ const ShortlistedJobs = () => {
     }
 
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col">
+        <div className="dark:bg-gray-700 dark:text-white bg-gray-100 min-h-screen flex flex-col">
             <div className="p-6 md:p-12">
                 <h1 className="text-2xl md:text-3xl font-semibold">Shortlisted jobs!</h1>
-                <p className="mt-1 md:mt-2 text-gray-600 text-base md:text-lg">Ready to jump back in?</p>
+                <p className="mt-1 md:mt-2 dark:text-slate-300 text-gray-600 text-base md:text-lg">Ready to jump back in?</p>
             </div>
-            <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
+            <div className="dark:bg-slate-800 bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
                 <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">My Favorite Jobs</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50 text-green-400">
+                        <thead className="dark:bg-slate-800 bg-gray-50 text-green-400">
                             <tr>
                                 <th className="py-3 md:py-5 text-left text-base md:text-lg px-3 md:ps-5">Job title</th>
                                 <th className="py-3 md:py-5 text-left text-base md:text-lg">Date applied</th>

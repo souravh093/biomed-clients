@@ -13,7 +13,7 @@ const BlogCard = ({ blogItems }) => {
 
   return (
     <Link to={`/blogDetails/${_id}`}>
-      <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full h-full mx-auto cursor-pointer">
+      <div className="dark:bg-slate-700 bg-white shadow-xl rounded-lg overflow-hidden w-full h-full mx-auto cursor-pointer">
         <div className="group relative overflow-hidden">
           <div className="group-hover:bg-purple-500/30 w-full h-full absolute z-40 transition-all duration-300"></div>
           <div className="group-hover:scale-105 transition-all duration-500">

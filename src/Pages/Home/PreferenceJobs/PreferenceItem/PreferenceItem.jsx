@@ -14,7 +14,7 @@ const PreferenceItem = ({ data }) => {
   } = data;
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col w-full h-[485px]">
+    <div className="dark:bg-gray-800 bg-white shadow-md rounded-lg overflow-hidden flex flex-col w-full h-[485px]">
       <div className="p-6 flex-grow">
         <div className="flex items-center space-x-4">
           <img className="w-16 h-16 rounded-full" src={company_logo} alt="" />

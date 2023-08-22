@@ -21,7 +21,7 @@ const CandidateHome = () => {
   return (
     <div className="p-6">
       {/* Heading Section */}
-      <DashboardTitle title={`Howdy, ${updateData?.name2 || user?.displayName}!`} slogan={"Welcome"}  />
+      <DashboardTitle title={`Howday, ${updateData?.name2 || user?.displayName}!`} slogan={"Welcome"}  />
       {/* Box Section */}
       <CandidateBox/>
 
