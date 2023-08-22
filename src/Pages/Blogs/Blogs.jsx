@@ -10,7 +10,7 @@ const Blogs = () => {
   const { isLoading, data: blogs = [] } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await axios("blogsData/blogs.json");
+      const res = await axios("http://localhost:5000/blogs");
       return res.data;
     },
   });

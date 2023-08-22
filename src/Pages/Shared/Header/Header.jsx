@@ -6,6 +6,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import logo from "../../../assets/logo.png";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
+import './Header.css';
 import MenuItem from "./MenuItem/MenuItem";
 
 const Header = () => {
@@ -21,7 +22,7 @@ const Header = () => {
               <img src={logo} alt="" />
             </Link>
             <div>
-              <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
+              <ul className="hidden xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
                 <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
@@ -65,9 +66,9 @@ const Header = () => {
 
       {toggle && (
         <div
-          className={`absolute flex flex-col items-center ${
-            toggle && "transition-all ease-in-out duration-200"
-          } bg-[#80faa9] w-full py-5 animate-fadeIn`}
+          className={`absolute flex flex-col  items-center ${
+            toggle &&  "animated-slideIn"
+          } w-full py-5 bg-[#80faa9]`}
         >
           <div className="flex justify-center items-center gap-16 xl:hidden">
             <div className="mb-10">
