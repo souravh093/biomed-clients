@@ -1,12 +1,12 @@
 import React from "react";
 import {
-    CartesianGrid,
-    Legend,
-    Line,
-    LineChart,
-    Tooltip,
-    XAxis,
-    YAxis,
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 const CandidateProfileViews = () => {
@@ -22,7 +22,7 @@ const CandidateProfileViews = () => {
   return (
     <div className="mt-8 bg-white rounded-lg p-8 shadow-sm">
       <h3 className="text-xl font-semibold mb-3">Your Profile Views</h3>
-      <div style={{ overflowX: "auto" }}>
+      <div style={{ overflowX: "auto"}}>
         <LineChart width={600} height={300} data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
