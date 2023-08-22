@@ -10,7 +10,7 @@ const Banner = () => {
         <div>
           <div className="flex flex-col h-full justify-center">
             <h1 className="md:text-3xl lg:text-6xl text-2xl py-5 md:mt-4 font-semibold text-slate-700">
-              Hire the best freelancer for any jobs, online.
+              Hire the Popular Freelancers for Job, Online!
             </h1>
             <p className="md:my-2 font-semibold pb-3">
               Millions of people use BIOMED. to turn their ideas into reality.
