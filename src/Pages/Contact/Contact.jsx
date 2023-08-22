@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Container from '../../components/Shared/Container/Container';
 import img2 from '../../assets/contact_us/contact_us.png';
 import Cover from "../../components/Shared/Cover/Cover";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_hgn2gkn', 'template_rph9cik', form.current, '0NYSO9RzbhtXf6dad')
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+  };
+
+
+
+
   return (
     <Container className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
       {/* banner section */}
@@ -20,7 +37,7 @@ const Contact = () => {
         </div>
         <div className="w-full md:w-1/2 ml-0 md:ml-10 mt-4 md:mt-0">
           <h2 className="text-xl font-semibold mb-5">Get in Touch</h2>
-          <form>
+          <form onSubmit={sendEmail}>
             <div className="mb-4">
               <label htmlFor="name" className="block font-medium mb-1">
                 Name
