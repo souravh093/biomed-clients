@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaAlignJustify } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { becomeClient } from "../../../api/auth";
 import logo from "../../../assets/logo.png";
+import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
+import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
-import { becomeClient } from "../../../api/auth";
-import { toast } from "react-hot-toast";
-import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
-import { useEffect } from "react";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);

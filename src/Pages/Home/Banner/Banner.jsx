@@ -1,6 +1,6 @@
+import { Player } from '@lottiefiles/react-lottie-player';
 import React from "react";
 import Container from "../../../components/Shared/Container/Container";
-import { Player } from '@lottiefiles/react-lottie-player';
 import SearchForm from "../../Shared/Header/SearchForm/SearchForm";
 
 const Banner = () => {

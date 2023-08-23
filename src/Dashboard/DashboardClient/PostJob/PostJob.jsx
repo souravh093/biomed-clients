@@ -2,8 +2,8 @@ import React from "react";
 import { GiConfirmed } from "react-icons/gi";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { PiBagSimpleBold } from "react-icons/pi";
-import JobForm from "./JobForm/JobForm";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
+import JobForm from "./JobForm/JobForm";
 
 const PostJob = () => {
   return (
@@ -36,7 +36,6 @@ const PostJob = () => {
               </div>
             </div>
           </div>
-
           <JobForm />
         </div>
       </div>
