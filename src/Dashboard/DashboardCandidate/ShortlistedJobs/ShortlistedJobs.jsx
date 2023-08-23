@@ -7,7 +7,7 @@ const ShortlistedJobs = () => {
     const { isLoading, data: shortListedJobs = [] } = useQuery({
         queryKey: ["shortListedJobs"],
         queryFn: async () => {
-            const res = await axios("/public/shortlistedjobs.json");
+            const res = await axios("https://biomed-server.vercel.app/applidejobs");
             return res.data;
         },
     });
@@ -16,10 +16,6 @@ const ShortlistedJobs = () => {
     const rowsPerPage = 4;
     const startIndex = (currentPage - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
