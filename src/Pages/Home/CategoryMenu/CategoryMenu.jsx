@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Container from "../../../components/Shared/Container/Container";
 
 const CategoryMenu = () => {
   const categories = [
@@ -11,15 +12,15 @@ const CategoryMenu = () => {
   ];
 
   return (
-    <div>
-      <ul className="hidden md:flex justify-start items-center gap-10 font-semibold relative z-20 bg-white pb-10 px-40">
+    <Container>
+      <ul className="hidden md:flex justify-start items-center gap-10 font-semibold">
         {categories.map((category) => (
           <li key={category.id}>
             <Link to={category.route}>{category.name}</Link>
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 

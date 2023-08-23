@@ -6,12 +6,12 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import logo from "../../../assets/logo.png";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
-import './Header.css';
+import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
-  console.log(candidateRole)
+  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -24,7 +24,10 @@ const Header = () => {
             <div>
               <ul className="hidden xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
+                <MenuItem
+                  name={"Browse Jobs"}
+                  path={"/browseJobs/browseJobs-home"}
+                />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/contact"} />
@@ -67,14 +70,17 @@ const Header = () => {
       {toggle && (
         <div
           className={`absolute flex flex-col  items-center ${
-            toggle &&  "animated-slideIn"
+            toggle && "animated-slideIn"
           } w-full py-5 bg-[#80faa9]`}
         >
           <div className="flex justify-center items-center gap-16 xl:hidden">
             <div className="mb-10">
               <ul className="flex flex-col text-2xl gap-3 items-center xl:hidden">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
+                <MenuItem
+                  name={"Browse Jobs"}
+                  path={"/browseJobs/browseJobs-home"}
+                />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />

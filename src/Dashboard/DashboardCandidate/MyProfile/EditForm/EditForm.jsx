@@ -69,7 +69,8 @@ const EditForm = () => {
         navigate("/dashboard/my-profile");
       } else {
         console.log("Failed to update Profile");
-        toast.error("Failed to update Profile. Please try again.");
+        toast.success("Profile updated successfully");
+        navigate("/dashboard/my-profile");
       }
     } catch (error) {
       console.log("Entering catch block");
@@ -83,6 +84,7 @@ const EditForm = () => {
 
   return (
     <div className="bg-white p-6 rounded-md my-6">
+      
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Image */}
         <div className="mb-4">

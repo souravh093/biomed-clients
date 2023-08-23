@@ -77,18 +77,17 @@ const Blogs = () => {
               .fill(null)
               .map((ele, index) => {
                 return (
-                  <>
-                    <button
-                      onClick={() => setPage(index + 1)}
-                      className={`h-12 w-12 rounded-lg ${
-                        page === index + 1
-                          ? "bg-green-400 text-white"
-                          : "bg-gray-200 text-gray-600 hover:bg-green-400 hover:text-white"
-                      } `}
-                    >
-                      {index + 1}
-                    </button>
-                  </>
+                  <button
+                    key={index}
+                    onClick={() => setPage(index + 1)}
+                    className={`h-12 w-12 rounded-lg ${
+                      page === index + 1
+                        ? "bg-green-400 text-white"
+                        : "bg-gray-200 text-gray-600 hover:bg-green-400 hover:text-white"
+                    } `}
+                  >
+                    {index + 1}
+                  </button>
                 );
               })}
             <button

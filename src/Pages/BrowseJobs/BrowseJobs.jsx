@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -7,6 +7,11 @@ import JobsSidebar from "./JobsSidebar/JobsSidebar";
 
 const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setIsSidebarOpen(jobsSidebarToggle);
+  }, [jobsSidebarToggle]);
 
   return (
     <Container className="mb-4">
@@ -19,11 +24,21 @@ const BrowseJobs = () => {
       <div className="grid grid-cols-4 lg:grid-cols-10 xl:grid-cols-4 pt-[20px]">
         <aside
           className={`col-span-3 lg:col-span-3 xl:col-span-1 hidden lg:block sticky top-0  h-screen mb-[300px] overflow-y-scroll`}
+          style={{
+            transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
+            transition: "transform 0.3s ease-in-out",
+          }}
         >
           <JobsSidebar />
         </aside>
         {jobsSidebarToggle && (
-          <aside className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll bg-white">
+          <aside
+            className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll bg-white"
+            style={{
+              transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
+              transition: "transform 0.3s ease-in-out",
+            }}
+          >
             <JobsSidebar />
           </aside>
         )}
