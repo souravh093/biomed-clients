@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
-import { getCandidateRole, getClientRole } from "../api/auth";
+import { getClientRole } from "../api/auth";
 import app from "../firebase/firebase.config";
 
 const auth = getAuth(app);
@@ -22,7 +22,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [clientRole, setClientRole] = useState(null);
-  const [candidateRole, setCandidateRole] = useState(null);
   const [dashboardToggle, setDashboardToggle] = useState(false);
   const [jobsSidebarToggle, setJobsSidebarToggle] = useState(false);
 
@@ -72,22 +71,17 @@ const AuthProvider = ({ children }) => {
     if (user) {
       getClientRole(user?.email).then((data) => setClientRole(data));
     }
-  });
+  }, [user]);
 
-  useEffect(() => {
-    if (user) {
-      getCandidateRole(user?.email).then((data) => setCandidateRole(data));
-    }
-  });
+
 
   const authInfo = {
     user,
     loading,
     clientRole,
-    candidateRole,
+    setClientRole,
     dashboardToggle,
     jobsSidebarToggle,
-    setCandidateRole,
     setLoading,
     createUser,
     loginUser,
