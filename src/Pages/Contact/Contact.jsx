@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Container from '../../components/Shared/Container/Container';
-import img2 from '../../assets/contact_us/contact_us.png';
-import Cover from "../../components/Shared/Cover/Cover";
+import img1 from '../../assets/contact_us/contact_png.avif';
+import img2 from '../../assets/contact_us/contact_banner.avif';
 import emailjs from '@emailjs/browser';
 import { toast } from "react-hot-toast";
 
@@ -23,18 +23,26 @@ const Contact = () => {
   return (
     <Container className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
       {/* banner section */}
-      <Cover title={"Contact Us"} text={"We would love to hear from you!"} />
+      <div
+        className="bg-cover bg-center py-16 px-4 text-white text-center"
+        style={{
+          backgroundImage: `url(${img2})`
+        }}
+      >
+        <h1 className="text-4xl font-bold mb-2">Contact Us</h1>
+        <p className="text-xl">We would love to hear from you!</p>
+      </div>
 
       {/* form section */}
-      <div className="my-20 bg-white py-10 px-5 rounded-lg shadow-md flex flex-col md:flex-row">
+      <div className="my-20 bg-white py-9 px-5 rounded-lg shadow-md flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex-shrink-0">
           <img
-            src={img2}
+            src={img1}
             alt="Contact Us"
-            className="w-full h-full object-cover rounded-md"
+            className="w-full h-auto object-cover"
           />
         </div>
-        <div className="w-full md:w-1/2 ml-0 md:ml-10 mt-4 md:mt-0">
+        <div className="w-full md:w-1/2 ml-0 md:ml-10 mt-4 md:mt-28">
           <h2 className="text-xl font-semibold mb-5">Get in Touch</h2>
           <form ref={form} onSubmit={sendEmail}>
             <div className="mb-4">
