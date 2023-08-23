@@ -10,11 +10,13 @@ import MenuItem from "./MenuItem/MenuItem";
 import { becomeClient } from "../../../api/auth";
 import { toast } from "react-hot-toast";
 import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
+import { useEffect } from "react";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);
   const navigate = useNavigate();
   const [roleModal, setRoleModal] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
   const [toggle, setToggle] = useState(false);
 
   const roleModalHandler = (email) => {
@@ -30,9 +32,28 @@ const Header = () => {
     setRoleModal(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <div className="relative z-10">
+    <div
+      className={`fixed w-full z-50 transition-all ease-in-out duration-200 ${
+        scrolling ? "backdrop-blur-lg bg-opacity-80 shadow-md" : ""
+      }`}
+    >
+      <div className="relative z-20 ">
         <Container>
           <nav className="flex items-center justify-between py-5">
             <div className="flex items-center gap-10 2xl:gap-16">
@@ -149,7 +170,7 @@ const Header = () => {
         modalHandler={roleModalHandler}
         isOpen={roleModal}
       />
-    </>
+    </div>
   );
 };
 
