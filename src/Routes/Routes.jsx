@@ -27,7 +27,6 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
-import PrivateClient from "./PrivateClient";
 
 const router = createBrowserRouter([
   {
@@ -64,19 +63,11 @@ const router = createBrowserRouter([
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
         loader: ({ params }) =>
-          fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/job/${params.id}`),
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/terms",
+        path: "/",
         element: <Terms></Terms>,
-      },
-      {
-        path: "/register",
-        element: <Register />,
       },
       {
         path: "/registerclient",
@@ -87,6 +78,14 @@ const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/dashboard",
@@ -114,11 +113,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/post-job",
-        element: (
-          <PrivateClient>
-            <PostJob />
-          </PrivateClient>
-        ),
+        element: <PostJob />,
       },
       {
         path: "/dashboard/company-profile",

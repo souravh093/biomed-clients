@@ -1,9 +1,52 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { useForm } from "react-hook-form";
+import { storage } from "../../../firebase/firebase.config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
+  const { user } = useContext(AuthContext);
   const { _id, title, companyName } = showInfoCompany;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const [resumeURL, setResumeURL] = useState(null);
+
+  const onSubmit = (data) => {
+    const resumeFile = data.resume[0];
+
+    if (resumeFile == null) return;
+
+    const resumeRef = ref(storage, `resume/${resumeFile.name + v4()}`);
+    uploadBytes(resumeRef, resumeFile).then(() => {
+      toast.success("uploaded resume");
+
+      getDownloadURL(resumeRef).then((downloadUrl) => {
+        setResumeURL(downloadUrl);
+      });
+    });
+
+    const applyJob = {
+      downloadPdf: resumeURL,
+      coverLetter: data?.coverLetter,
+    };
+
+    console.log(applyJob)
+
+    
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -38,12 +81,46 @@ const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
                   <div className="text-xl font-semibold">{title}</div>
                   <h3 className="">{companyName}</h3>
                 </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
-                </div>
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="flex flex-col gap-5 mt-5"
+                >
+                  <div className="mb-4">
+                    <label
+                      className="block text-gray-700 text-sm font-bold mb-2"
+                      htmlFor="resume"
+                    >
+                      Upload Resume
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      {...register("resume")}
+                      className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      className="block text-gray-700 text-sm font-bold mb-2"
+                      htmlFor="coverLetter"
+                    >
+                      Cover Letter
+                    </label>
+                    <textarea
+                      rows="10"
+                      {...register("coverLetter")}
+                      className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      className="bg-primary hover:bg-hover text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Summit Application
+                    </button>
+                  </div>
+                </form>
 
                 <div className="mt-4">
                   <button
