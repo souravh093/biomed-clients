@@ -80,19 +80,19 @@ const ProfileDropdown = () => {
                   ? "/dashboard/company-profile"
                   : "/dashboard/editProfile"
               }
-              className="px-10 py-2 w-full hover:bg-gray-100 cursor-pointer"
+              className="px-10 py-2 w-full dark:hover:bg-slate-600 hover:bg-gray-100 cursor-pointer"
             >
               Edit Profile
             </Link>
 
             <Link to={"/dashboard/client-home"}>
-              <li className="px-10 py-2 w-full hover:bg-gray-100 cursor-pointer">
+              <li className="px-10 py-2 w-full  dark:hover:bg-slate-600 hover:bg-gray-100 cursor-pointer">
                 Dashboard
               </li>
             </Link>
             <li
               onClick={logoutHandler}
-              className="px-10 py-2 w-full mt-auto hover:bg-gray-100  cursor-pointer"
+              className="px-10 py-2 w-full mt-auto  dark:hover:bg-red-500 hover:bg-gray-100  cursor-pointer"
             >
               Logout
             </li>
