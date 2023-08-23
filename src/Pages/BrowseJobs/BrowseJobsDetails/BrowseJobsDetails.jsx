@@ -158,7 +158,7 @@ const BrowseJobsDetails = () => {
                 {skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
+                    className="dark:bg-slate-700 bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
                   >
                     {skill.value}
                   </span>

@@ -5,7 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const DashboardTitle = ({ title, slogan }) => {
   const { setDashboardToggle } = useContext(AuthContext);
   return (
-    <div className="mb-10">
+    <div className="mb-10 dark:text-white">
       <h2 className="text-4xl font-semibold mb-3">{title}</h2>
       <p>{slogan}</p>
 

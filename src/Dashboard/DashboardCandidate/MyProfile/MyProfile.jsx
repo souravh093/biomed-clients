@@ -24,7 +24,7 @@ const MyProfile = () => {
       {/* Title Section */}
       <DashboardTitle title={"My Profile!"} slogan={"Ready to jump?"} />
 
-      <div key={myProfileData._id} className="bg-white p-6 rounded-md my-6">
+      <div key={myProfileData._id} className="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-md my-6">
         {/* Image Section */}
         <div className="md:flex justify-between">
           <div className="md:flex gap-6 items-center">

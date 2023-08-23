@@ -58,7 +58,7 @@ const AllApplications = () => {
         title={"All Applicants!"}
         slogan={"Ready to jump back in?"}
       />
-      <div className="md:mt-10 mt-7 bg-white md:p-7 p-5 rounded-xl shadow-sm">
+      <div className="md:mt-10 mt-7 dark:bg-gray-800 dark:text-white bg-white md:p-7 p-5 rounded-xl shadow-sm">
         <div className="md:flex md:justify-between py-2">
           <p className="text-lg font-medium">Applicant</p>
           <div className="md:flex">
@@ -89,9 +89,9 @@ const AllApplications = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#F5F7FC] p-5 pt-5 rounded-2xl">
+        <div className="dark:bg-gray-800  bg-[#F5F7FC] p-5 pt-5 rounded-2xl">
           <div className="flex  justify-between gap-x-2  font-semibold">
-            <p className="bg-[#E6EDF9] p-1 text-blue-600">Total(s):6</p>
+            <p className="dark:bg-gray-800  bg-[#E6EDF9] p-1 text-blue-600">Total(s):6</p>
             <p className=" text-green-600">Approved:2</p>
             <p className="text-red-600">Rejected(s):4</p>
           </div>

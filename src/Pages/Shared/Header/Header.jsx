@@ -11,6 +11,7 @@ import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown
 import Container from "../../../components/Shared/Container/Container";
 import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
+import Dark from "../../../components/Dark/Dark";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);
@@ -70,8 +71,10 @@ const Header = () => {
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
                   <MenuItem name={"Contact"} path={"/contact"} />
+                  <Dark/>
                 </ul>
               </div>
+            
             </div>
             <div className="hidden xl:flex items-center gap-10">
               {!clientRole && (
@@ -133,6 +136,9 @@ const Header = () => {
                 </ul>
               </div>
             </div>
+        <div className="mb-2 md:hidden">
+        <Dark/>
+        </div>
             <div className="flex xl:hidden flex-col items-center gap-10">
               {!clientRole && (
                 <button

@@ -12,14 +12,14 @@ const ManageJob = () => {
         title={"Manage jobs!"}
         slogan={"Ready to jump back in?"}
       />
-      <div className="md:mt-10 mt-7 bg-white md:p-7 p-5 rounded-xl shadow-sm">
+      <div className="md:mt-10 mt-7 dark:bg-gray-800 dark:text-white bg-white md:p-7 p-5 rounded-xl shadow-sm">
         <div className="md:flex md:justify-between">
           <p className="text-lg">My Job Listings</p>
           <details className="dropdown mt-3 md:mt-0">
-            <summary className="m-1 btn bg-[#F0F5F7] border-1 border-gray-300">
+            <summary className="m-1 btn dark:bg-gray-800 bg-[#F0F5F7] border-1 border-gray-300">
               Short by <BsChevronDown />
             </summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1] bg-[#F0F5F7] rounded-box w-52">
+            <ul className="p-2 shadow menu dropdown-content z-[1]dark: bg-gray-800 bg-[#F0F5F7] rounded-box w-52">
               <li>
                 <a>Last 6 Months</a>
               </li>
@@ -61,7 +61,7 @@ const ManageJob = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b ">
+              <tr className="dark:bg-gray-800 bg-white border-b ">
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -98,10 +98,10 @@ const ManageJob = () => {
                   </div>
                 </td>
               </tr>
-              <tr className="bg-white ">
+              <tr className="dark:bg-gray-800 dark:text-white bg-white ">
                 <th
                   scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                  className="px-6 py-4 font-medium dark:text-white text-gray-900 whitespace-nowrap "
                 >
                   Sample
                 </th>

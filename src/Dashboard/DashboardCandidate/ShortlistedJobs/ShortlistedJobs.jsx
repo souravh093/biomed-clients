@@ -26,7 +26,7 @@ const ShortlistedJobs = () => {
   const endIndex = startIndex + rowsPerPage;
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="dark:bg-gray-700 dark:text-white bg-gray-100 min-h-screen flex flex-col">
       {/* Title Section */}
       <div className="p-6 md:px-12">
         <DashboardTitle
@@ -35,13 +35,13 @@ const ShortlistedJobs = () => {
         />
       </div>
 
-      <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
+      <div className="dark:bg-slate-800 bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
         <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">
           My Favorite Jobs
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50 text-green-400">
+            <thead className="dark:bg-gray-800  bg-gray-50 text-green-400">
               <tr>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg px-3 md:ps-5">
                   Job title
@@ -57,7 +57,7 @@ const ShortlistedJobs = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="dark:bg-gray-700 dark:text-white bg-white divide-y divide-gray-200">
               {shortListedJobs
                 ?.slice(startIndex, endIndex)
                 ?.map((singleJob) => (
@@ -86,10 +86,10 @@ const ShortlistedJobs = () => {
                     <td className="py-2 md:py-4">{singleJob.status}</td>
                     <td className="py-2 md:py-4">
                       <div className="flex space-x-1 md:space-x-2">
-                        <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
+                        <span className="dark:bg-gray-800 bg-gray-100 p-1 md:p-2 rounded-lg">
                           <FaEye className="w-3 h-3 md:w-4 md:h-4" />
                         </span>
-                        <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
+                        <span className="dark:bg-gray-800 bg-gray-100 p-1 md:p-2 rounded-lg">
                           <FaRegTrashAlt className="w-3 h-3 md:w-4 md:h-4" />
                         </span>
                       </div>
@@ -114,7 +114,7 @@ const ShortlistedJobs = () => {
           }).map((_, index) => (
             <button
               key={index}
-              className={`mx-3 py-3 px-4 rounded-lg ${
+              className={`mx-3  py-3 px-4 rounded-lg ${
                 currentPage === index + 1
                   ? "bg-green-400 text-white"
                   : "bg-gray-200 text-gray-600 hover:bg-green-400 hover:text-white"
