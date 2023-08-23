@@ -1,5 +1,4 @@
 import React from "react";
-import "./Footer.css";
 import {
     FaFacebookF,
     FaTwitter,
@@ -7,36 +6,31 @@ import {
     FaLinkedinIn,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
+
     return (
-        <div className="bg-[#222222] text-white">
-            <div className="md:container md:mx-auto ms-5">
-                <div className="md:flex md:justify-between mx-auto md:pt-9 pt-5">
-                    <div className="flex gap-5">
+        <footer className="bg-gray-800 text-white py-12">
+            <div className="mx-auto ms-5">
+                <div className="flex flex-col md:flex-row justify-between me-5">
+                    <div className="flex gap-8 mb-6 md:mb-0">
                         <Link to="/terms">Terms of Service</Link>
                         <p>Privacy Policy</p>
                         <p>Site Map</p>
                     </div>
-                    <div className="flex gap-5 mt-5 md:mt-0 items-center">
+                    <div className="flex gap-5 items-center">
                         <p>Follow Us</p>
-                        <p>
-                            <FaFacebookF />
-                        </p>
-                        <p>
-                            <FaTwitter />
-                        </p>
-                        <p>
-                            <FaInstagram />
-                        </p>
-                        <p>
-                            <FaLinkedinIn />
-                        </p>
+                        <FaFacebookF />
+                        <FaTwitter />
+                        <FaInstagram />
+                        <FaLinkedinIn />
                     </div>
                 </div>
-                <hr className="h-px md:my-7 my-4 w-11/12 md:w-full border-0 bg-gray-600"></hr>
-                <div className="md:flex md:justify-between md:mt-16 mb-5 mt-9">
+                <hr className="h-px mt-10 mb-6 border-0 bg-gray-600"></hr>
+                <div className="flex flex-col md:flex-row justify-between mb-8">
+                    {/*"Pages" section */}
                     <div>
                         <p className="font-semibold text-xl">Pages</p>
                         <div className="mt-3 md:mt-4">
@@ -46,6 +40,8 @@ const Footer = () => {
                             <Link to="/terms">Terms of Service</Link>
                         </div>
                     </div>
+
+                    {/*"Categories" section */}
                     <div className="mt-3 md:mt-0">
                         <p className="font-semibold text-xl">Categories</p>
                         <div className="mt-3 md:mt-4">
@@ -60,6 +56,8 @@ const Footer = () => {
                             <p>Lifestyle</p>
                         </div>
                     </div>
+
+                    {/*"Support" section */}
                     <div className="mt-3 md:mt-0">
                         <p className="font-semibold text-xl mb-3">Support</p>
                         <div>
@@ -70,24 +68,26 @@ const Footer = () => {
                             <Link to="/terms">Terms of Service</Link>
                         </div>
                     </div>
-                    <div className="mt-4 md:mt-0">
+
+                    {/*"Subscribe" section */}
+                    <div className="mt-4 md:mt-0 me-5">
                         <p className="font-semibold text-xl mb-3">Subscribe</p>
-                        <div className="md:p-4 p-3 w-72 md:w-full border-2 md:rounded-xl rounded flex gap-3 md:gap-5 custom-bg">
+                        <div className="md:p-4 p-3 w-full border-2 md:rounded-xl rounded flex flex-col md:flex-row md:gap-5">
                             <input
-                                className="bg-transparent"
+                                className="md:flex-grow py-2 px-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2 md:mb-0"
                                 type="email"
                                 placeholder="Your email address"
                             />
-                            <button className="hover:text-green-600 duration-700">
+                            <button className="text-white p-2 rounded-md bg-primary transition duration-300 w-full md:w-auto">
                                 Send
                             </button>
                         </div>
                     </div>
                 </div>
-                <hr className="h-px md:mt-20 w-11/12 md:w-full border-0 bg-gray-600"></hr>
-                <p className="md:mt-4 mt-3">© Biomed {currentYear}. All rights reserved.</p>
+                <hr className="h-px mb-10 border-0 bg-gray-600"></hr>
+                <p className="text-center md:mt-4 mt-3">© Biomed {currentYear}. All rights reserved.</p>
             </div>
-        </div>
+        </footer>
     );
 };
 

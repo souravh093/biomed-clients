@@ -8,7 +8,7 @@ const AppliedJobs = () => {
     const { isLoading, data: appliedJobs = [] } = useQuery({
         queryKey: ["appliedJobs"],
         queryFn: async () => {
-            const res = await axios("./public/appliedjobs.json");
+            const res = await axios("https://biomed-server.vercel.app/applidejobs");
             return res.data;
         },
     });
@@ -17,11 +17,6 @@ const AppliedJobs = () => {
     const rowsPerPage = 4;
     const startIndex = (currentPage - 1) * rowsPerPage;
     const endIndex = startIndex + rowsPerPage;
-
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
 
     return (
