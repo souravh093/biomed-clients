@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import axios from "axios";
-import { saveUser } from "../../../../api/auth";
+import { saveClient } from "../../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
@@ -59,9 +59,9 @@ const CompanyForm = () => {
           github: data.github,
           country: data.country,
           address: data.address,
-          image: dataImage.data.data.display_url,
+          image: dataImage?.data?.data?.display_url,
         };
-        saveUser(user, clientProfile);
+        saveClient(user, clientProfile);
       })
       .then((response) => {
         if (response.data.modifiedCount == 1) {

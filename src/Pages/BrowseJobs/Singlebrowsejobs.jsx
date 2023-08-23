@@ -1,65 +1,91 @@
-import { BiBriefcaseAlt } from "react-icons/bi";
-import { BsBookmarkPlus, BsBriefcase } from "react-icons/bs";
-import { LiaMoneyCheckAltSolid } from "react-icons/lia";
+import { BsBookmarkPlus } from "react-icons/bs";
+import { FaIndustry, FaChair } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+import { AiOutlineClockCircle } from "react-icons/ai";
+
 import { Link } from "react-router-dom";
 
 const Singlebrowsejobs = ({ jobsdata }) => {
-  console.log(jobsdata);
   const {
     experience,
     logo,
     offer,
     title,
     _id,
-    companyName
+    companyName,
+    country,
+    description,
+    jobType,
+    industry,
+    startDate,
   } = jobsdata;
   return (
-    <div className="border mt-20  mb-20 rounded-lg hover:shadow-md">
-      <div className="md:flex h-32 gap-5 items-start px-7 pt-6">
-        <div className="">
-          <img
-            src={logo}
-            alt=""
-            className="w-[50px] h-[50px] rounded-full object-cover"
-          />
+    <div className="border p-7 flex flex-col hover:border-hover transition rounded-md ">
+      <div className="flex items-center justify-between mb-5">
+        <div className="text-3xl font-bold text-gray-600">
+          <h2>{title}</h2>
         </div>
-
-        <div className="w-[70%]">
-          <h2 className="font-medium text-xl">{title}</h2>
-          <div className="md:flex gap-7 items-start mt-3 text-[#333333]">
-            <div className="flex items-center gap-1">
-              <BsBriefcase></BsBriefcase>
-              <p>{companyName}</p>
-            </div>
-            <div className="">
-              <div className="flex items-center gap-1">
-              <LiaMoneyCheckAltSolid></LiaMoneyCheckAltSolid>
-                <p>CTC (ANNUAL)</p>
-              </div>
-              <p>{offer}</p>
-            </div>
-
-            <div className="">
-              <div className="md:flex items-center gap-1">
-              <BiBriefcaseAlt></BiBriefcaseAlt>
-                <p>EXPERIENCE</p>
-              </div>
-              <p>{experience}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-[10%] relative">
-        <BsBookmarkPlus className="absolute -top-4 -right-12 text-4xl hover:bg-slate-300   p-2 hover:rounded-2xl hover:text-white cursor-pointer"></BsBookmarkPlus>
+        <div>
+          <BsBookmarkPlus className="text-2xl" />
         </div>
       </div>
-      <div className="flex justify-end gap-3 mr-10 pb-5 ">
-        <button className=" text-primary px-8 py-1 rounded-md hover:text-[#4ca068] transition cursor-pointer">
-          <Link to={`/jobsDatail/${_id}`}>View details</Link>
-        </button>
-        <button className="bg-primary text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
-          Apply now
-        </button>
+
+      <div className="flex items-center gap-5 mb-5">
+        <div>
+          <img className="w-20 object-contain" src={logo} alt="logo" />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-600">{companyName}</h2>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-5 mb-5">
+        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
+          <FaIndustry className="text-3xl text-primary" /> {industry}
+        </div>
+        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
+          <MdLocationOn className="text-3xl text-primary" /> {country}
+        </div>
+        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
+          <AiOutlineClockCircle className="text-3xl text-primary" /> {2} days
+          ago
+        </div>
+        <div className="flex gap-2 items-center text-lg text-gray-500 font-semibold">
+          <FaChair className="text-3xl text-primary" /> {5} Vacancies
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between mb-5">
+        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+          {startDate}
+        </div>
+        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+          {experience}
+        </div>
+        <div className="border-2 rounded-3xl px-3 py-1 bg-gray-100">
+          {jobType}
+        </div>
+      </div>
+
+      <div className="my-5">
+        <h2 className="text-lg"><span className="font-semibold">Salary:</span> {offer}</h2>
+      </div>
+
+      <div className="line-clamp-3 mb-5">{description}</div>
+
+      <div className="mt-auto grid grid-cols-2 gap-5">
+        <Link
+          className="flex items-center justify-center bg-[#7566D9] py-3 text-gray-200 rounded-lg"
+          to={`/jobsDatail/${_id}`}
+        >
+          Apply Now
+        </Link>
+        <Link
+          className="flex items-center justify-center bg-primary py-3 text-gray-200 rounded-lg"
+          to={`/jobsDatail/${_id}`}
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

@@ -8,9 +8,11 @@ const ProfileDropdown = () => {
   const { user, logoutUser, setCandidateRole, candidateRole, clientRole } =
     useContext(AuthContext);
   const { data: myProfileData = [] } = useQuery({
-    queryKey: ["profile"],
+    queryKey: ["profile", user?.email],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/user/${user?.email}`);
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
       return res.data;
     },
   });
@@ -48,6 +50,7 @@ const ProfileDropdown = () => {
     });
   };
 
+
   return (
     <div className="relative inline-block">
       <div
@@ -76,7 +79,7 @@ const ProfileDropdown = () => {
               Edit Profile
             </li>
             {clientRole ? (
-              <Link to={"/dashboard/dashboard-home"}>
+              <Link to={"/dashboard/client-home"}>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   Dashboard
                 </li>
@@ -88,11 +91,7 @@ const ProfileDropdown = () => {
                 </li>
               </Link>
             ) : (
-              <Link to={"/dashboard"}>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Dashboard
-                </li>
-              </Link>
+              <></>
             )}
             <li
               onClick={logoutHandler}
