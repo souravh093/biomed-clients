@@ -3,16 +3,15 @@ import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaAlignJustify } from "react-icons/fa";
 
 const ProfileDropdown = () => {
-  const { user, logoutUser, setCandidateRole, candidateRole, clientRole } =
+  const { user, logoutUser, clientRole, setClientRole } =
     useContext(AuthContext);
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile", user?.email],
     queryFn: async () => {
-      const res = await axios(
-        `https://biomed-server.vercel.app/users/${user?.email}`
-      );
+      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
       return res.data;
     },
   });
@@ -45,25 +44,27 @@ const ProfileDropdown = () => {
 
   const logoutHandler = () => {
     logoutUser().then(() => {
-      setCandidateRole(false);
+      setClientRole(null);
       navigate("/");
     });
   };
 
-
   return (
     <div className=" relative inline-block">
       <div
-        className="w-12 h-12 rounded-full overflow-hidden cursor-pointer"
         onMouseEnter={toggleDropdown}
         onMouseLeave={toggleDropdown}
+        className="flex items-center border py-0 px-2 rounded-2xl gap-1 cursor-pointer hover:border-primary transition duration-100"
       >
-        <img
-          referrerPolicy="no-referrer"
-          src={updateData?.image ? updateData?.image : user?.photoURL}
-          alt="Profile"
-          className="w-full h-full object-cover"
-        />
+        <FaAlignJustify className="text-xl" />
+        <div className="w-12 h-12 rounded-full overflow-hidden">
+          <img
+            referrerPolicy="no-referrer"
+            src={updateData?.image ? updateData?.image : user?.photoURL}
+            alt="Profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
       {isDropdownOpen && (
         <div
@@ -72,30 +73,26 @@ const ProfileDropdown = () => {
           onMouseLeave={closeDropdown}
           className="absolute top-full right-0 mt-2 dark:bg-gray-800 bg-white border border-gray-300 shadow-md rounded-md"
         >
-          <ul className="py-2">
-            <li className="px-4 py-2 ">{user?.displayName}</li>
-            <li className="px-4 pt-2 pb-5">{user?.email}</li>
-            <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
+          <ul className="flex flex-col">
+            <Link
+              to={
+                clientRole
+                  ? "/dashboard/company-profile"
+                  : "/dashboard/editProfile"
+              }
+              className="px-10 py-2 w-full hover:bg-gray-100 cursor-pointer"
+            >
               Edit Profile
-            </li>
-            {clientRole ? (
-              <Link to={"/dashboard/client-home"}>
-                <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
-                  Dashboard
-                </li>
-              </Link>
-            ) : candidateRole ? (
-              <Link to={"/dashboard/candidate-home"}>
-                <li className="px-4 py-2 dark:hover:bg-gray-500 hover:bg-gray-100 cursor-pointer">
-                  Dashboard
-                </li>
-              </Link>
-            ) : (
-              <></>
-            )}
+            </Link>
+
+            <Link to={"/dashboard/client-home"}>
+              <li className="px-10 py-2 w-full hover:bg-gray-100 cursor-pointer">
+                Dashboard
+              </li>
+            </Link>
             <li
               onClick={logoutHandler}
-              className="px-4 py-2 hover:bg-red-500 hover:text-gray-100 cursor-pointer"
+              className="px-10 py-2 w-full mt-auto hover:bg-gray-100  cursor-pointer"
             >
               Logout
             </li>

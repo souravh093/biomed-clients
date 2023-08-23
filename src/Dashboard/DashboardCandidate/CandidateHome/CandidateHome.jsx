@@ -20,8 +20,8 @@ const CandidateHome = () => {
   const { updateData } = myProfileData;
   return (
     <div className="p-6">
-      {/* Heading Section */}
-      <DashboardTitle title={`Howday, ${updateData?.name2 || user?.displayName}!`} slogan={"Welcome"}  />
+      {/* Title Section */}
+      <DashboardTitle title={`Howdy, ${updateData?.name2 || user?.displayName}!`} slogan={"Welcome"}  />
       {/* Box Section */}
       <CandidateBox/>
 

@@ -32,7 +32,7 @@ const ApplicantsCard = ({ applicant }) => {
         <div className="space-x-2 md:space-x-3 pt-4">
           {/* Button - 1 */}
           <button
-            className="bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
+            className="dark:bg-gray-800 bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
             data-tooltip-id="tooltip-1"
           >
             <LiaEyeSolid />
@@ -44,7 +44,7 @@ const ApplicantsCard = ({ applicant }) => {
           />
           {/* Button - 2 */}
           <button
-            className="bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
+            className="dark:bg-gray-800 bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
             data-tooltip-id="tooltip-2"
           >
             <BsCheck2 />
@@ -56,7 +56,7 @@ const ApplicantsCard = ({ applicant }) => {
           />
           {/* Button - 3 */}
           <button
-            className="bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
+            className="dark:bg-gray-800 bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
             data-tooltip-id="tooltip-3"
           >
             <AiOutlineCloseCircle />
@@ -68,7 +68,7 @@ const ApplicantsCard = ({ applicant }) => {
           />
           {/* Button - 4 */}
           <button
-            className="bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
+            className="dark:bg-gray-800 bg-blue-100 p-2 text-lg rounded-lg hover:bg-blue-700 hover:text-white duration-500"
             data-tooltip-id="tooltip-4"
           >
             <LiaTrashAltSolid />

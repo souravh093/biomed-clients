@@ -4,7 +4,7 @@ import Chat from '../Chat/Chat';
 
 const ChatSidebar = () => {
     return (
-        <div className='p-10'>
+        <div className='p-10 dark:bg-gray-800 dark:text-white'>
             <ChatSearch />
             <Chat />
         </div>

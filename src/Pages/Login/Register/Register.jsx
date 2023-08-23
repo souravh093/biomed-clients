@@ -6,8 +6,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { saveUser } from "../../../api/auth";
-import loginImg from "../../../assets/login.jpg";
-import Container from "../../../components/Shared/Container/Container";
+import loginImg from "../../../assets/login/login.jpg";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -55,11 +54,16 @@ const Register = () => {
     });
   };
 
+  // TODO google authentication
+
   return (
-    <Container>
-      <div className="grid lg:grid-cols-2 my-10">
-        <div className="h-full">
-          <div className="mb-10 px-10 lg:px-0">
+    <div
+      style={{ backgroundImage: `url(${loginImg})` }}
+      className="lg:min-h-screen h-screen flex items-center justify-center bg-no-repeat bg-cover lg:bg-contain"
+    >
+      <div className="dark:bg-gray-800 dark:text-white  bg-gray-50 shadow-md px-6 py-8 lg:w-1/3 xl:w-1/4 rounded-md">
+        <div>
+          <div className="mb-10 px-10 ">
             <h1 className="text-4xl font-semibold mb-5">Sign up</h1>
             <p>
               If you already have an account register <br /> You can{" "}
@@ -69,7 +73,7 @@ const Register = () => {
             </p>
           </div>
 
-          <div className="px-10 lg:px-0 lg:pr-40">
+          <div className="px-10">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-3"
@@ -209,7 +213,7 @@ const Register = () => {
                 {errors.image && (
                   <p className="text-red-500">{errors.image.message}</p>
                 )}
-              </div> 
+              </div>
 
               <div className="flex items-center justify-between">
                 <button
@@ -223,11 +227,8 @@ const Register = () => {
             <p className="mt-1 text-red-500">{error}</p>
           </div>
         </div>
-        <div className="hidden lg:block">
-          <img className="shadow-md object-cover " src={loginImg} alt="" />
-        </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
