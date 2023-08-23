@@ -26,9 +26,7 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
-import PrivateClient from "./PrivateClient";
 import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
-
 
 const router = createBrowserRouter([
   {
@@ -48,33 +46,25 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
       },
- 
+
       {
-        path: '/browseJobs',
-        element:<BrowseJobs />, 
-        children:[
+        path: "/browseJobs",
+        element: <BrowseJobs />,
+        children: [
           {
             path: "/browseJobs/browseJobs-home",
             element: <BrowseJobsHome />,
           },
-        ]
+        ],
       },
       {
-        path: '/jobsDatail/:id',
+        path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
-        loader: ({params}) =>  fetch(`https://biomed-server.vercel.app/job/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`),
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/terms",
+        path: "/",
         element: <Terms></Terms>,
-      },
-      {
-        path: "/register",
-        element: <Register />,
       },
       {
         path: "/registerclient",
@@ -85,6 +75,14 @@ const router = createBrowserRouter([
         element: <Contact></Contact>,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/dashboard",
@@ -108,15 +106,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/upload-resume",
-        element: <UploadResume />
+        element: <UploadResume />,
       },
       {
         path: "/dashboard/post-job",
-        element: (
-          <PrivateClient>
-            <PostJob />
-          </PrivateClient>
-        ),
+        element: <PostJob />,
       },
       {
         path: "/dashboard/company-profile",
@@ -124,23 +118,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/company-view",
-        element: <CompanyView />
+        element: <CompanyView />,
       },
       {
         path: "/dashboard/shortlisted-jobs",
         element: <ShortlistedJobs />,
       },
       {
-        path:'/dashboard/manage-jobs',
-        element:<ManageJob/>
+        path: "/dashboard/manage-jobs",
+        element: <ManageJob />,
       },
       {
-        path:"/dashboard/all-applications",
-        element:<AllApplications/>
+        path: "/dashboard/all-applications",
+        element: <AllApplications />,
       },
       {
-        path:'/dashboard/shortlisted-resumes',
-        element:<ShortlistedResumes/>
+        path: "/dashboard/shortlisted-resumes",
+        element: <ShortlistedResumes />,
       },
       {
         path: "/dashboard/editProfile",
@@ -148,8 +142,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/client-message",
-        element: <ClientMessage />
-      }
+        element: <ClientMessage />,
+      },
     ],
   },
 ]);

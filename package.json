@@ -27,7 +27,8 @@
     "react-select": "^5.7.4",
     "react-tooltip": "^5.20.0",
     "recharts": "^2.7.3",
-    "swiper": "^10.1.0"
+    "swiper": "^10.1.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

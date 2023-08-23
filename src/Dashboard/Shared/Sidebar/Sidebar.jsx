@@ -4,16 +4,10 @@ import ClientMenu from "../../DashboardClient/ClientMenu/ClientMenu";
 import CandidateMenu from "../../DashboardCandidate/CandidateMenu/CandidateMenu";
 
 const Sidebar = () => {
-  const { clientRole, candidateRole } = useContext(AuthContext);
+  const { clientRole } = useContext(AuthContext);
   return (
     <div className="fixed">
-      {
-        clientRole ? (
-          <ClientMenu />
-        ) : candidateRole ? (
-          <CandidateMenu />
-        ) : <></>
-      }
+      {clientRole ? <ClientMenu /> : <CandidateMenu />}
     </div>
   );
 };

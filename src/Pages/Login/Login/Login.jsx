@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import loginImg from "../../../assets/login.jpg";
-import Container from "../../../components/Shared/Container/Container";
+import loginImg from "../../../assets/login/login.jpg";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -60,10 +59,13 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <div className="grid lg:grid-cols-2 my-10 min-h-[calc(100vh-88px)]">
+    <div
+      style={{ backgroundImage: `url(${loginImg})` }}
+      className="lg:min-h-screen h-screen flex items-center justify-center bg-no-repeat bg-cover lg:bg-contain"
+    >
+      <div className="bg-gray-50 px-6 py-8 lg:w-1/3 xl:w-1/4 rounded-md shadow-md">
         <div>
-          <div className="mb-10 px-10 lg:px-0">
+          <div className="mb-10 px-10">
             <h1 className="text-4xl font-semibold mb-5">Sign in</h1>
             <p>
               If you don’t have an account register <br /> You can{" "}
@@ -73,7 +75,7 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="px-10 lg:px-0 lg:pr-40">
+          <div className="px-10">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-5"
@@ -136,7 +138,7 @@ const Login = () => {
               </div>
             </form>
 
-            <div className="mt-4 flex justify-between">
+            <div className="mt-4 flex justify-between cursor-pointer">
               <p className="text-red-500">{error}</p>
               <div onClick={resetPass} className="text-primary hover:underline">
                 Reset Password
@@ -158,11 +160,8 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:block">
-          <img className="shadow-md bg-cover" src={loginImg} alt="" />
-        </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
