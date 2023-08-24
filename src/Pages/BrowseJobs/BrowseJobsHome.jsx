@@ -1,25 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { AuthContext } from "../../Provider/AuthProvider";
 import BrowsJobsCard from "./BrowsJobsCard/BrowsJobsCard";
 
-const BrowseJobsHome = () => {
+const BrowseJobsHome = ({browseJobsData}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 4;
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
-  const { user } = useContext(AuthContext);
-
-  const { data: browseJobsData = [], isLoading } = useQuery({
-    queryKey: ["jobs", user?.email],
-    queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/jobs`);
-      return res.data;
-    },
-  });
-
   return (
     <div>
       {/* job card */}
@@ -41,7 +28,7 @@ const BrowseJobsHome = () => {
           </button>
           <div className="flex">
             {Array.from({
-              length: Math.ceil(browseJobsData.length / rowsPerPage),
+              length: Math.ceil(browseJobsData?.length / rowsPerPage),
             }).map((_, index) => (
               <button
                 key={index}
@@ -59,10 +46,10 @@ const BrowseJobsHome = () => {
           </div>
           <button
             className={`ml-2 ${
-              endIndex >= browseJobsData.length ? "cursor-not-allowed" : ""
+              endIndex >= browseJobsData?.length ? "cursor-not-allowed" : ""
             }`}
             onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
-            disabled={endIndex >= browseJobsData.length}
+            disabled={endIndex >= browseJobsData?.length}
           >
             <FaArrowRight />
           </button>
