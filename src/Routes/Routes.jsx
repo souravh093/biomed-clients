@@ -60,7 +60,8 @@ const router = createBrowserRouter([
       {
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
-        loader: ({ params }) => fetch(`https://biomed-server.vercel.app/job/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/",

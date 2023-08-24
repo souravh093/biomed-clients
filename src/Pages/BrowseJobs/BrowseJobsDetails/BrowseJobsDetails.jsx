@@ -26,6 +26,8 @@ const BrowseJobsDetails = () => {
     companyName,
   } = useLoaderData();
 
+  console.log(country);
+
   const showInfoCompany = {
     _id,
     title,
@@ -187,7 +189,7 @@ const BrowseJobsDetails = () => {
           </div>
         </section>
       </Container>
-      
+
       <ApplyModal
         closeModal={closeApplyModal}
         isOpen={isOpenApply}
