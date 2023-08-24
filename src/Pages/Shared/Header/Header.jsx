@@ -71,7 +71,7 @@ const Header = () => {
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
                   <MenuItem name={"Contact"} path={"/contact"} />
-                  <Dark/>
+                  
                 </ul>
               </div>
             
@@ -103,6 +103,7 @@ const Header = () => {
                   </ul>
                 )}
               </div>
+              <Dark/>
             </div>
 
             {/* toggle button */}

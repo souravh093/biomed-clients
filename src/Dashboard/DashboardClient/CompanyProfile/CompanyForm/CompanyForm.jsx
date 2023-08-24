@@ -8,6 +8,7 @@ import axios from "axios";
 import { saveClient } from "../../../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -19,7 +20,6 @@ const CompanyForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
   } = useForm();
 
   const navigate = useNavigate();
@@ -46,34 +46,35 @@ const CompanyForm = () => {
       .post(imageUrl, formData)
       .then((dataImage) => {
         const clientProfile = {
-          companyName: data.companyName,
-          companyEmail: data.email,
-          companyPhone: data.number,
-          website: data.website,
-          teamSize: teamOptions.label,
-          allow: allowOptions.label,
-          aboutCompany: data.aboutCompany,
-          facebook: data.facebook,
-          twitter: data.twitter,
-          linkedin: data.linkedin,
-          github: data.github,
-          country: data.country,
-          address: data.address,
+          companyName: data?.companyName,
+          companyEmail: data?.email,
+          companyPhone: data?.number,
+          website: data?.website,
+          teamSize: teamOptions?.label,
+          allow: allowOptions?.label,
+          aboutCompany: data?.aboutCompany,
+          facebook: data?.facebook,
+          twitter: data?.twitter,
+          linkedin: data?.linkedin,
+          github: data?.github,
+          country: data?.country,
+          city: data?.city,
+          address: data?.address,
           image: dataImage?.data?.data?.display_url,
         };
-        saveClient(user, clientProfile);
+        return saveClient(user, clientProfile);
       })
       .then((response) => {
-        if (response.data.modifiedCount == 1) {
+        console.log(response);
+        if (response.modifiedCount === 1) {
           toast.success("Profile updated successfully");
-          navigate("/dashboard/my-profile");
+          navigate("/dashboard/company-view");
         } else {
           toast.error("Failed to update Profile. Please try again.");
         }
       })
       .catch((error) => {
-        console.log(error);
-        toast.success(error.message);
+        toast.error(error.message);
       });
   };
 
@@ -88,7 +89,18 @@ const CompanyForm = () => {
     }),
   };
 
-  
+  const { data: companyView = [] } = useQuery({
+    queryKey: ["companyView"],
+    queryFn: async () => {
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
+      return res?.data;
+    },
+  });
+
+  const { updateData } = companyView;
+
   return (
     <div className="mt-10">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -99,15 +111,15 @@ const CompanyForm = () => {
           <input
             type="file"
             id="image"
-            className="block w-full border text-gray-500
+            className="block w-full border dark:border-gray-500 text-gray-500
                 file:mr-4 file:py-4 file:px-4
                 file:rounded-md file:border-0
                 file:text-sm file:font-semibold
-                file:bg-gray-200 file:text-gray-700
+                file:bg-gray-200 file:text-gray-700 dark:file:bg-gray-700 dark:file:text-gray-200
                 hover:file:bg-gray-100
               "
             {...register("image", {
-              required: "Image is required",
+              required: "Upload logo is required",
               validate: {
                 fileSize: (file) =>
                   file[0]?.size < 1048576 || "Image size must be less than 1MB",
@@ -117,9 +129,7 @@ const CompanyForm = () => {
               },
             })}
           />
-          {errors.image && (
-            <p className="text-red-500">{errors.image.message}</p>
-          )}
+          {errors.image && <p className="text-red-500">{errors.image.message}</p>}
         </div>
         <div className="grid grid-cols-2 gap-10">
           <div className="mb-4">
@@ -128,14 +138,12 @@ const CompanyForm = () => {
               type="text"
               id="companyName"
               placeholder="Enter title"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("companyName", {
-                required: "Company name is required",
-              })}
+              defaultValue={
+                updateData?.companyName ? updateData?.companyName : null
+              }
+              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none dark:bg-gray-700 dark:border-gray-500"
+              {...register("companyName")}
             />
-            {errors.companyName && (
-              <p className="text-red-500">{errors.companyName.message}</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -155,13 +163,11 @@ const CompanyForm = () => {
             <input
               type="text"
               id="number"
+              defaultValue={updateData?.number ? updateData?.number : null}
               placeholder="+88011888822"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("number", { required: "Phone Number is required" })}
+              {...register("number")}
             />
-            {errors.number && (
-              <p className="text-red-500">{errors.number.message}</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -169,13 +175,11 @@ const CompanyForm = () => {
             <input
               type="text"
               id="website"
+              defaultValue={updateData?.website ? updateData?.website : null}
               placeholder="Enter Website link"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("website", { required: "Website link is required" })}
+              {...register("website")}
             />
-            {errors.website && (
-              <p className="text-red-500">{errors.website.message}</p>
-            )}
           </div>
 
           <div className="mb-4">
@@ -208,14 +212,12 @@ const CompanyForm = () => {
           <textarea
             id="aboutCompany"
             placeholder="Enter About Company"
+            defaultValue={
+              updateData?.aboutCompany ? updateData?.aboutCompany : null
+            }
             className="w-full h-60 px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-            {...register("aboutCompany", {
-              required: "About Company is required",
-            })}
+            {...register("aboutCompany")}
           ></textarea>
-          {errors.aboutCompany && (
-            <p className="text-red-500">{errors.aboutCompany.message}</p>
-          )}
         </div>
 
         <div className="grid grid-cols-2 gap-10">
@@ -224,54 +226,44 @@ const CompanyForm = () => {
             <input
               type="text"
               id="facebook"
+              defaultValue={updateData?.facebook ? updateData?.facebook : null}
               placeholder="Enter Facebook Account Link"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("facebook", { required: "Facebook is required" })}
+              {...register("facebook")}
             />
-            {errors.facebook && (
-              <p className="text-red-500">{errors.facebook.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Twitter</label>
             <input
               type="text"
               id="twitter"
+              defaultValue={updateData?.twitter ? updateData?.twitter : null}
               placeholder="Enter Twitter Account Link"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("twitter", { required: "Title is required" })}
+              {...register("twitter")}
             />
-            {errors.twitter && (
-              <p className="text-red-500">{errors.twitter.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Linkedin</label>
             <input
               type="text"
               id="linkedin"
+              defaultValue={updateData?.linkedin ? updateData?.linkedin : null}
               placeholder="Enter Linkedin Account Link"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("linkedin", {
-                required: "Linkedin Link is required",
-              })}
+              {...register("linkedin")}
             />
-            {errors.linkedin && (
-              <p className="text-red-500">{errors.linkedin.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Github</label>
             <input
               type="text"
               id="github"
+              defaultValue={updateData?.github ? updateData?.github : null}
               placeholder="Enter Github account Link"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("github", { required: "GitHub Link is required" })}
+              {...register("github")}
             />
-            {errors.github && (
-              <p className="text-red-500">{errors.github.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">Country</label>
@@ -279,13 +271,11 @@ const CompanyForm = () => {
             <input
               type="text"
               id="country"
+              defaultValue={updateData?.country ? updateData?.country : null}
               placeholder="Enter country name"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("country", { required: "Title is required" })}
+              {...register("country")}
             />
-            {errors.country && (
-              <p className="text-red-500">{errors.country.message}</p>
-            )}
           </div>
           <div className="mb-4">
             <label htmlFor="name">City</label>
@@ -293,13 +283,11 @@ const CompanyForm = () => {
             <input
               type="text"
               id="city"
+              defaultValue={updateData?.city ? updateData?.city : null}
               placeholder="Enter city name"
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("city", { required: "City is required" })}
+              {...register("city")}
             />
-            {errors.city && (
-              <p className="text-red-500">{errors.city.message}</p>
-            )}
           </div>
         </div>
         <div className="mb-4">
@@ -308,13 +296,11 @@ const CompanyForm = () => {
           <input
             type="text"
             id="address"
+            defaultValue={updateData?.address ? updateData?.address : null}
             placeholder="Enter address"
             className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
-            {...register("address", { required: "Address is required" })}
+            {...register("address")}
           />
-          {errors.address && (
-            <p className="text-red-500">{errors.address.message}</p>
-          )}
         </div>
 
         <button
