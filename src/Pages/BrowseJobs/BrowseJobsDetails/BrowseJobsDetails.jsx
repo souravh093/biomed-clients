@@ -45,7 +45,7 @@ const BrowseJobsDetails = () => {
   };
 
   return (
-    <>
+    <div className="pt-20">
       <Container>
         <section className="my-10 ">
           <h1 className="text-center md:text-2xl font-semibold text-[#666]">
@@ -195,7 +195,7 @@ const BrowseJobsDetails = () => {
         isOpen={isOpenApply}
         showInfoCompany={showInfoCompany}
       />
-    </>
+    </div>
   );
 };
 
