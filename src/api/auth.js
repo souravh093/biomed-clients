@@ -20,12 +20,13 @@ export const saveUser = (user, updateData) => {
     .then((data) => console.log(data));
 };
 
-export const saveClient = (user) => {
+export const saveClient = (user, updateData) => {
   console.log(user);
   const currentUser = {
     email: user?.email,
     name: user?.displayName,
     image: user?.photoURL,
+    updateData,
     client: true,
   };
 

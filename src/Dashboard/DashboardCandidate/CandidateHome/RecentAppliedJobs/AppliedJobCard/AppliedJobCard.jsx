@@ -6,6 +6,9 @@ const AppliedJobCard = ({ appliedJob }) => {
   console.log(appliedJob);
   const { name, image, company, applied_time, job_type, location, salary } =
     appliedJob;
+
+
+    console.log(job_type);
   return (
     <div className="xl:flex gap-4 mb-2 border w-full px-5 py-5 lg:py-10 rounded-xl">
       <div>
@@ -37,7 +40,7 @@ const AppliedJobCard = ({ appliedJob }) => {
         {/* Badge Container */}
         
           <div className="flex flex-col md:flex-row text-center mx-10 md:mx-0 space-y-1 md:space-y-0 mt-3">
-            {job_type.map((typeData, index) => (
+            {job_type?.map((typeData, index) => (
               <span
                 key={index}
                 className={`text-white text-sm px-3 py-1 rounded-full border ${typeData.color} ml-2`}

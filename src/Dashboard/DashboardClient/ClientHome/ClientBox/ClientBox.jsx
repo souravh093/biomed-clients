@@ -2,7 +2,7 @@ import React from 'react';
 import { BiBriefcase, BiMessageDetail } from "react-icons/bi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { GoBookmark } from "react-icons/go";
-const TopBox = () => {
+const ClientBox = () => {
     return (
         <div className="mt-6 space-y-8 md:space-y-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center gap-6">
         {/* box-1 */}
@@ -51,4 +51,4 @@ const TopBox = () => {
     );
 };
 
-export default TopBox;
+export default ClientBox;

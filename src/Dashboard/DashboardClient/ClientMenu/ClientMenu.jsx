@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
-  AiOutlineHome,
-  AiOutlineUser,
-  AiOutlineLogout,
   AiOutlineClose,
+  AiOutlineHome,
+  AiOutlineLogout,
+  AiOutlineUser,
 } from "react-icons/ai";
 import { CiPaperplane } from "react-icons/ci";
-import { PiBagSimpleBold } from "react-icons/pi";
-import { IoIosPaper } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
+import { IoIosPaper } from "react-icons/io";
+import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const ClientMenu = () => {
@@ -21,7 +20,7 @@ const ClientMenu = () => {
     logoutUser().then(() => navigate("/"));
   };
   return (
-    <div className="px-10 py-5 h-screen z-20 bg-white">
+    <div className="px-10 py-5 h-screen bg-white relative z-50">
       <div className="flex justify-end lg:hidden ">
         <button
           className="bg-primary p-2 rounded-full text-white hover:bg-hover mb-3"
@@ -34,7 +33,7 @@ const ClientMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/dashboard-home"}
+            to={"/dashboard/client-home"}
             className="flex items-center gap-3"
           >
             <AiOutlineHome /> Dashboard
@@ -43,7 +42,7 @@ const ClientMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/company-profile"}
+            to={"/dashboard/company-view"}
             className="flex items-center gap-3"
           >
             <AiOutlineUser /> Company Profile
@@ -59,7 +58,8 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to='/dashboard/manage-jobs'
+          <Link
+            to="/dashboard/manage-jobs"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -68,6 +68,7 @@ const ClientMenu = () => {
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
+            to="/dashboard/all-applications"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -75,7 +76,8 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to='/dashboard/shortlisted-resumes'
+          <Link
+            to="/dashboard/shortlisted-resumes"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -84,6 +86,7 @@ const ClientMenu = () => {
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
+            to={"/dashboard/client-message"}
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >

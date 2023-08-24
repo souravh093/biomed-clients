@@ -4,8 +4,8 @@ import React from 'react';
 import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { FaArrowLeft , FaArrowRight } from 'react-icons/fa';
-import Select from 'react-select';
 import ShortlistedResumesCard from './ShortlistedResumesCard/ShortlistedResumesCard';
+import Select from 'react-select';
 
 const ShortlistedResumes = () => {
     const [value, setValue] = useState(null);

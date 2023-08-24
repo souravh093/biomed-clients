@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaAlignJustify } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 import logo from "../../../assets/logo.png";
+import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
 import MenuItem from "./MenuItem/MenuItem";
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
-import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
   const { user, candidateRole } = useContext(AuthContext);
-  console.log(candidateRole);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="relative z-10">
@@ -24,10 +22,10 @@ const Header = () => {
             <div>
               <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/browseJobs"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
-                <MenuItem name={"Contact"} path={"/"} />
+                <MenuItem name={"Contact"} path={"/contact"} />
               </ul>
             </div>
           </div>
@@ -74,7 +72,7 @@ const Header = () => {
             <div className="mb-10">
               <ul className="flex flex-col text-2xl gap-3 items-center xl:hidden">
                 <MenuItem name={"Home"} path={"/"} />
-                <MenuItem name={"Browse Jobs"} path={"/"} />
+                <MenuItem name={"Browse Jobs"} path={"/browseJobs/browseJobs-home"} />
                 <MenuItem name={"Top Jobs"} path={"/"} />
                 <MenuItem name={"Blog"} path={"/blogs"} />
                 <MenuItem name={"Contact"} path={"/"} />
@@ -82,9 +80,11 @@ const Header = () => {
             </div>
           </div>
           <div className="flex xl:hidden flex-col items-center gap-10">
-            <ul className="text-2xl border px-3 py-2 bg-white text-primary rounded-md shadow font-normal xl:font-medium">
-              <Link to={"/seller"}>Become a Seller</Link>
-            </ul>
+            {!candidateRole && (
+              <ul className="text-primary font-normal xl:font-medium hover:text-hover">
+                <Link to={"/dashboard/post-job"}>Post a Job</Link>
+              </ul>
+            )}
             <div>
               {user ? (
                 <ProfileDropdown />

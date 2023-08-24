@@ -1,5 +1,3 @@
-import React, { createContext } from "react";
-import app from "../firebase/firebase.config";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -11,9 +9,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { getCandidateRole, getClientRole } from "../api/auth";
+import app from "../firebase/firebase.config";
 
 const auth = getAuth(app);
 
@@ -24,8 +22,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [clientRole, setClientRole] = useState(null);
-  const [candidateRole, setCandidateRole] = useState(null)
+  const [candidateRole, setCandidateRole] = useState(null);
   const [dashboardToggle, setDashboardToggle] = useState(false);
+  const [jobsSidebarToggle, setJobsSidebarToggle] = useState(false);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -62,6 +61,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       return unsubscribe();
@@ -80,13 +80,13 @@ const AuthProvider = ({ children }) => {
     }
   });
 
-
   const authInfo = {
     user,
     loading,
     clientRole,
     candidateRole,
     dashboardToggle,
+    jobsSidebarToggle,
     setCandidateRole,
     setLoading,
     createUser,
@@ -95,7 +95,8 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     resetPassword,
     googleLoginUser,
-    setDashboardToggle
+    setDashboardToggle,
+    setJobsSidebarToggle,
   };
 
   return (
