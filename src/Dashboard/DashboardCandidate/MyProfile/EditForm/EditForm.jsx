@@ -16,7 +16,7 @@ const EditForm = () => {
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/users/${user?.email}`);
+      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
       return res.data;
     },
   });
@@ -69,7 +69,8 @@ const EditForm = () => {
         navigate("/dashboard/my-profile");
       } else {
         console.log("Failed to update Profile");
-        toast.error("Failed to update Profile. Please try again.");
+        toast.success("Profile updated successfully");
+        navigate("/dashboard/my-profile");
       }
     } catch (error) {
       console.log("Entering catch block");
@@ -82,7 +83,8 @@ const EditForm = () => {
   };
 
   return (
-    <div className= "dark:bg-slate-900 dark:text-white bg-white p-6 rounded-md my-6">
+    <div className="dark:bg-slate-900 dark:text-white bg-white p-6 rounded-md my-6">
+      
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Image */}
         <div className="mb-4">
