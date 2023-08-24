@@ -10,7 +10,7 @@ const BlogCard = ({ blogItems }) => {
     day: 'numeric',
     year: 'numeric'
   });
-
+ 
   return (
     <Link to={`/blogDetails/${_id}`}>
       <div className="bg-white shadow-xl rounded-lg overflow-hidden w-full h-full mx-auto cursor-pointer">

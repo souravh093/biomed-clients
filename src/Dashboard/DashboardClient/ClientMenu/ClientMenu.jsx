@@ -20,7 +20,7 @@ const ClientMenu = () => {
     logoutUser().then(() => navigate("/"));
   };
   return (
-    <div className="px-10 py-5 h-screen z-20 bg-white">
+    <div className="px-10 py-5 h-screen bg-white relative z-50">
       <div className="flex justify-end lg:hidden ">
         <button
           className="bg-primary p-2 rounded-full text-white hover:bg-hover mb-3"
@@ -58,7 +58,8 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to='/dashboard/manage-jobs'
+          <Link
+            to="/dashboard/manage-jobs"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -66,7 +67,8 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to="/dashboard/all-applications"
+          <Link
+            to="/dashboard/all-applications"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -74,7 +76,8 @@ const ClientMenu = () => {
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
-          <Link to='/dashboard/shortlisted-resumes'
+          <Link
+            to="/dashboard/shortlisted-resumes"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
@@ -83,6 +86,7 @@ const ClientMenu = () => {
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
+            to={"/dashboard/client-message"}
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >

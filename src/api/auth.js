@@ -1,12 +1,10 @@
-// save user with role
+// save user with role in database
 export const saveUser = (user, updateData) => {
-  console.log(user);
   const currentUser = {
     email: user?.email,
     name: user?.displayName,
     image: user?.photoURL,
     updateData,
-    candidate: true,
   };
 
   fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
@@ -39,6 +37,20 @@ export const saveClient = (user, updateData) => {
   })
     .then((res) => res.json())
     .then((data) => console.log(data));
+};
+
+export const becomeClient = (email) => {
+  const currentUser = {
+    client: true,
+  };
+
+  return fetch(`https://biomed-server.vercel.app/users/${email}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(currentUser),
+  });
 };
 
 // get client role

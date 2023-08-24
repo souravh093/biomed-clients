@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext } from "react";
 import { BiEdit } from "react-icons/bi";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
@@ -12,27 +12,17 @@ const MyProfile = () => {
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/users/${user?.email}`);
+      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
       return res.data;
     },
   });
-  
+
   const { updateData } = myProfileData;
-
-
 
   return (
     <div className="px-10 py-6">
-      {/* Heading Section */}
-      <div>
-        <div>
-          <h2 className="text-3xl font-semibold">My Profile!</h2>
-          <p className="text-gray-600 text-base py-3">Ready to jump?</p>
-        </div>
-      </div>
-      <button className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden">
-        <HiOutlineMenuAlt3 /> Menu
-      </button>
+      {/* Title Section */}
+      <DashboardTitle title={"My Profile!"} slogan={"Ready to jump?"} />
 
       <div key={myProfileData._id} className="bg-white p-6 rounded-md my-6">
         {/* Image Section */}
@@ -41,31 +31,34 @@ const MyProfile = () => {
             <div className="mb-3 md:mb-0">
               <img
                 className="rounded-full h-32 w-32 mx-auto md:mx-0"
-                src={updateData?.image ? updateData?.image : myProfileData?.image}
+                src={
+                  updateData?.image ? updateData?.image : myProfileData?.image
+                }
                 alt=""
               />
               <Link to="/dashboard/editProfile">
-                <p
-                  className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
-                >
+                <p className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
                   <BiEdit /> <span>Edit</span>
                 </p>
               </Link>
             </div>
             <div className="space-y-3">
               <p className="flex flex-col text-sm">
-                Full Name <span className="text-xl">{updateData?.name2 ? updateData?.name2 : myProfileData?.name}</span>
+                Full Name{" "}
+                <span className="text-xl">
+                  {updateData?.name2 ? updateData?.name2 : myProfileData?.name}
+                </span>
               </p>
               <p className="flex flex-col text-sm">
-                Email Address <span className="text-xl">{updateData?.email ? updateData?.email : myProfileData?.email}</span>
+                Email Address{" "}
+                <span className="text-xl">
+                  {updateData?.email ? updateData?.email : myProfileData?.email}
+                </span>
               </p>
             </div>
           </div>
           <Link to="/dashboard/editProfile">
-            <button
-              className="hidden lg:flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0"
-            
-            >
+            <button className="hidden lg:flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
               <BiEdit /> <span>Edit</span>
             </button>
           </Link>
@@ -84,7 +77,7 @@ const MyProfile = () => {
               <p className="flex flex-col text-sm">
                 Experience{" "}
                 <span className="text-xl">
-                  {updateData?.experience ? updateData?.experience : 0}{" "}Years
+                  {updateData?.experience ? updateData?.experience : 0} Years
                 </span>
               </p>
               <p className="flex flex-col text-sm">
