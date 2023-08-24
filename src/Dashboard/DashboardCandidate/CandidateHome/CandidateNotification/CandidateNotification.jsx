@@ -16,7 +16,7 @@ const CandidateNotification = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="mt-8 bg-white rounded-lg p-8 shadow-sm">
+    <div className="mt-8 dark:bg-gray-800 dark:text-white bg-white rounded-lg p-8 shadow-sm">
       <h3 className="text-xl font-semibold mb-3">Notifications</h3>
       <div>
         {candidateNotifications.slice(0, 6).map((notify) => (

@@ -66,6 +66,7 @@ const JobsSidebar = ({browseJobsData,getData}) => {
   }
   filteredData ? getData(filteredData) : getData(browseJobsData)
   return (
+    <div>
     <div className="px-4 md:px-10 py-5 h-screen bg-white">
         <div>
           <div className="flex justify-end lg:hidden">
@@ -156,6 +157,7 @@ const JobsSidebar = ({browseJobsData,getData}) => {
           <button onClick={() => handleSearch()} className="bg-primary ml-auto  text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
             Filter
           </button>
+        </div>
         </div>
     </div>
   );

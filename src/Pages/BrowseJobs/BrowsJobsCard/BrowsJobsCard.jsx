@@ -57,13 +57,13 @@ const BrowsJobsCard = ({ jobsdata }) => {
       </div>
 
       <div className="flex flex-col xl:flex-row items-center justify-center space-y-2 xl:space-y-0 gap-3 mb-2">
-        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
           {startDate}
         </div>
-        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
           {experience}
         </div>
-        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 bg-gray-100">
+        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
           {jobType}
         </div>
       </div>
