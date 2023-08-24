@@ -1,13 +1,31 @@
 import React, { useContext } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Container from "../../components/Shared/Container/Container";
 import JobsSidebar from "./JobsSidebar/JobsSidebar";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import BrowseJobsHome from "./BrowseJobsHome";
+import { useState } from "react";
 
 const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
-
+  const { user } = useContext(AuthContext);
+  const [jobsData, setFilterData] = useState();
+  console.log(jobsData);
+  const { data: browseJobsData, isLoading } = useQuery({
+    queryKey: ["jobs", user?.email],
+    queryFn: async () => {
+      const res = await axios(`https://biomed-server.vercel.app/jobs`);
+      return res.data;
+    },
+  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  const filteredData = data =>{
+    setFilterData(data);
+  }
   return (
     <div className="pt-20">
           <Container>
@@ -21,15 +39,15 @@ const BrowseJobs = () => {
         <aside
           className={`col-span-3 lg:col-span-3 xl:col-span-1 hidden lg:block sticky top-0  h-screen mb-[300px] overflow-y-scroll`}
         >
-          <JobsSidebar />
+          {browseJobsData && <JobsSidebar getData={filteredData} browseJobsData={browseJobsData}/>}
         </aside>
         {jobsSidebarToggle && (
           <aside className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll bg-white">
-            <JobsSidebar />
+            {browseJobsData && <JobsSidebar getData={filteredData} browseJobsData={browseJobsData}/>}
           </aside>
         )}
         <div className="col-span-4 lg:col-span-7 xl:col-span-3">
-          <Outlet />
+          {browseJobsData && <BrowseJobsHome browseJobsData={jobsData && jobsData}/>}
         </div>
       </div>
     </Container>
