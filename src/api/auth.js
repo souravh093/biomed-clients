@@ -19,24 +19,31 @@ export const saveUser = (user, updateData) => {
 };
 
 export const saveClient = (user, updateData) => {
-  console.log(user);
-  const currentUser = {
-    email: user?.email,
-    name: user?.displayName,
-    image: user?.photoURL,
-    updateData,
-    client: true,
-  };
+  return new Promise((resolve, reject) => {
+    const currentUser = {
+      email: user?.email,
+      name: user?.displayName,
+      image: user?.photoURL,
+      updateData,
+    };
 
-  fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(currentUser),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+    fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(currentUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error); 
+      });
+  });
 };
 
 export const becomeClient = (email) => {
