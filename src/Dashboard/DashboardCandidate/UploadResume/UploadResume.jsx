@@ -23,7 +23,7 @@ const UploadResume = () => {
     return (
         <div className="min-h-screen p-6">
             <DashboardTitle title={"CV Manager!"} slogan={"Ready to jump back in?"} />
-            <div className='bg-white p-4'>
+            <div className='dark:bg-slate-800 text-white bg-white p-4'>
                 <p className='py-10 text-xl'>Cv Manager</p>
                 <div className='text-center border-4 hover:border-gray-600 border-dashed h-72 pt-20'>
                     <form onSubmit={handlePick}>

@@ -7,6 +7,7 @@ import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/Sho
 import UploadResume from "../Dashboard/DashboardCandidate/UploadResume/UploadResume";
 import AllApplications from "../Dashboard/DashboardClient/AllApplications/AllApplications";
 import ClientHome from "../Dashboard/DashboardClient/ClientHome/ClientHome";
+import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
 import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
 import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
@@ -26,7 +27,6 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
-import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +45,8 @@ const router = createBrowserRouter([
       {
         path: "/blogDetails/:id",
         element: <BlogDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/blogs/${params.id}`),
       },
 
       {

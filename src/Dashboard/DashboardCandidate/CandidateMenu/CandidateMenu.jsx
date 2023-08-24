@@ -6,7 +6,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
-import { GrNotes } from "react-icons/gr";
+import { PiNote } from "react-icons/pi";
 import { IoIosPaper } from "react-icons/io";
 import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
@@ -24,17 +24,17 @@ const CandidateMenu = () => {
     });
   };
   return (
-    <div className="px-10 py-5 h-screen z-50 bg-white">
+    <div className="px-10 py-5 dark:bg-gray-900 h-screen z-50 bg-white">
       <div className="flex justify-end lg:hidden ">
         <button
-          className="bg-primary p-2 rounded-full text-white hover:bg-hover mb-3"
+          className="bg-primary p-2 rounded-full  hover:bg-hover mb-3"
           onClick={() => setDashboardToggle(false)}
         >
           <AiOutlineClose />
         </button>
       </div>
       <ul className="text-xl">
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
             to={"/dashboard/candidate-home"}
@@ -43,7 +43,7 @@ const CandidateMenu = () => {
             <AiOutlineHome /> Dashboard
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
             to={"/dashboard/my-profile"}
@@ -52,7 +52,7 @@ const CandidateMenu = () => {
             <AiOutlineUser /> My Profile
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
             to="/dashboard/applied-jobs"
@@ -61,7 +61,7 @@ const CandidateMenu = () => {
             <PiBagSimpleBold /> Applied Jobs
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
@@ -69,7 +69,7 @@ const CandidateMenu = () => {
             <IoIosPaper /> All Applications
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
             to="/dashboard/shortlisted-jobs"
@@ -78,12 +78,12 @@ const CandidateMenu = () => {
             <FaRegBookmark /> Shortlisted Jobs
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link to="/dashboard/upload-resume" className="flex items-center gap-3">
-            <GrNotes /> Upload Resume
+            <PiNote className="text-2xl"/> Upload Resume
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
         
           <Link 
             onClick={() => setDashboardToggle(false)}
@@ -94,7 +94,7 @@ const CandidateMenu = () => {
         </li>
         <li
           onClick={handleLogout}
-          className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600"
+          className="hover:bg-red-400 transition py-5 px-3 rounded-md dark:text-white text-gray-600"
         >
           <Link className="flex items-center gap-3">
             <AiOutlineLogout /> Logout

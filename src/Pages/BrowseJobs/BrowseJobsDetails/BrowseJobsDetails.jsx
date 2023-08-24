@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AiOutlineShareAlt, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { BiBriefcaseAlt } from "react-icons/bi";
 import { BsBookmarkPlus, BsHourglassSplit } from "react-icons/bs";
@@ -6,9 +7,8 @@ import { LiaBusinessTimeSolid, LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { PiBriefcaseThin, PiShareFill } from "react-icons/pi";
 import { TbHomeDot } from "react-icons/tb";
 import { Link, useLoaderData } from "react-router-dom";
-import Container from "../../../components/Shared/Container/Container";
 import ApplyModal from "../../../components/Modal/ApplyModal/ApplyModal";
-import { useState } from "react";
+import Container from "../../../components/Shared/Container/Container";
 
 const BrowseJobsDetails = () => {
   const {
@@ -160,7 +160,7 @@ const BrowseJobsDetails = () => {
                 {skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
+                    className="dark:bg-slate-700 bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
                   >
                     {skill.value}
                   </span>

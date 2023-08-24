@@ -3,7 +3,7 @@ import ChatMessage from "../ChatMessage/ChatMessage";
 
 const ChatBodyMessages = () => {
   return (
-    <div className="px-5 min-h-[calc(100%-184px)]">
+    <div className="px-5 dark:bg-gray-800 dark:text-white min-h-[calc(100%-184px)]">
       <ChatMessage />
       <ChatMessage />
       <ChatMessage />

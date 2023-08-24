@@ -13,7 +13,7 @@ const BrowseJobs = () => {
           <Container>
       <button
         onClick={() => setJobsSidebarToggle(true)}
-        className="text-base text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden"
+        className="text-base dark:bg-slate-700 text-primary hover:text-green-600 flex items-center gap-2 bg-slate-200 hover:bg-slate-300 duration-500 px-6 py-3 rounded-md mt-6 lg:hidden"
       >
         <HiOutlineMenuAlt3 /> Menu
       </button>
