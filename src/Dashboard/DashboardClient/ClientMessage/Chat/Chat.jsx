@@ -54,15 +54,15 @@ const user = [
 
 const Chat = () => {
   return (
-    <div className="mt-10 flex flex-col gap-10">
+    <div className="mt-10 dark:bg-gray-800 dark:text-white flex flex-col gap-10">
       {user.map((us, i) => (
-        <div className="flex items-center justify-between hover:bg-red-50 cursor-pointer transition py-2 px-1" key={i}>
+        <div className="flex items-center justify-between  hover:bg-red-50 cursor-pointer transition py-2 px-1" key={i}>
           <div className="flex gap-3 items-center">
             <div>
               <img className="w-12 h-12 object-contain" src={us.companyLogo} alt="" />
             </div>
             <div>
-              <h2 className="font-semibold text-xl text-gray-800 transition">{us.name}</h2>
+              <h2 className="font-semibold text-xl dark:text-white text-gray-800 transition">{us.name}</h2>
               <h3>{us.role}</h3>
             </div>
           </div>

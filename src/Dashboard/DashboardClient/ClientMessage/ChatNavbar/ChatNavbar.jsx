@@ -5,10 +5,10 @@ import { AuthContext } from '../../../../Provider/AuthProvider';
 const ChatNavbar = () => {
     const {user} = useContext(AuthContext);
     return (
-        <div className='p-5'>
+        <div className='p-5 dark:bg-gray-800 dark:text-white'>
             <div className='flex items-center justify-between border-b-2 pb-5'>
             <div>
-                <h2 className='text-xl font-semibold text-gray-600'>{user?.displayName}</h2>
+                <h2 className='text-xl font-semibold dark:text-white text-gray-600'>{user?.displayName}</h2>
             </div>
             <div className='relative'>
                 <img className='w-14 h-14 rounded-full object-cover' src={user?.photoURL} alt="" />

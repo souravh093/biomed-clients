@@ -6,7 +6,7 @@ import faqimg from "../../../assets/faq.svg";
 const FrequentlyAskQuestion = () => {
   return (
     <Container>
-      <div className="bg-white mb-10">
+      <div className="dark:bg-gray-800 bg-white mb-10">
         <div>
           <SectionTitle heading="FreQuently Asked Questions? (FAQ)"></SectionTitle>
         </div>
@@ -36,7 +36,7 @@ const FrequentlyAskQuestion = () => {
                     </svg>
                   </span>
                 </summary>
-                <p className="text-neutral-700 mt-3 group-open:animate-fadeIn">
+                <p className="dark:text-neutral-400 text-neutral-700 mt-3 group-open:animate-fadeIn">
                   <strong className="text-2xl">A. </strong>
                   The Task Evaluation Platform is designed to streamline the
                   process of assessing and grading tasks, assignments, or
@@ -68,7 +68,7 @@ const FrequentlyAskQuestion = () => {
                     </svg>
                   </span>
                 </summary>
-                <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                <p className="dark:text-neutral-400 text-neutral-600 mt-3 group-open:animate-fadeIn">
                   {" "}
                   <strong className="text-2xl">A. </strong>
                   To submit a task for evaluation, log in to your account and
@@ -102,7 +102,7 @@ const FrequentlyAskQuestion = () => {
                     </svg>
                   </span>
                 </summary>
-                <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                <p className="dark:text-neutral-400 text-neutral-600 mt-3 group-open:animate-fadeIn">
                   {" "}
                   <strong className="text-2xl">A. </strong>
                   Yes, you can track the progress of your task evaluation
@@ -135,7 +135,7 @@ const FrequentlyAskQuestion = () => {
                     </svg>
                   </span>
                 </summary>
-                <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                <p className="dark:text-neutral-400 text-neutral-600 mt-3 group-open:animate-fadeIn">
                   {" "}
                   <strong className="text-2xl">A. </strong>
                   Tasks are evaluated based on predefined criteria set by the
@@ -169,7 +169,7 @@ const FrequentlyAskQuestion = () => {
                     </svg>
                   </span>
                 </summary>
-                <p className="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                <p className="dark:text-neutral-400 text-neutral-600 mt-3 group-open:animate-fadeIn">
                   {" "}
                   <strong className="text-2xl">A. </strong>
                   If you have concerns about your task evaluation results, you

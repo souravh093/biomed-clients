@@ -26,6 +26,8 @@ const BrowseJobsDetails = () => {
     companyName,
   } = useLoaderData();
 
+  console.log(country);
+
   const showInfoCompany = {
     _id,
     title,
@@ -43,7 +45,7 @@ const BrowseJobsDetails = () => {
   };
 
   return (
-    <>
+    <div className="pt-20">
       <Container>
         <section className="my-10 ">
           <h1 className="text-center md:text-2xl font-semibold text-[#666]">
@@ -158,7 +160,7 @@ const BrowseJobsDetails = () => {
                 {skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
+                    className="dark:bg-slate-700 bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
                   >
                     {skill.value}
                   </span>
@@ -187,13 +189,13 @@ const BrowseJobsDetails = () => {
           </div>
         </section>
       </Container>
-      
+
       <ApplyModal
         closeModal={closeApplyModal}
         isOpen={isOpenApply}
         showInfoCompany={showInfoCompany}
       />
-    </>
+    </div>
   );
 };
 

@@ -28,17 +28,17 @@ const CompanyView = () => {
         title={"Company Profile!"}
         slogan={"Ready to jump back in?"}
       />
-      <div className="bg-white min-h-screen">
+      <div className="bg-white dark:bg-gray-800 min-h-screen">
         <div className="p-10">
           <Link
             to={"/dashboard/company-profile"}
             className="mb-5 flex justify-end"
           >
             <button className="bg-primary px-10 py-2 rounded-md text-gray-200 hover:bg-hover">
-              Edit
+              Edit 
             </button>
           </Link>
-          <div className="bg-white rounded-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-lg">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <img
@@ -48,7 +48,7 @@ const CompanyView = () => {
                 />
                 <div>
                   <h1 className="text-2xl font-semibold"></h1>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 dark:text-gray-200">
                     Team Size: {updateData?.teamSize ? updateData?.teamSize : "no data"}
                   </p>
                 </div>
@@ -77,23 +77,23 @@ const CompanyView = () => {
                 </a>
               </div>
             </div>
-            <div className="mb-6">
+            <div className="mb-6 dark:text-gray-200">
               <h2>
                 <span className="text-lg font-semibold">Company name:</span>{" "}
                 {updateData?.companyName ? updateData?.companyName : "none"}
               </h2>
             </div>
             <div>
-              <h2 className="text-lg font-semibold mb-2">About Company</h2>
-              <p className="text-gray-600">{updateData?.aboutCompany ? updateData?.aboutCompany : "none"}</p>
+              <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">About Company</h2>
+              <p className="text-gray-600 dark:text-gray-300">{updateData?.aboutCompany ? updateData?.aboutCompany : "none"}</p>
             </div>
             <div className="mt-6">
-              <h2 className="text-lg font-semibold mb-2">
+              <h2 className="text-lg dark:text-gray-200 font-semibold mb-2">
                 Contact Information
               </h2>
               <div className="flex items-center space-x-2">
                 <div>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     Address, {updateData?.address ? updateData?.address : "none"}
                   </p>
                   <a
@@ -102,13 +102,13 @@ const CompanyView = () => {
                   >
                     {updateData?.website ? updateData?.website : "none"}
                   </a>
-                  <p className="text-gray-600">Email: {email ? email : "none"}</p>
+                  <p className="text-gray-600 dark:text-gray-300">Email: {email ? email : "none"}</p>
                 </div>
               </div>
             </div>
             <div className="mt-6">
-              <h2 className="text-lg font-semibold mb-2">Company Culture</h2>
-              <p className="text-gray-600">
+              <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">Company Culture</h2>
+              <p className="text-gray-600 dark:text-gray-300">
                 We are a diverse team of passionate individuals working together
                 to create innovative solutions that make a positive impact on
                 the world. Our company values collaboration, creativity, and
@@ -116,8 +116,8 @@ const CompanyView = () => {
               </p>
             </div>
             <div className="mt-6">
-              <h2 className="text-lg font-semibold mb-2">Achievements</h2>
-              <ul className="list-disc pl-6 text-gray-600">
+              <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">Achievements</h2>
+              <ul className="list-disc pl-6 text-gray-600 dark:text-gray-300">
                 <li>Winner of the Tech Innovation Award, 2022</li>
                 <li>Featured in Forbes Top 100 Companies to Watch</li>
                 <li>Recognized for Excellence in Customer Service</li>

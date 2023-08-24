@@ -4,8 +4,8 @@ import React from 'react';
 import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { FaArrowLeft , FaArrowRight } from 'react-icons/fa';
-import Select from 'react-select';
 import ShortlistedResumesCard from './ShortlistedResumesCard/ShortlistedResumesCard';
+import Select from 'react-select';
 
 const ShortlistedResumes = () => {
     const [value, setValue] = useState(null);
@@ -20,7 +20,6 @@ const ShortlistedResumes = () => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log(shortlistedResumes);
     const options = [
         { value: "Newest", label: "Newest" },
         { value: "Last 12 Months", label: "Last 12 Months" },
@@ -53,7 +52,7 @@ const ShortlistedResumes = () => {
         <div className='md:p-20 p-5'>
             <h1 className='md:text-3xl text-2xl font-medium'>Shortlisted Resumes!</h1>
             <p className='md:mt-2 mt-2 text-sm font-thin text-[#696969]'>Ready to jump back in?</p>
-            <div className='md:mt-10 mt-7 bg-white md:p-7 p-5 rounded-xl shadow-sm'>
+            <div className='md:mt-10 mt-7 dark:bg-gray-800 dark:text-white bg-white md:p-7 p-5 rounded-xl shadow-sm'>
                 <div className='md:flex md:justify-between'>
                     <p className='text-lg font-medium'>Shortlist Resumes</p>
                     <div className='md:flex'>
@@ -88,20 +87,20 @@ const ShortlistedResumes = () => {
                 {
                 shortlistedResumes.length > 0 && 
                 <div className='flex md:gap-10 gap-6 justify-center items-center md:mt-20 mt-14 mb-8'>
-                    <FaArrowLeft size={18} className={page > 1 ? "flex text-[#696969] hover:text-[#1967d2] items-center cursor-pointer" : "opacity-0"} onClick={()=> selectPageHandler(page - 1)}></FaArrowLeft>
+                    <FaArrowLeft size={18} className={page > 1 ? "flex text-[#696969] hover:text-primary items-center cursor-pointer" : "opacity-0"} onClick={()=> selectPageHandler(page - 1)}></FaArrowLeft>
                     {
                         [...Array(shortlistedResumes.length / 6)].map((_,i) => {
-                            return <div className={page === i + 1 ? "text-white bg-[#1967D2] w-11 h-11 rounded-full flex items-center justify-center" : "text-[#696969]"} key={i}>
+                            return <div className={page === i + 1 ? "text-white bg-primary w-11 h-11 rounded-full flex items-center justify-center" : "text-[#696969]"} key={i}>
                                 <button onClick={()=> selectPageHandler(i+1)}>{i+1}</button>
                             </div>
                         })
                     }
                     
-                    <FaArrowRight size={18} className={page < shortlistedResumes.length / 6 ? "flex text-[#696969] hover:text-[#1967d2] items-center cursor-pointer" : "opacity-0"} onClick={()=> selectPageHandler(page + 1)}></FaArrowRight>
+                    <FaArrowRight size={18} className={page < shortlistedResumes.length / 6 ? "flex text-[#696969] hover:text-primary items-center cursor-pointer" : "opacity-0"} onClick={()=> selectPageHandler(page + 1)}></FaArrowRight>
                 </div>
                 }
             </div>
-            <p className='text-center mt-20'>© 2023 Biomed by <span className='text-[#1967d2]'>ib-themes.</span> All Right Reserved.</p>
+            <p className='text-center mt-20'>© 2023 Biomed by <span className='text-primary'>ib-themes.</span> All Right Reserved.</p>
         </div>
     );
 };

@@ -10,7 +10,7 @@ import Categorys from './categorys/Categorys';
 
 const Home = () => {
     return (
-        <div>
+        <div className='dark:bg-gray-800 dark:text-white md:pt-5'>
             <CategoryMenu />
             <Banner />
             <TrendingJobs />
