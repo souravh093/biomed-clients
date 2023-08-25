@@ -13,7 +13,7 @@ const AllClients = () => {
   const { data: allClients = [] } = useQuery({
     queryKey: ["allClients"],
     queryFn: async () => {
-      const res = await axios("http://localhost:5000/clients");
+      const res = await axios("https://biomed-server.vercel.app/clients");
       return res.data;
     },
   });
