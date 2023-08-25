@@ -46,18 +46,36 @@ export const saveClient = (user, updateData) => {
   });
 };
 
-export const becomeClient = (email) => {
+// become a client
+export const becomeClient = async (email) => {
   const currentUser = {
     client: true,
   };
 
-  return fetch(`http://localhost:5000/users/${email}`, {
+  const res = await fetch(`http://localhost:5000/users/${email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(currentUser),
   });
+  return await res.json();
+};
+
+// become a instructor
+export const becomeModerator = async (email) => {
+  const updateRole = {
+    moderator: true,
+  };
+
+  const res = await fetch(`http://localhost:5000/users/${email}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(updateRole),
+  });
+  return await res.json();
 };
 
 // get admin role
@@ -80,4 +98,3 @@ export const getClientRole = async (email) => {
   const user = await res.json();
   return user?.client;
 };
-

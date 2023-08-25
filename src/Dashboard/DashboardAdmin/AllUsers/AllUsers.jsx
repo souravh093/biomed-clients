@@ -8,12 +8,14 @@ import {
   FaRegTrashAlt,
 } from "react-icons/fa";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
+import { becomeModerator } from "../../../api/auth";
+import { toast } from "react-hot-toast";
 
 const AllUsers = () => {
-  const { data: allUsers = [] } = useQuery({
+  const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await axios("http://localhost:5000/users");
+      const res = await axios("http://localhost:5000/allusers");
       return res.data;
     },
   });
@@ -26,10 +28,7 @@ const AllUsers = () => {
   return (
     <div className="px-10 py-6 bg-gray-100 min-h-screen flex flex-col">
       {/* Title Section */}
-      <DashboardTitle
-        title={"All Clients"}
-        slogan={"Ready to jump back in?"}
-      />
+      <DashboardTitle title={"All Clients"} slogan={"Ready to jump back in?"} />
 
       <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
         <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">
@@ -71,7 +70,24 @@ const AllUsers = () => {
                     </div>
                   </td>
                   <td className="py-2 md:py-4">{user.email}</td>
-                  <td className="py-2 md:py-4"><button className="bg-primary hover:bg-hover text-gray-50 px-3 py-2 rounded-md">Make Moderator</button></td>
+                  <td className="py-2 md:py-4">
+                    <button
+                      onClick={() =>
+                        becomeModerator(user.email).then((data) => {
+                          console.log(data);
+                          if (data.modifiedCount === 1) {
+                            refetch();
+                            toast.success(
+                              "Successfully as a moderator check the all moderator section "
+                            );
+                          }
+                        })
+                      }
+                      className="bg-primary hover:bg-hover text-gray-50 px-3 py-2 rounded-md"
+                    >
+                      Make Moderator
+                    </button>
+                  </td>
                   <td className="py-2 md:py-4">
                     <div className="flex space-x-1 md:space-x-2">
                       <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
