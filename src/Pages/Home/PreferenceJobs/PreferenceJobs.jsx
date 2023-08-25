@@ -23,7 +23,7 @@ const PreferenceJobs = () => {
   } 
 
   return (
-    <div className="bg-[#f4fdf4] py-10">
+    <div className="dark:bg-gray-800 bg-[#f4fdf4] py-10">
       <Container>
         <SectionTitle
           heading={"Preference Jobs"}

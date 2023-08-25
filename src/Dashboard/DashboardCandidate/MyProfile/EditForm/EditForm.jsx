@@ -83,7 +83,7 @@ const EditForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-md my-6">
+    <div className="dark:bg-slate-900 dark:text-white bg-white p-6 rounded-md my-6">
       
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Image */}
@@ -94,10 +94,14 @@ const EditForm = () => {
           <input
             type="file"
             id="image"
-            className="block w-full border text-gray-500
+            className="block w-full border
+            dark:bg-slate-800  text-gray-500
             file:mr-4 file:py-4 file:px-4
             file:rounded-md file:border-0
             file:text-sm file:font-semibold
+            dark:file:bg-slate-500
+            dark:hover:file:bg-gray-700
+            dark:file:text-white
             file:bg-gray-200 file:text-gray-700
             hover:file:bg-gray-100
           "
@@ -118,7 +122,7 @@ const EditForm = () => {
               id="name"
               defaultValue={updateData?.name2 || ""}
               placeholder="Your Full Name"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("name")}
             />
           </div>
@@ -131,7 +135,7 @@ const EditForm = () => {
               id="jobTitle"
               defaultValue={updateData?.jobTitle || ""}
               placeholder="Job Title"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("jobTitle")}
             />
           </div>
@@ -145,7 +149,7 @@ const EditForm = () => {
               id="phone"
               defaultValue={updateData?.phone || ""}
               placeholder="Your Phone"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("phone")}
             />
           </div>
@@ -158,7 +162,7 @@ const EditForm = () => {
               id="email"
               defaultValue={updateData?.email || ""}
               placeholder="Your Email"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("email")}
             />
           </div>
@@ -172,7 +176,7 @@ const EditForm = () => {
               id="education"
               defaultValue={updateData?.education || ""}
               placeholder="Your Last Education"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("education")}
             />
           </div>
@@ -185,7 +189,7 @@ const EditForm = () => {
               id="language"
               defaultValue={updateData?.language || ""}
               placeholder="Language"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("language")}
             />
           </div>
@@ -195,7 +199,7 @@ const EditForm = () => {
           <div className="mb-4 cursor-pointer">
             <label htmlFor="currentSalary">Current Salary($)</label>
             <select
-              className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
+              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("currentSalary")}
             >
               <option className="cursor-pointer py-2" value="30-60K">
@@ -219,7 +223,7 @@ const EditForm = () => {
           <div className="mb-4 cursor-pointer">
             <label htmlFor="expectedSalary">Expected Salary($)</label>
             <select
-              className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
+              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("expectedSalary")}
             >
               <option className="cursor-pointer py-2" value="30-60K">
@@ -245,7 +249,7 @@ const EditForm = () => {
           <div className="mb-4 cursor-pointer">
             <label htmlFor="experience">Experience</label>
             <select
-              className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
+              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("experience")}
             >
               <option className="cursor-pointer py-2" value="0-2">
@@ -269,7 +273,7 @@ const EditForm = () => {
           <div className="mb-4 cursor-pointer">
             <label htmlFor="age">Age</label>
             <select
-              className="w-full px-4 py-5 bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
+              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
               {...register("age")}
             >
               <option className="cursor-pointer py-2" value="18-22">
@@ -300,7 +304,7 @@ const EditForm = () => {
               id="country"
               defaultValue={updateData?.country || ""}
               placeholder="Enter Country Name"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("country")}
             />
           </div>
@@ -312,7 +316,7 @@ const EditForm = () => {
               id="city"
               defaultValue={updateData?.city || ""}
               placeholder="Enter City Name"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("city")}
             />
           </div>
@@ -325,7 +329,7 @@ const EditForm = () => {
             id="website"
             defaultValue={updateData?.website || ""}
             placeholder="Enter Website Link"
-            className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+            className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
             {...register("website")}
           />
         </div>
@@ -338,7 +342,7 @@ const EditForm = () => {
               id="facebook"
               defaultValue={updateData?.facebook || ""}
               placeholder="Enter Facebook Link"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("facebook")}
             />
           </div>
@@ -350,7 +354,7 @@ const EditForm = () => {
               id="linkedin"
               defaultValue={updateData?.linkedin || ""}
               placeholder="Enter LinkedIn Link"
-              className="w-full px-5 py-4 bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
+              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("linkedin")}
             />
           </div>
@@ -362,7 +366,7 @@ const EditForm = () => {
             id="description"
             defaultValue={updateData?.description || ""}
             placeholder="Enter job description"
-            className="w-full h-60 px-5 py-4 rounded-md outline-none bg-slate-100 border focus:border-blue-700 transition"
+            className="w-full h-60 px-5 py-4 rounded-md outline-none dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition"
             {...register("description")}
           ></textarea>
         </div>

@@ -20,7 +20,7 @@ const CandidateProfileViews = () => {
   ];
 
   return (
-    <div className="mt-8 bg-white rounded-lg p-8 shadow-sm">
+    <div className="mt-8 dark:bg-gray-800 dark:text-white bg-white rounded-lg p-8 shadow-sm">
       <h3 className="text-xl font-semibold mb-3">Your Profile Views</h3>
       <div style={{ overflowX: "auto"}}>
         <LineChart width={600} height={300} data={chartData}>
