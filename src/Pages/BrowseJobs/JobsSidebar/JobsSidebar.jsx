@@ -43,7 +43,7 @@ const JobsSidebar = ({browseJobsData,getData}) => {
   const [location,setLocation] = useState('');
   const [value, setValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
-  const [filteredData, setFilteredData] = useState()
+  const [filteredData, setFilteredData] = useState();
   // console.log(categoryValue);
   const handleSearch = () =>{
     const newData = browseJobsData
@@ -67,8 +67,11 @@ const JobsSidebar = ({browseJobsData,getData}) => {
       return skillData[0] === (categoryValue === '' ? skillData[0] : categoryValue)
     })
     setFilteredData(newData);
+  };
+  filteredData ? getData(filteredData) : getData(browseJobsData);
+  const handleClear = () =>{
+    setFilteredData(browseJobsData);
   }
-  filteredData ? getData(filteredData) : getData(browseJobsData)
   return (
     <div>
     <div className="px-4 md:px-10 py-5 h-screen bg-white">
@@ -157,8 +160,11 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             <label htmlFor="">Past 24 hours</label>
           </div>
         </div>
-        <div className="flex mt-2">
-          <button onClick={() => handleSearch()} className="bg-primary ml-auto  text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+        <div className="flex gap-5 mt-5">
+          <button onClick={() => handleClear()} className="bg-primary text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+            Clear
+          </button>
+          <button onClick={() => handleSearch()} className="bg-primary text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
             Filter
           </button>
         </div>
