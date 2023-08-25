@@ -116,7 +116,7 @@ const Header = () => {
         {toggle && (
           <div
             className={`absolute flex flex-col items-center ${
-              toggle && "transition-all ease-in-out duration-200"
+              toggle && "animated-slideIn"
             } bg-[#80faa9] w-full py-5 animate-fadeIn`}
           >
             <div className="flex justify-center items-center gap-16 xl:hidden">
