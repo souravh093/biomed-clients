@@ -7,6 +7,7 @@ import PreferenceJobs from './PreferenceJobs/PreferenceJobs';
 import TopCompany from './TopCompany/TopCompany';
 import TrendingJobs from './TrendingJobs/TrendingJobs';
 import Categorys from './categorys/Categorys';
+import RecentJob from './RecentJob/RecentJob';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Banner />
             <TrendingJobs />
             <Categorys />
+            <RecentJob/>
             <AboutUs/>
             <TopCompany />
             <PreferenceJobs />
