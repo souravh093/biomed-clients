@@ -7,7 +7,7 @@ export const saveUser = (user, updateData) => {
     updateData,
   };
 
-  fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
+  fetch(`http://localhost:5000/users/${user?.email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -27,7 +27,7 @@ export const saveClient = (user, updateData) => {
       updateData,
     };
 
-    fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
+    fetch(`http://localhost:5000/users/${user?.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ export const saveClient = (user, updateData) => {
       })
       .catch((error) => {
         console.error(error);
-        reject(error); 
+        reject(error);
       });
   });
 };
@@ -51,7 +51,7 @@ export const becomeClient = (email) => {
     client: true,
   };
 
-  return fetch(`https://biomed-server.vercel.app/users/${email}`, {
+  return fetch(`http://localhost:5000/users/${email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -60,16 +60,24 @@ export const becomeClient = (email) => {
   });
 };
 
+// get admin role
+export const getAdminRole = async (email) => {
+  const res = await fetch(`http://localhost:5000/users/${email}`);
+  const user = await res.json();
+  return user?.admin;
+};
+
+// get moderator role
+export const getModeratorRole = async (email) => {
+  const res = await fetch(`http://localhost:5000/users/${email}`);
+  const user = await res.json();
+  return user?.moderator;
+};
+
 // get client role
 export const getClientRole = async (email) => {
-  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
+  const res = await fetch(`http://localhost:5000/users/${email}`);
   const user = await res.json();
   return user?.client;
 };
 
-// get candidate
-export const getCandidateRole = async (email) => {
-  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
-  const user = await res.json();
-  return user?.candidate;
-};

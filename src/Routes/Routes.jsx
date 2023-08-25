@@ -27,6 +27,9 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
+import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
+import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
+import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +65,8 @@ const router = createBrowserRouter([
       {
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
-        loader: ({params}) =>  fetch(`https://biomed-server.vercel.app/jobs/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
       {
         path: "/",
@@ -145,6 +149,20 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/client-message",
         element: <ClientMessage />,
+      },
+
+      // dashboard admin
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers />
+      },
+      {
+        path: "/dashboard/all-client",
+        element: <AllClients />,
+      },
+      {
+        path: "/dashboard/all-moderator",
+        element: <AllModerator />,
       },
     ],
   },
