@@ -11,7 +11,7 @@ import RecentJob from './RecentJob/RecentJob';
 
 const Home = () => {
     return (
-        <div>
+        <div className='dark:bg-gray-800 dark:text-white md:pt-5'>
             <CategoryMenu />
             <Banner />
             <TrendingJobs />

@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import axios from "axios";
-import { toast } from "react-hot-toast";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -40,7 +40,7 @@ const JobForm = () => {
   ];
 
   const jobsTypes = [
-    { value: "workFromHome", label: "Work From Home" },
+    { value: "remote", label: "Remote" },
     { value: "onsite", label: "Onsite" },
     { value: "internship", label: "Internship" },
     { value: "contract", label: "Contract" },
@@ -135,7 +135,7 @@ const JobForm = () => {
         logo: dataImage1.data.data.display_url,
         thumbnail: dataImage2.data.data.display_url,
       };
-
+console.log(currentData);
       axios.post("https://biomed-server.vercel.app/jobs", currentData).then((data) => {
         if (data.data.insertedId) {
           reset();
@@ -157,7 +157,7 @@ const JobForm = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 dark:bg-gray-800 dark:text-white">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid lg:grid-cols-2  lg:gap-10">
           <div className="mb-4">
@@ -171,6 +171,7 @@ const JobForm = () => {
                 file:mr-4 file:py-4 file:px-4
                 file:rounded-md file:border-0
                 file:text-sm file:font-semibold
+                dark:file:bg-gray-400
                 file:bg-gray-200 file:text-gray-700
                 hover:file:bg-gray-100
               "
@@ -201,6 +202,7 @@ const JobForm = () => {
                 file:mr-4 file:py-4 file:px-4
                 file:rounded-md file:border-0
                 file:text-sm file:font-semibold
+                dark:file:bg-gray-400
                 file:bg-gray-200 file:text-gray-700
                 hover:file:bg-gray-100
               "
@@ -228,7 +230,7 @@ const JobForm = () => {
             type="text"
             id="name"
             placeholder="Enter title"
-            className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+            className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             {...register("name", { required: "Title is required" })}
           />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
@@ -241,7 +243,7 @@ const JobForm = () => {
               type="text"
               id="name"
               placeholder="Enter Company Name"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
               {...register("company", { required: "Company is required" })}
             />
             {errors.company && (
@@ -252,7 +254,7 @@ const JobForm = () => {
             <label htmlFor="name">Start Date</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={startDateOptions}
               onChange={setStartDateOptions}
               options={startDate}
@@ -266,7 +268,7 @@ const JobForm = () => {
           <textarea
             id="description"
             placeholder="Enter job description"
-            className="w-full h-60 px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+            className="w-full h-60 px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             {...register("description", {
               required: "Job Description is required",
             })}
@@ -285,7 +287,7 @@ const JobForm = () => {
               id="email"
               defaultValue={user?.email}
               placeholder="email"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             />
           </div>
 
@@ -296,7 +298,7 @@ const JobForm = () => {
               type="text"
               id="username"
               placeholder="username"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
               {...register("username", { required: "Username is required" })}
             />
             {errors.username && (
@@ -307,7 +309,7 @@ const JobForm = () => {
             <label htmlFor="name">Specialisms</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={skillOptions}
               onChange={setSkillOptions}
               options={skills}
@@ -319,7 +321,7 @@ const JobForm = () => {
             <label htmlFor="name">Job Type</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={jobOptions}
               onChange={setJobOptions}
               options={jobsTypes}
@@ -330,7 +332,7 @@ const JobForm = () => {
             <label htmlFor="name">Experience</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={experienceOptions}
               onChange={setExperienceOptions}
               options={experience}
@@ -341,7 +343,7 @@ const JobForm = () => {
             <label htmlFor="name">Carrier Label</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={carrierOptions}
               onChange={setCarrierOptions}
               options={carrierLabel}
@@ -352,7 +354,7 @@ const JobForm = () => {
             <label htmlFor="name">Offered Salary</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={offerOptions}
               onChange={setOfferOptions}
               options={offerSalary}
@@ -363,7 +365,7 @@ const JobForm = () => {
             <label htmlFor="name">Gender</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={genderOptions}
               onChange={setGenderOptions}
               options={gender}
@@ -374,7 +376,7 @@ const JobForm = () => {
             <label htmlFor="name">Industry</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={industryOptions}
               onChange={setIndustryOptions}
               options={industry}
@@ -382,10 +384,10 @@ const JobForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="name">Qualification</label>
+            <label htmlFor="qualification">Qualification</label>
 
             <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={qualificationOptions}
               onChange={setQualificationOptions}
               options={qualification}
@@ -394,13 +396,13 @@ const JobForm = () => {
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="name">Application Deadline Date</label>
+          <label htmlFor="deadline">Application Deadline Date</label>
 
           <input
-            type="text"
-            id="name"
+            type="date"
+            id="deadline"
             placeholder="Enter application deadline"
-            className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+            className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             {...register("deadline", { required: "Title is required" })}
           />
           {errors.deadline && (
@@ -415,7 +417,7 @@ const JobForm = () => {
               type="text"
               id="country"
               placeholder="Enter country name"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
               {...register("country", { required: "Title is required" })}
             />
             {errors.country && (
@@ -429,7 +431,7 @@ const JobForm = () => {
               type="text"
               id="city"
               placeholder="Enter city name"
-              className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
               {...register("city", { required: "City is required" })}
             />
             {errors.city && (
@@ -445,7 +447,7 @@ const JobForm = () => {
             type="text"
             id="address"
             placeholder="Enter address"
-            className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none"
+            className="w-full px-5 py-4  dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             {...register("address", { required: "Address is required" })}
           />
           {errors.address && (

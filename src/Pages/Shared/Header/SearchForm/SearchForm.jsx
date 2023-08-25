@@ -49,7 +49,7 @@ const SearchForm = () => {
                                 name="Categories"
                                 onChange={handleCategoryChange}
                                 id="XBpUo_category"
-                                className="w-full py-2 pl-2 pr-8 rounded-lg outline-none"
+                                className="w-full dark:bg-slate-800 py-2 pl-2 pr-8 rounded-lg outline-none"
                             >
                                 <option>Categories</option>
                                 <option>Design & Creative</option>

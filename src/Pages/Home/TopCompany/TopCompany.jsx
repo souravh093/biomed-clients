@@ -13,15 +13,15 @@ import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
 
 
 const TopCompany = () => {
-    const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
-    const handleMouseOver = () => {
-      setIsPaused(true);
-    };
-  
-    const handleMouseOut = () => {
-      setIsPaused(false);
-    };
+  const handleMouseOver = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsPaused(false);
+  };
   return (
     <Container>
       <SectionTitle
@@ -37,9 +37,9 @@ const TopCompany = () => {
         pauseOnHover={!isPaused}
         className="mt-10 mb-20 cursor-pointer"
       >
-        <img className="mr-14 w-[100px] h-[32px] lg:w-[150px]" src={logo1} alt="" />
-        <img className="mr-14 w-[100px] h-[35px] lg:w-[150px]" src={logo2} alt="" />
-        <img className="mr-14 w-[100px] h-[37px] lg:w-[150px]" src={logo3} alt="" />
+        <img className="mr-14 w-[150px] h-[42px] lg:w-[180px]" src={logo1} alt="" />
+        <img className="mr-14 w-[150px] h-[42px] lg:w-[180px]" src={logo2} alt="" />
+        <img className="mr-14 w-[150px] h-[42px] lg:w-[170px]" src={logo3} alt="" />
         <img className="mr-14 w-[100px] h-[43px] lg:w-[150px]" src={logo4} alt="" />
         <img className="mr-14 mt-2 w-[100px] h-[37px] lg:w-[150px]" src={logo5} alt="" />
         <img className="mr-14 w-[100px] h-[45px] lg:w-[150px]" src={logo6} alt="" />

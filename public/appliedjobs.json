@@ -1,6 +1,6 @@
 [
     {
-        "_id": 1,
+       
         "image": "https://img.freepik.com/free-photo/shiny-night-city_1127-8.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Scenic Mountains",
         "heading": "Segment",
@@ -9,7 +9,7 @@
         "status": "Active"
     },
     {
-        "_id": 2,
+       
         "image": "https://img.freepik.com/free-photo/skyscraper_1112-1069.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Coastal Retreat",
         "heading": "Segment",
@@ -18,7 +18,7 @@
         "status": "Pending"
     },
     {
-        "_id": 3,
+       
         "image": "https://img.freepik.com/free-photo/business-office-sky-cityscape-tourism_1127-2401.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Cultural Immersion",
         "heading": "Segment",
@@ -27,7 +27,7 @@
         "status": "Active"
     },
     {
-        "_id": 4,
+       
         "image": "https://img.freepik.com/free-photo/modern-business-building-with-glass-wall-from-empty-floor_1127-2865.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Urban Exploration",
         "heading": "Segment",
@@ -36,7 +36,7 @@
         "status": "Completed"
     },
     {
-        "_id": 5,
+       
         "image": "https://img.freepik.com/free-photo/empty-floor-front-modern-building_1127-3154.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Earth Mountains",
         "heading": "Segment",
@@ -45,7 +45,7 @@
         "status": "Pending"
     },
     {
-        "_id": 6,
+       
         "image": "https://img.freepik.com/free-photo/high-angle-pie-chart-with-cities_52683-98166.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Earth Costal",
         "heading": "Segment",
@@ -54,7 +54,7 @@
         "status": "Active"
     },
     {
-        "_id": 7,
+       
         "image": "https://img.freepik.com/free-photo/shiny-night-city_1127-8.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Natural Revolution",
         "heading": "Segment",
@@ -63,7 +63,7 @@
         "status": "Pending"
     },
     {
-        "_id": 8,
+       
         "image": "https://img.freepik.com/free-photo/empty-floor-front-modern-building_1127-3154.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Urban Exploration",
         "heading": "Segment",
@@ -72,7 +72,7 @@
         "status": "Completed"
     },
     {
-        "_id": 9,
+       
         "image": "https://img.freepik.com/free-photo/modern-business-building-with-glass-wall-from-empty-floor_1127-2865.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Scenic Mountains",
         "heading": "Segment",
@@ -81,7 +81,7 @@
         "status": "Active"
     },
     {
-        "_id": 10,
+       
         "image": "https://img.freepik.com/free-photo/business-office-sky-cityscape-tourism_1127-2401.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Coastal Retreat",
         "heading": "Segment",
@@ -90,7 +90,7 @@
         "status": "Pending"
     },
     {
-        "_id": 11,
+       
         "image": "https://img.freepik.com/free-photo/skyscraper_1112-1069.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Cultural Immersion",
         "heading": "Segment",
@@ -99,7 +99,7 @@
         "status": "Active"
     },
     {
-        "_id": 12,
+       
         "image": "https://img.freepik.com/free-photo/shiny-night-city_1127-8.jpg?size=626&ext=jpg&uid=R98052885&ga=GA1.2.1323370950.1686453375&semt=sph",
         "title": "Urban Exploration",
         "heading": "Segment",

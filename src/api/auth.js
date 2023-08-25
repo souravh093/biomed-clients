@@ -1,12 +1,10 @@
-// save user with role
+// save user with role in database
 export const saveUser = (user, updateData) => {
-  console.log(user);
   const currentUser = {
     email: user?.email,
     name: user?.displayName,
     image: user?.photoURL,
     updateData,
-    candidate: true,
   };
 
   fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
@@ -21,24 +19,45 @@ export const saveUser = (user, updateData) => {
 };
 
 export const saveClient = (user, updateData) => {
-  console.log(user);
+  return new Promise((resolve, reject) => {
+    const currentUser = {
+      email: user?.email,
+      name: user?.displayName,
+      image: user?.photoURL,
+      updateData,
+    };
+
+    fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(currentUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error); 
+      });
+  });
+};
+
+export const becomeClient = (email) => {
   const currentUser = {
-    email: user?.email,
-    name: user?.displayName,
-    image: user?.photoURL,
-    updateData,
     client: true,
   };
 
-  fetch(`https://biomed-server.vercel.app/users/${user?.email}`, {
+  return fetch(`https://biomed-server.vercel.app/users/${email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(currentUser),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+  });
 };
 
 // get client role

@@ -12,15 +12,17 @@ const CategoryMenu = () => {
   ];
 
   return (
-    <Container>
-      <ul className="hidden md:flex justify-start items-center gap-10 font-semibold">
-        {categories.map((category) => (
-          <li key={category.id}>
-            <Link to={category.route}>{category.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </Container>
+    <div className="pt-[80px]">
+      <Container>
+        <ul className="hidden md:flex justify-start items-center gap-10 font-semibold">
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link to={category.route}>{category.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </div>
   );
 };
 
