@@ -48,10 +48,14 @@ const JobsSidebar = ({browseJobsData,getData}) => {
   const handleSearch = () =>{
     const newData = browseJobsData
     .filter((t)=> {
-      return jobTitle.toLowerCase() === '' ? t : t?.title.toLowerCase().includes(jobTitle);
+      return jobTitle === '' ? t : t?.title.includes(jobTitle)
+      ||
+      jobTitle.toLowerCase() === '' ? t : t?.title.toLowerCase().includes(jobTitle)
     })
     .filter((l)=> {
-      return location.toLowerCase() === '' ? l : l?.country.toLowerCase().includes(location);
+      return location === '' ? l : l?.country.includes(location)
+      ||
+      location.toLowerCase() === '' ? l : l?.country.toLowerCase().includes(location)
     })
     .filter((j)=> {
       return j?.jobType === (value === '' ? j.jobType : value)
