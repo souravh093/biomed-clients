@@ -24,7 +24,7 @@ const Dark = () => {
     }
 
     return (
-        <label>
+        <label className='cursor-pointer'>
             <input checked={theme === "dark"}
                 onChange={toggleTheme}
                 className='toggle-checkbox' type='checkbox'></input>

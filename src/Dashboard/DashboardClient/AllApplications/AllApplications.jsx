@@ -5,12 +5,12 @@ import { BiSearch } from "react-icons/bi";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Select from "react-select";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
-import ShortlistedResumesCard from "../ShortlistedResumes/ShortlistedResumesCard/ShortlistedResumesCard";
+import AllApplicationsCard from "./AllApplicationsCard";
 
 const AllApplications = () => {
   const [setValue] = useState(null);
   const [page, setPage] = useState(1);
-  const { isLoading, data: shortlistedResumes } = useQuery({
+  const { isLoading, data: AllApplications} = useQuery({
     queryKey: ["shortlistedResumes"],
     queryFn: async () => {
       const res = await axios(
@@ -22,7 +22,7 @@ const AllApplications = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  console.log(shortlistedResumes);
+  // console.log(shortlistedResumes);
   const options = [
     { value: "Newest", label: "Newest" },
     { value: "Last 12 Months", label: "Last 12 Months" },
@@ -45,7 +45,7 @@ const AllApplications = () => {
   const selectPageHandler = (selectedPage) => {
     if (
       selectedPage >= 1 &&
-      selectedPage <= shortlistedResumes.length / 6 &&
+      selectedPage <= AllApplications.length / 6 &&
       selectedPage !== page
     )
       setPage(selectedPage);
@@ -91,22 +91,20 @@ const AllApplications = () => {
         </div>
         <div className="dark:bg-gray-800  bg-[#F5F7FC] p-5 pt-5 rounded-2xl">
           <div className="flex  justify-between gap-x-2  font-semibold">
-            <p className="dark:bg-gray-800  bg-[#E6EDF9] p-1 text-blue-600">Total(s):6</p>
+            <p className="dark:bg-gray-800  p-1 text-blue-600">Total(s):{AllApplications.length}</p>
             <p className=" text-green-600">Approved:2</p>
             <p className="text-red-600">Rejected(s):4</p>
           </div>
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 md:gap-9 gap-4 mt-7">
-          {shortlistedResumes
+          {AllApplications
             .slice(page * 6 - 6, page * 6)
             .map((shortlistedResume) => (
-              <ShortlistedResumesCard
-                key={shortlistedResume.id}
-                shortlistedResume={shortlistedResume}
-              />
+              <AllApplicationsCard key={shortlistedResume.id}
+                shortlistedResume={shortlistedResume} />
             ))}
         </div>
-        {shortlistedResumes.length > 0 && (
+        {AllApplications.length > 0 && (
           <div className="flex md:gap-10 gap-6 justify-center items-center md:mt-20 mt-14 mb-8">
             <FaArrowLeft
               size={18}
@@ -117,7 +115,7 @@ const AllApplications = () => {
               }
               onClick={() => selectPageHandler(page - 1)}
             ></FaArrowLeft>
-            {[...Array(shortlistedResumes.length / 6)].map((_, i) => {
+            {[...Array(AllApplications.length / 6)].map((_, i) => {
               return (
                 <div
                   className={
@@ -137,7 +135,7 @@ const AllApplications = () => {
             <FaArrowRight
               size={18}
               className={
-                page < shortlistedResumes.length / 6
+                page < AllApplications.length / 6
                   ? "flex text-[#696969] hover:text-[#1967d2] items-center cursor-pointer"
                   : "opacity-0"
               }
