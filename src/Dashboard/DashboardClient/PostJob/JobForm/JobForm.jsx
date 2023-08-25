@@ -136,7 +136,7 @@ const JobForm = () => {
         thumbnail: dataImage2.data.data.display_url,
       };
 console.log(currentData);
-      axios.post("https://biomed-server.vercel.app/jobs", currentData).then((data) => {
+      axios.post("http://localhost:5000/jobs", currentData).then((data) => {
         if (data.data.insertedId) {
           reset();
           toast.success("Successfully Added Job");

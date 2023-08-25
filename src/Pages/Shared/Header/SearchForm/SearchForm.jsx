@@ -3,7 +3,7 @@ import React from 'react';
 const SearchForm = () => {
     return (
         <div className="lg:flex">
-            <div className="border rounded-lg p-4 max-w-2xl">
+            <div className="border dark:border-gray-600 rounded-lg p-4 max-w-2xl">
                 <form className="space-y-4">
                     <div className=" flex flex-col lg:flex-row lg:flex lg:items-center lg:space-x-4 gap-2 lg:gap-0">
                         <div className="flex-grow">
@@ -12,7 +12,7 @@ const SearchForm = () => {
                                     type="text"
                                     name="filter-title"
                                     placeholder="What are you looking for?"
-                                    className="w-full py-2 pl-5 pr-4 outline-none rounded-lg border-r"
+                                    className="w-full py-2 pl-5 pr-4 outline-none rounded-lg border-r dark:border-r-0 dark:bg-gray-800"
                                 />
                             </div>
                         </div>

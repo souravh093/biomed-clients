@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BrowseJobsHome from "./BrowseJobsHome";
 import { useState } from "react";
+import Loader from "../../components/Loader/Loader";
 
 const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
@@ -16,12 +17,12 @@ const BrowseJobs = () => {
   const { data: browseJobsData, isLoading } = useQuery({
     queryKey: ["jobs", user?.email],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/jobs`);
+      const res = await axios(`http://localhost:5000/jobs`);
       return res.data;
     },
   });
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   const filteredData = data =>{
     setFilterData(data);
