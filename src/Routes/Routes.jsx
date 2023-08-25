@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/blogs/${params.id}`),
       },
 
       {
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/",
