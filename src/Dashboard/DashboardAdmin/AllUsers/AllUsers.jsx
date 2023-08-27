@@ -2,53 +2,50 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
 import {
-    FaArrowLeft,
-    FaArrowRight,
-    FaBriefcase,
-    FaEye,
-    FaMapMarkerAlt,
-    FaRegTrashAlt,
+  FaArrowLeft,
+  FaArrowRight,
+  FaEye,
+  FaRegTrashAlt,
 } from "react-icons/fa";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
+import { becomeModerator } from "../../../api/auth";
+import { toast } from "react-hot-toast";
 
-const AppliedJobs = () => {
-  const { data: appliedJobs = [] } = useQuery({
-    queryKey: ["appliedJobs"],
+const AllUsers = () => {
+  const { data: allUsers = [], refetch } = useQuery({
+    queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await axios("https://biomed-server.vercel.app/applidejobs");
+      const res = await axios("https://biomed-server.vercel.app/allusers");
       return res.data;
     },
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 4;
+  const rowsPerPage = 6;
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
 
   return (
     <div className="px-10 py-6 bg-gray-100 min-h-screen flex flex-col">
       {/* Title Section */}
-      <DashboardTitle
-        title={"Applied jobs!"}
-        slogan={"Ready to jump back in?"}
-      />
+      <DashboardTitle title={"All Clients"} slogan={"Ready to jump back in?"} />
 
       <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
         <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">
-          My Applied Jobs
+          All Clients
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 text-green-400">
               <tr>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg px-3 md:ps-5">
-                  Job title
+                  Image
                 </th>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg">
-                  Date applied
+                  Email
                 </th>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg">
-                  Status
+                  Give Role
                 </th>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg">
                   Action
@@ -56,30 +53,41 @@ const AppliedJobs = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {appliedJobs?.slice(startIndex, endIndex)?.map((singleJob) => (
-                <tr key={singleJob._id}>
+              {allUsers?.slice(startIndex, endIndex)?.map((user) => (
+                <tr key={user._id}>
                   <td className="py-2 md:py-4">
                     <div className="flex items-center">
                       <img
-                        src={singleJob.image}
+                        src={user.image}
                         alt="Job"
                         className="w-12 h-12 md:w-14 md:h-14 rounded-xl mr-3 md:mr-4"
                       />
                       <div>
                         <p className="font-semibold text-base md:text-lg">
-                          {singleJob.title}
+                          {user.name}
                         </p>
-                        <div className="flex mt-1 text-gray-600 text-xs md:text-base">
-                          <FaBriefcase className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                          <p>{singleJob.heading}</p>
-                          <FaMapMarkerAlt className="w-3 h-3 md:w-4 md:h-4 mx-1 md:mx-2" />
-                          <p>{singleJob.address}</p>
-                        </div>
                       </div>
                     </div>
                   </td>
-                  <td className="py-2 md:py-4">{singleJob.date}</td>
-                  <td className="py-2 md:py-4">{singleJob.status}</td>
+                  <td className="py-2 md:py-4">{user.email}</td>
+                  <td className="py-2 md:py-4">
+                    <button
+                      onClick={() =>
+                        becomeModerator(user.email).then((data) => {
+                          console.log(data);
+                          if (data.modifiedCount === 1) {
+                            refetch();
+                            toast.success(
+                              "Successfully as a moderator check the all moderator section "
+                            );
+                          }
+                        })
+                      }
+                      className="bg-primary hover:bg-hover text-gray-50 px-3 py-2 rounded-md"
+                    >
+                      Make Moderator
+                    </button>
+                  </td>
                   <td className="py-2 md:py-4">
                     <div className="flex space-x-1 md:space-x-2">
                       <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
@@ -106,7 +114,7 @@ const AppliedJobs = () => {
         </button>
         <div className="flex">
           {Array.from({
-            length: Math.ceil(appliedJobs.length / rowsPerPage),
+            length: Math.ceil(allUsers.length / rowsPerPage),
           }).map((_, index) => (
             <button
               key={index}
@@ -124,19 +132,19 @@ const AppliedJobs = () => {
         </div>
         <button
           className={`ml-2 ${
-            endIndex >= appliedJobs.length ? "cursor-not-allowed" : ""
+            endIndex >= allUsers.length ? "cursor-not-allowed" : ""
           }`}
           onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
-          disabled={endIndex >= appliedJobs.length}
+          disabled={endIndex >= allUsers.length}
         >
           <FaArrowRight />
         </button>
       </div>
       <div className="my-10 md:my-20 text-center text-gray-600 text-xs md:text-base">
-        © 2023 Superio by ib-themes. All Rights Reserved.
+        © 2023 Biomed LTD. All Rights Reserved.
       </div>
     </div>
   );
 };
 
-export default AppliedJobs;
+export default AllUsers;
