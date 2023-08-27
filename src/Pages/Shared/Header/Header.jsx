@@ -6,12 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { becomeClient } from "../../../api/auth";
 import logo from "../../../assets/logo.png";
+import Dark from "../../../components/Dark/Dark";
 import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
 import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
-import Dark from "../../../components/Dark/Dark";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);
@@ -70,7 +70,7 @@ const Header = () => {
                   />
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
-                  <MenuItem name={"Contact"} path={"/contact"} />
+                  <MenuItem name={"Community"} path={"/community"} />
                   
                 </ul>
               </div>
@@ -105,7 +105,6 @@ const Header = () => {
               </div>
               <Dark/>
             </div>
-
             {/* toggle button */}
             <button className="xl:hidden" onClick={() => setToggle(!toggle)}>
               {toggle ? (
