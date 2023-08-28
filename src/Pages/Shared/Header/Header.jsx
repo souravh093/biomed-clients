@@ -71,10 +71,8 @@ const Header = () => {
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
                   <MenuItem name={"Community"} path={"/community"} />
-                  
                 </ul>
               </div>
-            
             </div>
             <div className="hidden xl:flex items-center gap-10">
               {!clientRole && (
@@ -103,7 +101,7 @@ const Header = () => {
                   </ul>
                 )}
               </div>
-              <Dark/>
+              <Dark />
             </div>
             {/* toggle button */}
             <button className="xl:hidden" onClick={() => setToggle(!toggle)}>
@@ -132,13 +130,13 @@ const Header = () => {
                   />
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
-                  <MenuItem name={"Contact"} path={"/"} />
+                  <MenuItem name={"Community"} path={"/community"} />
                 </ul>
               </div>
             </div>
-        <div className="mb-2 md:hidden">
-        <Dark/>
-        </div>
+            <div className="mb-2 md:hidden">
+              <Dark />
+            </div>
             <div className="flex xl:hidden flex-col items-center gap-10">
               {!clientRole && (
                 <button
