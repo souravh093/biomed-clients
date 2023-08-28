@@ -18,6 +18,7 @@ import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 import Community from "../Layout/Community";
+import CommunityProfile from "../Layout/CommunityProfile";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -32,6 +33,7 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -171,13 +173,21 @@ const router = createBrowserRouter([
   // Community Routes
   {
     path: "/community",
-    element: <Community />,
+    element: (
+      <PrivateRoute>
+        <Community />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/community",
         element: <CommunityHome />,
       },
     ],
+  },
+  {
+    path: "/community/community-profile",
+    element: <CommunityProfile />,
   },
 ]);
 

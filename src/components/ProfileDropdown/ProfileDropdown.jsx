@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
+import { FaAlignJustify } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { FaAlignJustify } from "react-icons/fa";
 
 const ProfileDropdown = () => {
   const { user, logoutUser, clientRole, setClientRole } =

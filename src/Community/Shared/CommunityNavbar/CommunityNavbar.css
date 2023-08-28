@@ -1,0 +1,46 @@
+.topbarLeft {
+  flex: 3;
+}
+
+.topbarCenter {
+  flex: 5;
+}
+
+.topbarRight {
+  flex: 4;
+}
+
+@media (max-width: 425px) {
+  .topbarLeft {
+    flex: none;
+  }
+
+  .topbarCenter {
+    flex: none;
+  }
+
+  .topbarRight {
+    flex: none;
+  }
+}
+
+.topbarIconItem {
+  cursor: pointer;
+  position: relative;
+  font-size: 23px;
+}
+
+.topbarIconBadge {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
