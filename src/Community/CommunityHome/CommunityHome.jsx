@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import SharePost from "../Shared/CommunityFeed/SharePost/SharePost";
 
 const CommunityHome = () => {
-    return (
-        <div>
-            Community Home
-        </div>
-    );
+  return (
+    <div>
+      <SharePost />
+    </div>
+  );
 };
 
 export default CommunityHome;
