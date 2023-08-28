@@ -94,7 +94,6 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             </button>
           </div>
         </div>
-
         <div>
           <h2 className="py-3 mt-2">Location</h2>
           <div className="relative">
@@ -109,7 +108,6 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             </button>
           </div>
         </div>
-
         <div className="space-y-5">
           <h2 className="mt-5 ">Job type</h2>
           <div className="w-full mt-2 md:mt-0">
