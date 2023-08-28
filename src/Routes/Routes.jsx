@@ -1,4 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import CommunityHome from "../Community/CommunityHome/CommunityHome";
+import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
+import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
+import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import CandidateHome from "../Dashboard/DashboardCandidate/CandidateHome/CandidateHome";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
@@ -13,6 +17,7 @@ import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
+import Community from "../Layout/Community";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -46,7 +51,7 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/blogs/${params.id}`),
       },
 
       {
@@ -146,6 +151,31 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/client-message",
         element: <ClientMessage />,
+      },
+
+      // dashboard admin
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/all-client",
+        element: <AllClients />,
+      },
+      {
+        path: "/dashboard/all-moderator",
+        element: <AllModerator />,
+      },
+    ],
+  },
+  // Community Routes
+  {
+    path: "/community",
+    element: <Community />,
+    children: [
+      {
+        path: "/community",
+        element: <CommunityHome />,
       },
     ],
   },

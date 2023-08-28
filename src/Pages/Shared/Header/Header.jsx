@@ -6,12 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { becomeClient } from "../../../api/auth";
 import logo from "../../../assets/logo.png";
+import Dark from "../../../components/Dark/Dark";
 import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
 import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
-import Dark from "../../../components/Dark/Dark";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);
@@ -70,8 +70,8 @@ const Header = () => {
                   />
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
-                  <MenuItem name={"Contact"} path={"/contact"} />
-                  <Dark/>
+                  <MenuItem name={"Community"} path={"/community"} />
+                  
                 </ul>
               </div>
             
@@ -103,8 +103,8 @@ const Header = () => {
                   </ul>
                 )}
               </div>
+              <Dark/>
             </div>
-
             {/* toggle button */}
             <button className="xl:hidden" onClick={() => setToggle(!toggle)}>
               {toggle ? (
@@ -119,7 +119,7 @@ const Header = () => {
         {toggle && (
           <div
             className={`absolute flex flex-col items-center ${
-              toggle && "transition-all ease-in-out duration-200"
+              toggle && "animated-slideIn"
             } bg-[#80faa9] w-full py-5 animate-fadeIn`}
           >
             <div className="flex justify-center items-center gap-16 xl:hidden">

@@ -37,14 +37,14 @@ const TopCompany = () => {
         pauseOnHover={!isPaused}
         className="mt-10 mb-20 cursor-pointer"
       >
-        <img className="mr-14 w-[150px] h-[42px] lg:w-[180px]" src={logo1} alt="" />
-        <img className="mr-14 w-[150px] h-[42px] lg:w-[180px]" src={logo2} alt="" />
-        <img className="mr-14 w-[150px] h-[42px] lg:w-[170px]" src={logo3} alt="" />
-        <img className="mr-14 w-[100px] h-[43px] lg:w-[150px]" src={logo4} alt="" />
-        <img className="mr-14 mt-2 w-[100px] h-[37px] lg:w-[150px]" src={logo5} alt="" />
-        <img className="mr-14 w-[100px] h-[45px] lg:w-[150px]" src={logo6} alt="" />
-        <img className="mr-14 w-[100px] h-[40px] lg:w-[150px]" src={logo7} alt="" />
-        <img className="mr-14 w-[100px] h-[40px] lg:w-[150px]" src={logo8} alt="" />
+        <img className="mr-12 w-[150px] object-cover h-[42px] lg:w-[180px]" src={logo1} alt="" />
+        <img className="mr-12 w-[150px] object-cover h-[42px] lg:w-[180px]" src={logo2} alt="" />
+        <img className="mr-12 w-[150px] object-cover h-[40px] lg:w-[120px]" src={logo3} alt="" />
+        <img className="mr-12 w-[100px] object-cover h-[40px] lg:w-[120px]" src={logo4} alt="" />
+        <img className="mr-12 mt-2 w-[100px] object-cover h-[37px] lg:w-[150px]" src={logo5} alt="" />
+        <img className="mr-12 w-[100px] object-cover h-[45px] lg:w-[150px]" src={logo6} alt="" />
+        <img className="mr-12 w-[100px] object-cover h-[40px] lg:w-[150px]" src={logo7} alt="" />
+        <img className="mr-12 w-[100px] object-cover h-[40px] lg:w-[150px]" src={logo8} alt="" />
       </Marquee>
     </Container>
   );
