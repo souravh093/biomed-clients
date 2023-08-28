@@ -6,7 +6,7 @@ import { BiMessageDetail, BiSearchAlt2 } from "react-icons/bi";
 import { MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-// import logo from "../../../assets/logo.png";
+import logo from "../../../assets/White_logo.png";
 import "./CommunityNavbar.css";
 
 const CommunityNavbar = () => {
@@ -24,27 +24,26 @@ const CommunityNavbar = () => {
   const { updateData } = myProfileData;
   return (
     <>
-      <nav className="h-14 w-full bg-[#5bbb7b] flex items-center justify-evenly sticky top-0 z-50">
+      <nav className="px-2 md:px-0 h-14 w-full bg-[#5bbb7b] flex items-center justify-evenly sticky top-0 z-50">
         {/* Navbar Left SIde */}
         <div className="topbarLeft">
           {/* Logo section for large devices */}
-          <span className="hidden lg:block text-white text-2xl font-bold ml-5 cursor-pointer">
+          <span className="hidden md:block ml-5 cursor-pointer">
             <Link to="/">
-              {/* <img src={logo} alt="" /> */}
-              Biomed
+              <img className="w-40" src={logo} alt="" />
             </Link>
           </span>
           {/* Profile section for small devices */}
           <div className="flex justify-center items-center">
             <Link to={"/"}>
-              <div className="topbarIconItem lg:hidden">
-                <AiOutlineHome className="text-3xl text-white ms-2 md:ms-0" />
+              <div className="topbarIconItem md:hidden">
+                <AiOutlineHome className="text-3xl text-white" />
               </div>
             </Link>
             <Link to={"/community/community-profile"}>
               <div
                 title="View Profile"
-                className="mx-2 w-9 h-9 rounded-full overflow-hidden cursor-pointer border-[3px] border-black/50 lg:hidden"
+                className="mx-2 w-9 h-9 rounded-full overflow-hidden cursor-pointer border-[3px] border-black/50 md:hidden"
               >
                 <img
                   referrerPolicy="no-referrer"
@@ -62,7 +61,7 @@ const CommunityNavbar = () => {
             <BiSearchAlt2 className="text-2xl mt-1 ml-2" />
             <input
               type="text"
-              placeholder="Search for friend or post"
+              placeholder="Search for friends or post"
               className="border-none w-11/12 md:w-full focus:outline-none rounded-full px-1"
             />
           </div>
@@ -72,11 +71,10 @@ const CommunityNavbar = () => {
           {/* Text section */}
           <div className="gap-2 text-base hidden md:flex">
             <Link to={"/community"}>Homepage</Link>
-            <Link to={"/community"}>Timeline</Link>
           </div>
           {/* Icons section */}
           <div className="flex justify-center items-center gap-4">
-            <div className="topbarIconItem mr-2 md:mr-0">
+            <div className="topbarIconItem">
               <BiMessageDetail />
               <span className="topbarIconBadge">1</span>
             </div>
@@ -89,7 +87,7 @@ const CommunityNavbar = () => {
           <Link to={"/community/community-profile"}>
             <div
               title="View Profile"
-              className="hidden lg:block w-9 h-9 rounded-full overflow-hidden cursor-pointer border-[3px] border-black/50"
+              className="hidden md:block w-9 h-9 rounded-full overflow-hidden cursor-pointer border-[3px] border-black/50"
             >
               <img
                 referrerPolicy="no-referrer"

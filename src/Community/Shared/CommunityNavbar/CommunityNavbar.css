@@ -16,7 +16,7 @@
   }
 
   .topbarCenter {
-    flex: none;
+    flex: 5;
   }
 
   .topbarRight {
