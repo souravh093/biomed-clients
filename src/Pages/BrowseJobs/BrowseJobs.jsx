@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BrowseJobsHome from "./BrowseJobsHome";
 import { useState } from "react";
+import Loader from "../../components/Loader/Loader";
 
 const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const BrowseJobs = () => {
     },
   });
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   const filteredData = data =>{
     setFilterData(data);
