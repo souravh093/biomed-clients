@@ -41,7 +41,7 @@ const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
         };
 
         axios
-          .post("https://biomed-server.vercel.appappliedjob", applyJob)
+          .post("https://biomed-server.vercel.app/appliedjob", applyJob)
           .then((response) => {
             console.log(response);
             reset();
