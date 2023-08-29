@@ -26,6 +26,8 @@ const BrowseJobsDetails = () => {
     companyName,
   } = useLoaderData();
 
+  console.log(_id)
+
   console.log(country);
 
   const showInfoCompany = {
