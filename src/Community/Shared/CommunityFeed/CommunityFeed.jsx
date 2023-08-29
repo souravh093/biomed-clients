@@ -1,5 +1,6 @@
 import React from "react";
 import "./CommunityFeed.css";
+import Post from "./Post/Post";
 import SharePost from "./SharePost/SharePost";
 
 const CommunityFeed = () => {
@@ -7,6 +8,7 @@ const CommunityFeed = () => {
     <div className="feed">
       <div className="feedWrapper">
         <SharePost />
+        <Post />
       </div>
     </div>
   );

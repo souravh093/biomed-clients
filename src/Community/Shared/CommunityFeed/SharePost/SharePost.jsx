@@ -22,8 +22,7 @@ const SharePost = () => {
   });
 
   const { updateData } = myProfileData;
-  console.log("updateData", updateData);
-  console.log("user", user);
+
   return (
     <div className="share">
       <div className="p-1 md:p-2">
@@ -77,7 +76,9 @@ const SharePost = () => {
             </div>
           </div>
           {/* Share Button  */}
-          <button className="shareButton border-0 rounded-md bg-green-600 font-normal text-white text-base cursor-pointer px-4 py-2">Share</button>
+          <button className="shareButton border-0 rounded-md bg-green-600 font-normal text-white text-base cursor-pointer px-4 py-2">
+            Share
+          </button>
         </div>
       </div>
     </div>
