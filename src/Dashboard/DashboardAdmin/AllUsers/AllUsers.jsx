@@ -28,7 +28,7 @@ const AllUsers = () => {
   return (
     <div className="px-10 py-6 bg-gray-100 min-h-screen flex flex-col">
       {/* Title Section */}
-      <DashboardTitle title={"All Clients"} slogan={"Ready to jump back in?"} />
+      <DashboardTitle title={"All User"} slogan={"Ready to jump back in?"} />
 
       <div className="bg-white shadow-md p-4 md:p-8 mx-2 md:mx-10 rounded-2xl">
         <h2 className="text-lg md:text-xl font-semibold pb-6 md:pb-10">

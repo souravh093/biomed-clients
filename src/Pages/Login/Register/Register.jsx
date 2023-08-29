@@ -6,7 +6,6 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { saveUser } from "../../../api/auth";
-import loginImg from "../../../assets/login/login.jpg";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 

@@ -58,7 +58,7 @@ const EditForm = () => {
         image: dataImage?.data?.data?.display_url,
       };
 
-      const response = await saveUser(user, profileData);
+      const response = saveUser(user, profileData);
 
       if (
         response?.data?.acknowledged === true &&
