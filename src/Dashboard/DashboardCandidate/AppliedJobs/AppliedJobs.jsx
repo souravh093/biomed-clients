@@ -20,7 +20,7 @@ const AppliedJobs = () => {
     queryKey: ["appliedJobs"],
     queryFn: async () => {
       const res = await axios(
-        `https://biomed-server.vercel.appapplidejobs/${user?.email}`
+        `https://biomed-server.vercel.app/applidejobs/${user?.email}`
       );
       return res.data;
     },
