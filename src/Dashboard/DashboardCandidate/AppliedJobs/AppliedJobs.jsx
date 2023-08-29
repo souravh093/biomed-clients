@@ -12,7 +12,7 @@ import {
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 
 const AppliedJobs = () => {
-  const { isLoading, data: appliedJobs = [] } = useQuery({
+  const { data: appliedJobs = [] } = useQuery({
     queryKey: ["appliedJobs"],
     queryFn: async () => {
       const res = await axios("https://biomed-server.vercel.app/applidejobs");

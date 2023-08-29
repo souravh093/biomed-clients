@@ -41,23 +41,55 @@ export const saveClient = (user, updateData) => {
       })
       .catch((error) => {
         console.error(error);
-        reject(error); 
+        reject(error);
       });
   });
 };
 
-export const becomeClient = (email) => {
+// become a client
+export const becomeClient = async (email) => {
   const currentUser = {
     client: true,
   };
 
-  return fetch(`https://biomed-server.vercel.app/users/${email}`, {
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(currentUser),
   });
+  return await res.json();
+};
+
+// become a instructor
+export const becomeModerator = async (email) => {
+  const updateRole = {
+    moderator: true,
+  };
+
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(updateRole),
+  });
+  return await res.json();
+};
+
+// get admin role
+export const getAdminRole = async (email) => {
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
+  const user = await res.json();
+  return user?.admin;
+};
+
+// get moderator role
+export const getModeratorRole = async (email) => {
+  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
+  const user = await res.json();
+  return user?.moderator;
 };
 
 // get client role
@@ -65,11 +97,4 @@ export const getClientRole = async (email) => {
   const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
   const user = await res.json();
   return user?.client;
-};
-
-// get candidate
-export const getCandidateRole = async (email) => {
-  const res = await fetch(`https://biomed-server.vercel.app/users/${email}`);
-  const user = await res.json();
-  return user?.candidate;
 };

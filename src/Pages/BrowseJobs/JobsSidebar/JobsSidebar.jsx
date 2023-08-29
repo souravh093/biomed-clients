@@ -43,15 +43,19 @@ const JobsSidebar = ({browseJobsData,getData}) => {
   const [location,setLocation] = useState('');
   const [value, setValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
-  const [filteredData, setFilteredData] = useState()
+  const [filteredData, setFilteredData] = useState();
   // console.log(categoryValue);
   const handleSearch = () =>{
     const newData = browseJobsData
     .filter((t)=> {
-      return jobTitle.toLowerCase() === '' ? t : t?.title.toLowerCase().includes(jobTitle);
+      return jobTitle === '' ? t : t?.title.includes(jobTitle)
+      ||
+      jobTitle.toLowerCase() === '' ? t : t?.title.toLowerCase().includes(jobTitle)
     })
     .filter((l)=> {
-      return location.toLowerCase() === '' ? l : l?.country.toLowerCase().includes(location);
+      return location === '' ? l : l?.country.includes(location)
+      ||
+      location.toLowerCase() === '' ? l : l?.country.toLowerCase().includes(location)
     })
     .filter((j)=> {
       return j?.jobType === (value === '' ? j.jobType : value)
@@ -63,8 +67,11 @@ const JobsSidebar = ({browseJobsData,getData}) => {
       return skillData[0] === (categoryValue === '' ? skillData[0] : categoryValue)
     })
     setFilteredData(newData);
+  };
+  filteredData ? getData(filteredData) : getData(browseJobsData);
+  const handleClear = () =>{
+    setFilteredData(browseJobsData);
   }
-  filteredData ? getData(filteredData) : getData(browseJobsData)
   return (
     <div>
     <div className="px-4 md:px-10 py-5 h-screen bg-white">
@@ -87,7 +94,6 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             </button>
           </div>
         </div>
-
         <div>
           <h2 className="py-3 mt-2">Location</h2>
           <div className="relative">
@@ -102,7 +108,6 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             </button>
           </div>
         </div>
-
         <div className="space-y-5">
           <h2 className="mt-5 ">Job type</h2>
           <div className="w-full mt-2 md:mt-0">
@@ -153,8 +158,11 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             <label htmlFor="">Past 24 hours</label>
           </div>
         </div>
-        <div className="flex mt-2">
-          <button onClick={() => handleSearch()} className="bg-primary ml-auto  text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+        <div className="flex gap-5 mt-5">
+          <button onClick={() => handleClear()} className="bg-primary text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
+            Clear
+          </button>
+          <button onClick={() => handleSearch()} className="bg-primary text-gray-100 px-8 py-1 rounded-md hover:bg-[#4ca068] transition cursor-pointer">
             Filter
           </button>
         </div>

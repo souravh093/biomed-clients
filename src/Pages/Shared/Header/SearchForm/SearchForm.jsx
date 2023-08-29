@@ -40,7 +40,7 @@ const SearchForm = () => {
                                     type="text"
                                     name="search"
                                     placeholder="What are you looking for?"
-                                    className="w-full py-2 pl-5 pr-4 outline-none rounded-lg border-r"
+                                    className="w-full py-2 pl-5 pr-4 outline-none rounded-lg border-r dark:border-r-0 dark:bg-gray-800"
                                 />
                             </div>
                         </div>
