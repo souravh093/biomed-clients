@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import CommunityFeed from "../Shared/CommunityFeed/CommunityFeed";
 
 const CommunityHome = () => {
-    return (
-        <div>
-            Community Home
-        </div>
-    );
+  return (
+    <div>
+      <CommunityFeed/>
+    </div>
+  );
 };
 
 export default CommunityHome;
