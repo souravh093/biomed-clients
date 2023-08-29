@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import {
   FaArrowLeft,
   FaArrowRight,
   FaEye,
   FaRegTrashAlt,
 } from "react-icons/fa";
-import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 import { becomeModerator } from "../../../api/auth";
-import { toast } from "react-hot-toast";
+import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 
 const AllUsers = () => {
   const { data: allUsers = [], refetch } = useQuery({

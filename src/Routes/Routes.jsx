@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import CommunityHome from "../Community/CommunityHome/CommunityHome";
+import CommunityProfileHome from "../Community/CommunityProfileHome/CommunityProfileHome";
 import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
 import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
 import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
@@ -34,7 +35,6 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
-import CommunityProfileHome from "../Community/CommunityProfileHome/CommunityProfileHome";
 
 const router = createBrowserRouter([
   {
@@ -178,6 +178,7 @@ const router = createBrowserRouter([
       <PrivateRoute>
         <Community />
       </PrivateRoute>
+
     ),
     children: [
       {
