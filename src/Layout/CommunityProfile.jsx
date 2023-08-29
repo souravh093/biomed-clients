@@ -12,7 +12,7 @@ const CommunityProfile = () => {
         <div className="col-span-2">
           <CommunityLeftSidebar />
         </div>
-        <div className="col-span-5 bg-orange-200">
+        <div className="col-span-5">
           <Outlet />
         </div>
       </div>
