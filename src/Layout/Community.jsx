@@ -15,7 +15,7 @@ const Community = () => {
         <div className="col-span-7 lg:col-span-3">
           <Outlet />
         </div>
-        <div  className="col-span-2 bg-green-200 hidden lg:block">
+        <div  className="col-span-2 hidden lg:block">
           <CommunityRightSidebar />
         </div>
       </div>
