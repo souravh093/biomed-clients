@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useContext } from "react";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -7,26 +5,20 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 
 const MyProfile = () => {
-  const { user } = useContext(AuthContext);
-
-  const { data: myProfileData = [] } = useQuery({
-    queryKey: ["profile"],
-    queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
-      return res.data;
-    },
-  });
+  const { myProfileData } = useContext(AuthContext);
+  console.log(myProfileData);
 
   const { updateData } = myProfileData;
-
-
 
   return (
     <div className="px-10 py-6">
       {/* Title Section */}
       <DashboardTitle title={"My Profile!"} slogan={"Ready to jump?"} />
 
-      <div key={myProfileData._id} className="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-md my-6">
+      <div
+        key={myProfileData._id}
+        className="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-md my-6"
+      >
         {/* Image Section */}
         <div className="md:flex justify-between">
           <div className="md:flex gap-6 items-center">

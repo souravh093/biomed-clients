@@ -12,6 +12,8 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import { getAdminRole, getClientRole, getModeratorRole } from "../api/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const auth = getAuth(app);
 
@@ -90,6 +92,18 @@ const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
+
+
+  // Share my profile data
+
+  const { data: myProfileData = [] } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
+      return res.data;
+    },
+  });
+
   const authInfo = {
     user,
     loading,
@@ -110,6 +124,8 @@ const AuthProvider = ({ children }) => {
     googleLoginUser,
     setDashboardToggle,
     setJobsSidebarToggle,
+    // my profile data sharing
+    myProfileData
   };
 
   return (
