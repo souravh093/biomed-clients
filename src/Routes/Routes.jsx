@@ -34,6 +34,7 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
+import CommunityProfileHome from "../Community/CommunityProfileHome/CommunityProfileHome";
 
 const router = createBrowserRouter([
   {
@@ -188,6 +189,12 @@ const router = createBrowserRouter([
   {
     path: "/community/community-profile",
     element: <CommunityProfile />,
+    children: [
+      {
+        path: "/community/community-profile",
+        element: <CommunityProfileHome />
+      },
+    ],
   },
 ]);
 
