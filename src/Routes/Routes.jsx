@@ -1,4 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import CommunityHome from "../Community/CommunityHome/CommunityHome";
+import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
+import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
+import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
 import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
 import CandidateHome from "../Dashboard/DashboardCandidate/CandidateHome/CandidateHome";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
@@ -13,6 +17,8 @@ import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
+import Community from "../Layout/Community";
+import CommunityProfile from "../Layout/CommunityProfile";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -27,9 +33,8 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
-import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
-import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
-import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
+import PrivateRoute from "./PrivateRoute";
+import CommunityProfileHome from "../Community/CommunityProfileHome/CommunityProfileHome";
 
 const router = createBrowserRouter([
   {
@@ -154,7 +159,7 @@ const router = createBrowserRouter([
       // dashboard admin
       {
         path: "/dashboard/all-users",
-        element: <AllUsers />
+        element: <AllUsers />,
       },
       {
         path: "/dashboard/all-client",
@@ -163,6 +168,31 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-moderator",
         element: <AllModerator />,
+      },
+    ],
+  },
+  // Community Routes
+  {
+    path: "/community",
+    element: (
+      <PrivateRoute>
+        <Community />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/community",
+        element: <CommunityHome />,
+      },
+    ],
+  },
+  {
+    path: "/community/community-profile",
+    element: <CommunityProfile />,
+    children: [
+      {
+        path: "/community/community-profile",
+        element: <CommunityProfileHome />
       },
     ],
   },
