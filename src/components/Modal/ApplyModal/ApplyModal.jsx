@@ -42,10 +42,10 @@ const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
       coverLetter: data?.coverLetter,
     };
 
-    console.log(applyJob)
-
-    
+    console.log(applyJob);
   };
+
+ 
 
   return (
     <Transition appear show={isOpen} as={Fragment}>

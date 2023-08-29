@@ -19,6 +19,8 @@ const MyProfile = () => {
 
   const { updateData } = myProfileData;
 
+
+
   return (
     <div className="px-10 py-6">
       {/* Title Section */}
