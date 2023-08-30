@@ -34,6 +34,7 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
+import PostBlog from "../Dashboard/DashboardAdmin/PostBlog/PostBlog";
 
 const router = createBrowserRouter([
   {
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
         path: "/dashboard/all-moderator",
         element: <AllModerator />,
       },
+      {
+        path: "/dashboard/post-blog",
+        element: <PostBlog/>,
+      }
     ],
   },
   // Community Routes
