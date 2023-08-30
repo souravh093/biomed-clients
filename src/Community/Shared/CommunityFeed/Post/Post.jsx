@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import { FcLike } from "react-icons/fc";
+import { AiFillHeart } from "react-icons/ai";
+import { BsFillEmojiAngryFill,BsFillEmojiFrownFill ,BsEmojiDizzyFill} from "react-icons/bs";
+
 import { GoComment } from "react-icons/go";
 import { GrMoreVertical } from "react-icons/gr";
 import { Link } from "react-router-dom";
@@ -11,6 +14,14 @@ import "./Post.css";
 
 const Post = () => {
   const { user } = useContext(AuthContext);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const [like,setLike]=useState(null);
+  const [love,setLove]=useState(null);
+
+
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile", user?.email],
     queryFn: async () => {
@@ -20,6 +31,30 @@ const Post = () => {
       return res.data;
     },
   });
+
+
+
+  const openDropdown = () => {
+    clearTimeout(timeoutRef.current);
+    setIsDropdownOpen(true);
+  };
+
+  const closeDropdown = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 2000);
+  };
+
+  const toggleDropdown = () => {
+    if (isDropdownOpen) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  };
+
+
+
 
   const { updateData } = myProfileData;
   return (
@@ -69,9 +104,26 @@ const Post = () => {
           </div>
           <div className="text-xs md:text-base lg:text-sm"> 2 comments</div>
         </div>
+        {isDropdownOpen && (
+          <div
+            ref={dropdownRef}
+            onMouseEnter={openDropdown}
+            onMouseLeave={closeDropdown}
+            className="absolute md:-mt-10 -mt-6 bg-white border border-teal-100 p-2 rounded-2xl"
+          >
+            <div className="flex   gap-5">
+              <BiSolidLike onClick={()=>setLike("Like")} className="text-3xl md:text-4xl text-blue-400  hover:text-blue-700 cursor-pointer" />
+              <AiFillHeart onClick={()=>setLove("Love")} className="text-3xl md:text-4xl text-red-400 hover:text-rose-500" />
+              <BsFillEmojiAngryFill  className="text-3xl text-orange-300 hover:text-orange-600 mt-1 md:text-3xl"/>
+              <BsEmojiDizzyFill  className="text-3xl text-orange-300 hover:text-orange-600 mt-1 "/>
+              <BsFillEmojiFrownFill  className="text-3xl text-orange-300 hover:text-orange-600 mt-1 "/>
+            </div>
+          </div>
+        )}
         <hr className="postHr" />
         <div className="flex items-center justify-around">
-          <div className="flex items-center gap-1 text-sm md:text-lg cursor-pointer">
+          <div onMouseEnter={toggleDropdown}
+            onMouseLeave={toggleDropdown} className="flex items-center gap-1 text-sm md:text-lg cursor-pointer">
             <BiLike />
             <span>Like</span>
           </div>
