@@ -63,18 +63,6 @@ const MyProfile = () => {
             {/* Left Part */}
             <div className="space-y-3 mb-3">
               <p className="flex flex-col text-sm">
-                Job Title{" "}
-                <span className="text-xl">
-                  {updateData?.jobTitle ? updateData?.jobTitle : "none"}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Experience{" "}
-                <span className="text-xl">
-                  {updateData?.experience ? updateData?.experience : 0} Years
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
                 Education Levels{" "}
                 <span className="text-xl">
                   {updateData?.education ? updateData?.education : "none"}
@@ -111,18 +99,6 @@ const MyProfile = () => {
                 Language{" "}
                 <span className="text-xl">
                   {updateData?.language ? updateData?.language : "none"}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Current Salary($){" "}
-                <span className="text-xl">
-                  {updateData?.currentSalary ? updateData?.currentSalary : 0}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Expected Salary($){" "}
-                <span className="text-xl">
-                  {updateData?.expectedSalary ? updateData?.expectedSalary : 0}
                 </span>
               </p>
             </div>

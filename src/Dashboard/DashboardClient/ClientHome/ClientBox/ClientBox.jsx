@@ -12,7 +12,7 @@ const ClientBox = () => {
           </div>
           <div>
             <p className="text-blue-800 text-4xl font-semibold text-end">22</p>
-            <p>Posted Jobs</p>
+            <p>Posted Tasks</p>
           </div>
         </div>
         {/* box-2 */}

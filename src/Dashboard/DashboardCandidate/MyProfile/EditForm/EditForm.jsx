@@ -16,7 +16,9 @@ const EditForm = () => {
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
       return res.data;
     },
   });
@@ -44,12 +46,8 @@ const EditForm = () => {
         country: data?.country,
         education: data?.education,
         email: data?.email,
-        currentSalary: data?.currentSalary,
-        expectedSalary: data?.expectedSalary,
-        experience: data?.experience,
         age: data?.age,
         facebook: data?.facebook,
-        jobTitle: data?.jobTitle,
         language: data?.language,
         linkedin: data?.linkedin,
         phone: data?.phone,
@@ -84,7 +82,6 @@ const EditForm = () => {
 
   return (
     <div className="dark:bg-slate-900 dark:text-white bg-white p-6 rounded-md my-6">
-      
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Image */}
         <div className="mb-4">
@@ -126,17 +123,17 @@ const EditForm = () => {
               {...register("name")}
             />
           </div>
-          {/*Job Title Field */}
+          {/*Email Field */}
           <div className="mb-4">
-            <label htmlFor="jobTitle">Job Title</label>
-
+            <label htmlFor="email">Email Address</label>
             <input
-              type="text"
-              id="jobTitle"
-              defaultValue={updateData?.jobTitle || ""}
-              placeholder="Job Title"
+              type="email"
+              id="email"
+              defaultValue={updateData?.email || ""}
+              placeholder="Your Email"
+              readOnly
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("jobTitle")}
+              {...register("email")}
             />
           </div>
         </div>
@@ -153,18 +150,29 @@ const EditForm = () => {
               {...register("phone")}
             />
           </div>
-          {/*Email Field */}
-          <div className="mb-4">
-            <label htmlFor="email">Email Address</label>
-
-            <input
-              type="email"
-              id="email"
-              defaultValue={updateData?.email || ""}
-              placeholder="Your Email"
-              className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
-              {...register("email")}
-            />
+          {/*Age Field */}
+          <div className="mb-4 cursor-pointer">
+            <label htmlFor="age">Age</label>
+            <select
+              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
+              {...register("age")}
+            >
+              <option className="cursor-pointer py-2" value="18-22">
+                18-22 Years
+              </option>
+              <option className="cursor-pointer py-2" value="23-27">
+                23-27 Years
+              </option>
+              <option className="cursor-pointer py-2" value="28-32">
+                28-32 Years
+              </option>
+              <option className="cursor-pointer py-2" value="33-37">
+                33-37 Years
+              </option>
+              <option className="cursor-pointer py-2" value="38-42">
+                38-42 Years
+              </option>
+            </select>
           </div>
         </div>
         <div className="lg:grid grid-cols-2 items-center gap-4">
@@ -192,106 +200,6 @@ const EditForm = () => {
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("language")}
             />
-          </div>
-        </div>
-        <div className="lg:grid grid-cols-2 items-center gap-4">
-          {/* Current Salary Field */}
-          <div className="mb-4 cursor-pointer">
-            <label htmlFor="currentSalary">Current Salary($)</label>
-            <select
-              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
-              {...register("currentSalary")}
-            >
-              <option className="cursor-pointer py-2" value="30-60K">
-                30-60K
-              </option>
-              <option className="cursor-pointer py-2" value="40-70K">
-                40-70K
-              </option>
-              <option className="cursor-pointer py-2" value="50-80K">
-                50-80K
-              </option>
-              <option className="cursor-pointer py-2" value="60-90K">
-                60-90K
-              </option>
-              <option className="cursor-pointer py-2" value="70-100K+">
-                70-100K+
-              </option>
-            </select>
-          </div>
-          {/*Expected Salary Field */}
-          <div className="mb-4 cursor-pointer">
-            <label htmlFor="expectedSalary">Expected Salary($)</label>
-            <select
-              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
-              {...register("expectedSalary")}
-            >
-              <option className="cursor-pointer py-2" value="30-60K">
-                30-60K
-              </option>
-              <option className="cursor-pointer py-2" value="40-70K">
-                40-70K
-              </option>
-              <option className="cursor-pointer py-2" value="50-80K">
-                50-80K
-              </option>
-              <option className="cursor-pointer py-2" value="60-90K">
-                60-90K
-              </option>
-              <option className="cursor-pointer py-2" value="70-100K+">
-                70-100K+
-              </option>
-            </select>
-          </div>
-        </div>
-        <div className="lg:grid grid-cols-2 items-center gap-4">
-          {/* Experience Field */}
-          <div className="mb-4 cursor-pointer">
-            <label htmlFor="experience">Experience</label>
-            <select
-              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
-              {...register("experience")}
-            >
-              <option className="cursor-pointer py-2" value="0-2">
-                0-2 Years
-              </option>
-              <option className="cursor-pointer py-2" value="2-5">
-                2-5 Years
-              </option>
-              <option className="cursor-pointer py-2" value="5-10">
-                5-10 Years
-              </option>
-              <option className="cursor-pointer py-2" value="10-15">
-                10-15 Years
-              </option>
-              <option className="cursor-pointer py-2" value="15+">
-                15+ Years
-              </option>
-            </select>
-          </div>
-          {/*Age Field */}
-          <div className="mb-4 cursor-pointer">
-            <label htmlFor="age">Age</label>
-            <select
-              className="w-full px-4 py-5 dark:bg-slate-800  bg-slate-100 border rounded-md focus:border-blue-600 mt-2 cursor-pointer"
-              {...register("age")}
-            >
-              <option className="cursor-pointer py-2" value="18-22">
-                18-22 Years
-              </option>
-              <option className="cursor-pointer py-2" value="23-27">
-                23-27 Years
-              </option>
-              <option className="cursor-pointer py-2" value="28-32">
-                28-32 Years
-              </option>
-              <option className="cursor-pointer py-2" value="33-37">
-                33-37 Years
-              </option>
-              <option className="cursor-pointer py-2" value="38-42">
-                38-42 Years
-              </option>
-            </select>
           </div>
         </div>
 
