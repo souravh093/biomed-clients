@@ -20,7 +20,7 @@ const BlogCard = ({ blogItems }) => {
             <img src={image} alt={title} className="w-full" />
             <div className="p-6">
               <h2 className="text-2xl font-semibold mb-2">{title}</h2>
-              {blog.map((item) => (
+              {blog?.map((item) => (
                 <div key={item.id}>
                   <p>{`${item.intro.slice(0, 100)}...`}</p>
                   <hr className="my-2 h-[3px] bg-gray-400" />

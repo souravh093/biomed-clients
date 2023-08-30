@@ -34,7 +34,7 @@ const BlogDetails = () => {
         </p>
       </div>
       <div>
-        {blog.map((item) => (
+        {blog?.map((item) => (
           <div key={item.id} className="space-y-6 pb-10 text-base Lg:text-lg">
             <p>{item.intro}</p>
             <p>{item.description}</p>
