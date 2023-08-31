@@ -7,7 +7,6 @@ import {
 } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
 import { PiNote } from "react-icons/pi";
-import { IoIosPaper } from "react-icons/io";
 import { PiBagSimpleBold } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,14 +60,7 @@ const CandidateMenu = () => {
             <PiBagSimpleBold /> Applied Tasks
           </Link>
         </li>
-        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
-          <Link
-            onClick={() => setDashboardToggle(false)}
-            className="flex items-center gap-3"
-          >
-            <IoIosPaper /> All Applications
-          </Link>
-        </li>
+    
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}

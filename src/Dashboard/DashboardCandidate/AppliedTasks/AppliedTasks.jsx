@@ -48,6 +48,12 @@ const AppliedTasks = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 text-green-400">
               <tr>
+                <th>
+                  Company Image
+                </th>
+                <th className="py-3 md:py-5 text-left text-base md:text-lg px-3 md:ps-5">
+                  Company Name
+                </th>
                 <th className="py-3 md:py-5 text-left text-base md:text-lg px-3 md:ps-5">
                   Task title
                 </th>
@@ -70,8 +76,12 @@ const AppliedTasks = () => {
                       <img
                         src={singleTask.image}
                         alt="Job"
-                        className="w-12 h-12 md:w-14 md:h-14 rounded-xl mr-3 md:mr-4"
+                        className="w-12  h-12 md:w-14 md:h-14 rounded-xl mr-3 md:mr-4"
                       />
+                    </div>
+                  </td>
+                  <td className="py-2 md:py-4">
+                    <div className="flex ps-9  items-center">
                       <div>
                         <p className="font-semibold text-base md:text-lg">
                           {singleTask.appliedjobdata.name}
@@ -92,10 +102,12 @@ const AppliedTasks = () => {
                       <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
                         <FaEye className="w-3 h-3 md:w-4 md:h-4" />
                       </span>
-                      <span className="bg-gray-100 p-1 md:p-2 rounded-lg">
-                        <FaRegTrashAlt className="w-3 h-3 md:w-4 md:h-4" />
-                      </span>
                     </div>
+                  </td>
+                  <td>
+                    <span className=" p-1 md:p-2 rounded-lg">
+                      <FaRegTrashAlt className="w-3 h-3 md:w-4 md:h-4" />
+                    </span>
                   </td>
                 </tr>
               ))}

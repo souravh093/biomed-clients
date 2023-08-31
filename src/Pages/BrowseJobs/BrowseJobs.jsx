@@ -12,7 +12,6 @@ const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
   const { user } = useContext(AuthContext);
   const [jobsData, setFilterData] = useState();
-  console.log(jobsData);
   const { data: browseJobsData, isLoading } = useQuery({
     queryKey: ["jobs", user?.email],
     queryFn: async () => {

@@ -5,7 +5,7 @@ import { MdLocationOn } from "react-icons/md";
 
 import { Link } from "react-router-dom";
 
-const BrowsJobsCard = ({ jobsdata }) => {
+const JobCard = ({ task }) => {
   const {
     experience,
     logo,
@@ -18,7 +18,7 @@ const BrowsJobsCard = ({ jobsdata }) => {
     jobType,
     industry,
     startDate,
-  } = jobsdata;
+  } = task;
 
   return (
     <div className="border p-7 flex flex-col hover:border-hover transition rounded-md w-full">
@@ -92,4 +92,4 @@ const BrowsJobsCard = ({ jobsdata }) => {
   );
 };
 
-export default BrowsJobsCard;
+export default JobCard;
