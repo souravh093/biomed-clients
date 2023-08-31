@@ -4,21 +4,22 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+import { storage } from "../../../../firebase/firebase.config";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
-const JobForm = () => {
+const TaskForm = () => {
   const { user } = useContext(AuthContext);
 
   const [skillOptions, setSkillOptions] = useState(null);
   const [jobOptions, setJobOptions] = useState(null);
-  const [experienceOptions, setExperienceOptions] = useState(null);
-  const [offerOptions, setOfferOptions] = useState(null);
-  const [industryOptions, setIndustryOptions] = useState(null);
+  const [categoryOptions, setCategoryOptions] = useState(null);
   const [qualificationOptions, setQualificationOptions] = useState(null);
   const [genderOptions, setGenderOptions] = useState(null);
-  const [carrierOptions, setCarrierOptions] = useState(null);
   const [startDateOptions, setStartDateOptions] = useState(null);
+  const [pointsOptions, setPointsOptions] = useState(null);
 
   const {
     register,
@@ -28,23 +29,27 @@ const JobForm = () => {
   } = useForm();
 
   const skills = [
-    { value: "react", label: "React" },
-    { value: "javascript", label: "JavaScript" },
-    { value: "vu.js", label: "Vu.js" },
-    { value: "angular", label: "Angular" },
-    { value: "reactnative", label: "React Native" },
-    { value: "wordpress", label: "WordPress" },
-    { value: "laravel", label: "Laravel" },
-    { value: "devops", label: "Devops" },
-    { value: "python", label: "Python" },
+    { value: "research", label: "Research Skills" },
+    { value: "critical-thinking", label: "Critical Thinking" },
+    { value: "communication", label: "Communication Skills" },
+    { value: "problem-solving", label: "Problem Solving" },
+    { value: "time-management", label: "Time Management" },
+    { value: "analytical", label: "Analytical Skills" },
+    { value: "teamwork", label: "Teamwork/Collaboration" },
+    { value: "technical-proficiency", label: "Technical Proficiency" },
+    { value: "adaptability", label: "Adaptability" },
+    { value: "presentation", label: "Presentation Skills" },
   ];
 
-  const jobsTypes = [
-    { value: "remote", label: "Remote" },
-    { value: "onsite", label: "Onsite" },
-    { value: "internship", label: "Internship" },
-    { value: "contract", label: "Contract" },
-    { value: "partTime", label: "Part-Time" },
+  const tasksTypes = [
+    { value: "assignment", label: "Assignment" },
+    { value: "quiz", label: "Quiz" },
+    { value: "project", label: "Project" },
+    { value: "presentation", label: "Presentation" },
+    { value: "caseStudy", label: "Case Study" },
+    { value: "groupWork", label: "Group Work" },
+    { value: "codingProgramming", label: "Coding/Programming" },
+    { value: "labReport", label: "Lab Report" },
   ];
 
   const startDate = [
@@ -54,28 +59,16 @@ const JobForm = () => {
     { value: "flexible", label: "Flexible" },
   ];
 
-  const experience = [
-    { value: "0-2years", label: "0-2 years" },
-    { value: "2-5years", label: "2-5 years" },
-    { value: "5-10years", label: "5-10 years" },
-    { value: "10-15years", label: "10-15 years" },
-    { value: "15+years", label: "15+ years" },
-  ];
-
-  const offerSalary = [
-    { value: "lessThan$50000", label: "Less than $50,000" },
-    { value: "$50000-$75000", label: "$50,000 - $75,000" },
-    { value: "$75000-$100000", label: "$75,000 - $100,000" },
-    { value: "$100000-$150000", label: "$100,000 - $150,000" },
-    { value: "moreThan$150000", label: "More than $150,000" },
-  ];
-
-  const industry = [
+  const categories = [
+    { value: "science", label: "Science" },
+    { value: "mathematics", label: "Mathematics" },
+    { value: "literature", label: "Literature" },
+    { value: "history", label: "History" },
     { value: "technology", label: "Technology" },
-    { value: "finance", label: "Finance" },
-    { value: "healthcare", label: "Healthcare" },
-    { value: "education", label: "Education" },
-    { value: "retail", label: "Retail" },
+    { value: "business", label: "Business" },
+    { value: "arts", label: "Arts" },
+    { value: "healthAndWellness", label: "Health and Wellness" },
+    { value: "retail", label: "Social Sciences" },
   ];
 
   const qualification = [
@@ -89,61 +82,72 @@ const JobForm = () => {
   const gender = [
     { value: "male", label: "Male" },
     { value: "female", label: "Female" },
+    { value: "both", label: "Both" },
     { value: "other", label: "Other" },
   ];
 
-  const carrierLabel = [
-    { value: "entryLevel", label: "Entry Level" },
-    { value: "junior", label: "Junior" },
-    { value: "midLevel", label: "Mid Level" },
-    { value: "senior", label: "Senior" },
-    { value: "executive", label: "Executive" },
+  const points = [
+    { value: "10", label: "10 points" },
+    { value: "25", label: "25 points" },
+    { value: "50", label: "50 points" },
+    { value: "75", label: "75 points" },
+    { value: "100", label: "100 points" },
   ];
 
+  // const [attachmentsUrl, setAttachmentUrl] = useState("");
+
   const onSubmit = (data) => {
-    const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+    const attachmentFile = data.attachment[0];
+    console.log(attachmentFile);
 
-    const formData1 = new FormData();
-    formData1.append("image", data.image1[0]);
+    if (attachmentFile == null) return;
 
-    const formData2 = new FormData();
-    formData2.append("image", data.image2[0]);
+    const resumeRef = ref(storage, `attachments/${attachmentFile.name + v4()}`);
+    uploadBytes(resumeRef, attachmentFile).then(() => {
+      getDownloadURL(resumeRef).then((downloadUrl) => {
+        const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
 
-    Promise.all([
-      axios.post(imageUrl, formData1),
-      axios.post(imageUrl, formData2),
-    ]).then(([dataImage1, dataImage2]) => {
-      const currentData = {
-        title: data.name,
-        companyName: data.company,
-        email: user?.email,
-        description: data.description,
-        username: data.username,
-        country: data.country,
-        city: data.city,
-        deadline: data.deadline,
-        address: data.address,
-        skills: skillOptions,
-        jobType: jobOptions.label,
-        carrier: carrierOptions.label,
-        offer: offerOptions.label,
-        experience: experienceOptions.label,
-        qualification: qualificationOptions.label,
-        gender: genderOptions.label,
-        industry: industryOptions.label,
-        startDate: startDateOptions.label,
-        logo: dataImage1.data.data.display_url,
-        thumbnail: dataImage2.data.data.display_url,
-      };
-      console.log(currentData);
-      axios
-        .post("https://biomed-server.vercel.app/jobs", currentData)
-        .then((data) => {
-          if (data.data.insertedId) {
-            reset();
-            toast.success("Successfully Added Job");
-          }
+        const formData1 = new FormData();
+        formData1.append("image", data.image1[0]);
+
+        const formData2 = new FormData();
+        formData2.append("image", data.image2[0]);
+
+        Promise.all([
+          axios.post(imageUrl, formData1),
+          axios.post(imageUrl, formData2),
+        ]).then(([dataImage1, dataImage2]) => {
+          const currentData = {
+            title: data.name,
+            companyName: data.company,
+            email: user?.email,
+            description: data.description,
+            username: data.username,
+            grading: data.grading,
+            country: data.country,
+            city: data.city,
+            deadline: data.deadline,
+            address: data.address,
+            skills: skillOptions,
+            jobType: jobOptions.label,
+            qualification: qualificationOptions.label,
+            gender: genderOptions.label,
+            industry: categoryOptions.label,
+            startDate: startDateOptions.label,
+            logo: dataImage1.data.data.display_url,
+            thumbnail: dataImage2.data.data.display_url,
+            attachment: downloadUrl,
+          };
+          axios
+            .post("https://biomed-server.vercel.app/jobs", currentData)
+            .then((data) => {
+              if (data.data.insertedId) {
+                reset();
+                toast.success("Successfully Added Job");
+              }
+            });
         });
+      });
     });
   };
 
@@ -227,6 +231,39 @@ const JobForm = () => {
         </div>
 
         <div className="mb-4">
+          <label htmlFor="attachment" className="block mb-1">
+            Upload Task Attachments
+          </label>
+          <input
+            type="file"
+            id="attachment"
+            className="block w-full border text-gray-500
+      file:mr-4 file:py-4 file:px-4
+      file:rounded-md file:border-0
+      file:text-sm file:font-semibold
+      dark:file:bg-gray-400
+      file:bg-gray-200 file:text-gray-700
+      hover:file:bg-gray-100"
+            {...register("attachment", {
+              required: "Attachment is required",
+              validate: {
+                fileType: (file) => {
+                  const allowedFormats = ["pdf", "doc", "docx", "txt"];
+                  const fileExtension = file[0]?.name.split(".").pop();
+                  return (
+                    allowedFormats.includes(fileExtension) ||
+                    "Unsupported file format (pdf, doc, docx, txt only)"
+                  );
+                },
+              },
+            })}
+          />
+          {errors.attachment && (
+            <p className="text-red-500">{errors.attachment.message}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
           <label htmlFor="name">Task Title</label>
           <input
             type="text"
@@ -240,48 +277,6 @@ const JobForm = () => {
 
         <div className="grid lg:grid-cols-2 gap-5 lg:gap-5">
           <div className="mb-4">
-            <label htmlFor="name">Company Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter Company Name"
-              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("company", { required: "Company is required" })}
-            />
-            {errors.company && (
-              <p className="text-red-500">{errors.company.message}</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="name">Start Date</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={startDateOptions}
-              onChange={setStartDateOptions}
-              options={startDate}
-              styles={customStyles}
-            />
-          </div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="description">Task Description</label>
-
-          <textarea
-            id="description"
-            placeholder="Enter job description"
-            className="w-full h-60 px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
-            {...register("description", {
-              required: "Job Description is required",
-            })}
-          ></textarea>
-          {errors.description && (
-            <p className="text-red-500">{errors.description.message}</p>
-          )}
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div className="mb-4">
             <label htmlFor="name">Email Address</label>
 
             <input
@@ -289,7 +284,7 @@ const JobForm = () => {
               id="email"
               defaultValue={user?.email}
               placeholder="email"
-              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
+              className="w-full px-5 py-4 cursor-not-allowed dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
             />
           </div>
 
@@ -300,12 +295,55 @@ const JobForm = () => {
               type="text"
               id="username"
               placeholder="username"
-              className="w-full px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
-              {...register("username", { required: "Username is required" })}
+              defaultValue={user?.displayName}
+              className="w-full px-5 py-4 dark:bg-slate-700 cursor-not-allowed bg-[#F1F5F9] rounded-md outline-none"
+              {...register("username")}
             />
-            {errors.username && (
-              <p className="text-red-500">{errors.username.message}</p>
-            )}
+          </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="description">Task Description</label>
+
+          <textarea
+            id="description"
+            placeholder="Enter task description"
+            className="w-full h-60 px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
+            {...register("description", {
+              required: "Task Description is required",
+            })}
+          ></textarea>
+          {errors.description && (
+            <p className="text-red-500">{errors.description.message}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="description">Grading Criteria/Rubric</label>
+
+          <textarea
+            id="grading"
+            placeholder="Enter task Grading Criteria/Rubric"
+            className="w-full h-60 px-5 py-4 dark:bg-slate-700 bg-[#F1F5F9] rounded-md outline-none"
+            {...register("grading", {
+              required: "Task Grading Criteria/Rubric is required",
+            })}
+          ></textarea>
+          {errors.grading && (
+            <p className="text-red-500">{errors.grading.message}</p>
+          )}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-10">
+          <div className="mb-4">
+            <label htmlFor="name">Start Date</label>
+
+            <CreatableSelect
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              defaultValue={startDateOptions}
+              onChange={setStartDateOptions}
+              options={startDate}
+              styles={customStyles}
+            />
           </div>
           <div className="mb-4">
             <label htmlFor="name">Specialisms</label>
@@ -320,46 +358,13 @@ const JobForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="name">Job Type</label>
+            <label htmlFor="name">Task Type</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
               defaultValue={jobOptions}
               onChange={setJobOptions}
-              options={jobsTypes}
-              styles={customStyles}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="name">Experience</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={experienceOptions}
-              onChange={setExperienceOptions}
-              options={experience}
-              styles={customStyles}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="name">Carrier Label</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={carrierOptions}
-              onChange={setCarrierOptions}
-              options={carrierLabel}
-              styles={customStyles}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="name">Offered Salary</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={offerOptions}
-              onChange={setOfferOptions}
-              options={offerSalary}
+              options={tasksTypes}
               styles={customStyles}
             />
           </div>
@@ -375,13 +380,13 @@ const JobForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="name">Categorys</label>
+            <label htmlFor="name">Categories Task</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={industryOptions}
-              onChange={setIndustryOptions}
-              options={industry}
+              defaultValue={categoryOptions}
+              onChange={setCategoryOptions}
+              options={categories}
               styles={customStyles}
             />
           </div>
@@ -393,6 +398,18 @@ const JobForm = () => {
               defaultValue={qualificationOptions}
               onChange={setQualificationOptions}
               options={qualification}
+              styles={customStyles}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="qualification">Point Option</label>
+
+            <CreatableSelect
+              className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
+              defaultValue={pointsOptions}
+              onChange={setPointsOptions}
+              options={points}
               styles={customStyles}
             />
           </div>
@@ -468,4 +485,4 @@ const JobForm = () => {
   );
 };
 
-export default JobForm;
+export default TaskForm;
