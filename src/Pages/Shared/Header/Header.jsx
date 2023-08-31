@@ -83,7 +83,7 @@ const Header = () => {
                     !user ? "cursor-not-allowed" : "cursor-pointer"
                   } text-gray-100 bg-primary px-5 py-2 rounded-3xl font-normal xl:font-medium hover:text-gray-200`}
                 >
-                  Post a Job
+                  Create a Task
                 </button>
               )}
               <div>

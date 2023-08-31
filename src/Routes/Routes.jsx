@@ -13,10 +13,7 @@ import UploadResume from "../Dashboard/DashboardCandidate/UploadResume/UploadRes
 import AllApplications from "../Dashboard/DashboardClient/AllApplications/AllApplications";
 import ClientHome from "../Dashboard/DashboardClient/ClientHome/ClientHome";
 import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
-import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
-import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
-import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
-import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
+import PostTask from "../Dashboard/DashboardClient/PostTask/PostTask";
 import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 import Community from "../Layout/Community";
 import CommunityProfile from "../Layout/CommunityProfile";
@@ -35,6 +32,9 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
+import InstructorProfile from "../Dashboard/DashboardClient/InstructorProfile/InstructorProfile";
+import InstructorView from "../Dashboard/DashboardClient/InstructorProfile/InstructorView/InstructorView";
+import ManageTask from "../Dashboard/DashboardClient/ManageTask/ManageTask";
 
 const router = createBrowserRouter([
   {
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
         loader: ({ params }) =>
-          fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/singlejob/${params.id}`),
       },
       {
         path: "/",
@@ -120,24 +120,24 @@ const router = createBrowserRouter([
         element: <UploadResume />,
       },
       {
-        path: "/dashboard/post-job",
-        element: <PostJob />,
+        path: "/dashboard/post-task",
+        element: <PostTask />,
       },
       {
-        path: "/dashboard/company-profile",
-        element: <CompanyProfile />,
+        path: "/dashboard/instructor-profile",
+        element: <InstructorProfile />,
       },
       {
-        path: "/dashboard/company-view",
-        element: <CompanyView />,
+        path: "/dashboard/instructor-view",
+        element: <InstructorView />,
       },
       {
         path: "/dashboard/shortlisted-jobs",
         element: <ShortlistedJobs />,
       },
       {
-        path: "/dashboard/manage-jobs",
-        element: <ManageJob />,
+        path: "/dashboard/manage-task",
+        element: <ManageTask />,
       },
       {
         path: "/dashboard/all-applications",

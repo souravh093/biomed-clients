@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import BrowsJobsCard from "./BrowsJobsCard/BrowsJobsCard";
+import JobCard from "./JobsCard/JobsCard";
 
-const BrowseJobsHome = ({browseJobsData}) => {
+const BrowseJobsHome = ({ browseJobsData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 4;
   const startIndex = (currentPage - 1) * rowsPerPage;
@@ -14,8 +14,8 @@ const BrowseJobsHome = ({browseJobsData}) => {
         <div className="grid md:grid-cols-2 gap-5">
           {browseJobsData
             ?.slice(startIndex, endIndex)
-            ?.map((jobsdata, index) => (
-              <BrowsJobsCard key={index} jobsdata={jobsdata}></BrowsJobsCard>
+            ?.map((jobsdata) => (
+              <JobCard key={jobsdata._id} task={jobsdata} />
             ))}
         </div>
         <div className="flex justify-center mt-7">
