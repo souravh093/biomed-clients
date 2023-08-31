@@ -31,7 +31,7 @@ const MyProfile = () => {
                 alt=""
               />
               <Link to="/dashboard/editProfile">
-                <p className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
+                <p className="lg:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
                   <BiEdit /> <span>Edit</span>
                 </p>
               </Link>
