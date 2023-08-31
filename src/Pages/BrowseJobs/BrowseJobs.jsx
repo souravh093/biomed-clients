@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { AuthContext } from "../../Provider/AuthProvider";
-import Container from "../../components/Shared/Container/Container";
-import JobsSidebar from "./JobsSidebar/JobsSidebar";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import BrowseJobsHome from "./BrowseJobsHome";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { AuthContext } from "../../Provider/AuthProvider";
 import Loader from "../../components/Loader/Loader";
+import Container from "../../components/Shared/Container/Container";
+import BrowseJobsHome from "./BrowseJobsHome";
+import JobsSidebar from "./JobsSidebar/JobsSidebar";
 
 const BrowseJobs = () => {
   const { jobsSidebarToggle, setJobsSidebarToggle } = useContext(AuthContext);
@@ -37,12 +36,12 @@ const BrowseJobs = () => {
       </button>
       <div className="grid grid-cols-4 lg:grid-cols-10 xl:grid-cols-4 pt-[20px]">
         <aside
-          className={`col-span-3 lg:col-span-3 xl:col-span-1 hidden lg:block sticky top-0  h-screen mb-[300px] overflow-y-scroll`}
+          className={`col-span-3 lg:col-span-3 xl:col-span-1 lg:block hidden sticky top-0  h-screen mb-[300px] overflow-y-scroll`}
         >
           {browseJobsData && <JobsSidebar getData={filteredData} browseJobsData={browseJobsData}/>}
         </aside>
         {jobsSidebarToggle && (
-          <aside className="col-span-3 md:col-span-2 lg:hidden sticky top-0 min-h-screen mb-[400px] overflow-scroll bg-white">
+          <aside className="col-span-3 md:col-span-2 lg:hidden fixed top-[60px] min-h-screen mb-[400px] overflow-scroll bg-white">
             {browseJobsData && <JobsSidebar getData={filteredData} browseJobsData={browseJobsData}/>}
           </aside>
         )}

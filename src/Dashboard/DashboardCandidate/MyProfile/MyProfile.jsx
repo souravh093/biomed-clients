@@ -31,7 +31,7 @@ const MyProfile = () => {
                 alt=""
               />
               <Link to="/dashboard/editProfile">
-                <p className="md:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
+                <p className="lg:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
                   <BiEdit /> <span>Edit</span>
                 </p>
               </Link>
@@ -62,18 +62,6 @@ const MyProfile = () => {
           <div className="py-10 md:flex items-center justify-between">
             {/* Left Part */}
             <div className="space-y-3 mb-3">
-              <p className="flex flex-col text-sm">
-                Job Title{" "}
-                <span className="text-xl">
-                  {updateData?.jobTitle ? updateData?.jobTitle : "none"}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Experience{" "}
-                <span className="text-xl">
-                  {updateData?.experience ? updateData?.experience : 0} Years
-                </span>
-              </p>
               <p className="flex flex-col text-sm">
                 Education Levels{" "}
                 <span className="text-xl">
@@ -111,18 +99,6 @@ const MyProfile = () => {
                 Language{" "}
                 <span className="text-xl">
                   {updateData?.language ? updateData?.language : "none"}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Current Salary($){" "}
-                <span className="text-xl">
-                  {updateData?.currentSalary ? updateData?.currentSalary : 0}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Expected Salary($){" "}
-                <span className="text-xl">
-                  {updateData?.expectedSalary ? updateData?.expectedSalary : 0}
                 </span>
               </p>
             </div>

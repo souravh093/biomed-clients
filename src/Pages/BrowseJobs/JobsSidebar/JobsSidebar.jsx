@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import Select from 'react-select';
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const skills = [
   { value: "react", label: "React" },
