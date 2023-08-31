@@ -94,8 +94,6 @@ const TaskForm = () => {
     { value: "100", label: "100 points" },
   ];
 
-  // const [attachmentsUrl, setAttachmentUrl] = useState("");
-
   const onSubmit = (data) => {
     const attachmentFile = data.attachment[0];
     console.log(attachmentFile);
