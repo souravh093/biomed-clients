@@ -135,13 +135,15 @@ const JobForm = () => {
         logo: dataImage1.data.data.display_url,
         thumbnail: dataImage2.data.data.display_url,
       };
-console.log(currentData);
-      axios.post("https://biomed-server.vercel.app/jobs", currentData).then((data) => {
-        if (data.data.insertedId) {
-          reset();
-          toast.success("Successfully Added Job");
-        }
-      });
+      console.log(currentData);
+      axios
+        .post("https://biomed-server.vercel.app/jobs", currentData)
+        .then((data) => {
+          if (data.data.insertedId) {
+            reset();
+            toast.success("Successfully Added Job");
+          }
+        });
     });
   };
 
@@ -162,7 +164,7 @@ console.log(currentData);
         <div className="grid lg:grid-cols-2  lg:gap-10">
           <div className="mb-4">
             <label htmlFor="image" className="block mb-1">
-              Upload Company Logo
+              Upload Task Logo
             </label>
             <input
               type="file"
@@ -193,7 +195,7 @@ console.log(currentData);
           </div>
           <div className="mb-4">
             <label htmlFor="thumbnail" className="block mb-1">
-              Upload Company Thumbnail
+              Upload Task Thumbnail
             </label>
             <input
               type="file"
@@ -225,7 +227,7 @@ console.log(currentData);
         </div>
 
         <div className="mb-4">
-          <label htmlFor="name">Job Title</label>
+          <label htmlFor="name">Task Title</label>
           <input
             type="text"
             id="name"
@@ -263,7 +265,7 @@ console.log(currentData);
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="description">Job Description</label>
+          <label htmlFor="description">Task Description</label>
 
           <textarea
             id="description"
@@ -373,7 +375,7 @@ console.log(currentData);
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="name">Industry</label>
+            <label htmlFor="name">Categorys</label>
 
             <CreatableSelect
               className="w-full px-4 py-2 dark:bg-slate-700 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"

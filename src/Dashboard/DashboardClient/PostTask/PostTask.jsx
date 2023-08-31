@@ -3,9 +3,9 @@ import { GiConfirmed } from "react-icons/gi";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { PiBagSimpleBold } from "react-icons/pi";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
-import JobForm from "./JobForm/JobForm";
+import TaskForm from "./TaskForm/TaskForm";
 
-const PostJob = () => {
+const PostTask = () => {
   return (
     <div className="min-h-screen dark:bg-gray-700 dark:text-white p-6">
       <DashboardTitle title={"Post a New job"} slogan={"Ready to jump back in?"} />
@@ -36,11 +36,12 @@ const PostJob = () => {
               </div>
             </div>
           </div>
-          <JobForm />
+
+          <TaskForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default PostJob;
+export default PostTask;

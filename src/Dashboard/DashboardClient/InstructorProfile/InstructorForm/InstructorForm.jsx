@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
-const CompanyForm = () => {
+const InstructorForm = () => {
   const { user } = useContext(AuthContext);
   const [teamOptions, setTeamOptions] = useState(null);
   const [allowOptions, setAllowOptions] = useState(null);
@@ -314,4 +314,4 @@ const CompanyForm = () => {
   );
 };
 
-export default CompanyForm;
+export default InstructorForm;
