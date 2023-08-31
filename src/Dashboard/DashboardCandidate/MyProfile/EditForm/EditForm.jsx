@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -10,20 +10,7 @@ import { saveUser } from "../../../../api/auth";
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
 const EditForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { data: myProfileData = [] } = useQuery({
-    queryKey: ["profile"],
-    queryFn: async () => {
-      const res = await axios(
-        `https://biomed-server.vercel.app/users/${user?.email}`
-      );
-      return res.data;
-    },
-  });
-  const { updateData } = myProfileData;
-  console.log("updateData", updateData);
 
   const {
     register,
@@ -31,54 +18,58 @@ const EditForm = () => {
     formState: { errors },
   } = useForm();
 
-  const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    try {
-      setIsSubmitting(true);
-      const formData = new FormData();
-      formData.append("image", data?.image[0]);
+    const imageUrl = `https://api.imgbb.com/1/upload?key=${imageToken}`;
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
 
-      const dataImage = await axios.post(imageUrl, formData);
-      const profileData = {
-        name2: data?.name,
-        city: data?.city,
-        country: data?.country,
-        education: data?.education,
-        email: data?.email,
-        age: data?.age,
-        facebook: data?.facebook,
-        language: data?.language,
-        linkedin: data?.linkedin,
-        phone: data?.phone,
-        website: data?.website,
-        description: data?.description,
-        image: dataImage?.data?.data?.display_url,
-      };
-
-      const response = saveUser(user, profileData);
-
-      if (
-        response?.data?.acknowledged === true &&
-        response?.data?.modifiedCount === 1
-      ) {
-        console.log("Profile updated successfully");
-        toast.success("Profile updated successfully");
-        navigate("/dashboard/my-profile");
-      } else {
-        console.log("Failed to update Profile");
-        toast.success("Profile updated successfully");
-        navigate("/dashboard/my-profile");
-      }
-    } catch (error) {
-      console.log("Entering catch block");
-      console.error(error);
-      toast.error("An error occurred. Please try again.");
-    } finally {
-      console.log("Finally block executed");
-      setIsSubmitting(false);
-    }
+    axios
+      .post(imageUrl, formData)
+      .then((dataImage) => {
+        const profileData = {
+          name2: data?.name,
+          city: data?.city,
+          country: data?.country,
+          education: data?.education,
+          email: data?.email,
+          age: data?.age,
+          facebook: data?.facebook,
+          language: data?.language,
+          linkedin: data?.linkedin,
+          phone: data?.phone,
+          website: data?.website,
+          description: data?.description,
+          image: dataImage?.data?.data?.display_url,
+        };
+        return saveUser(user, profileData);
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.modifiedCount === 1) {
+          toast.success("Profile updated successfully");
+          navigate("/dashboard/my-profile");
+        } else {
+          toast.error("Failed to update Profile. Please try again.");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
+
+  const { data: myProfileData = [] } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
+      return res?.data;
+    },
+  });
+  const { updateData } = myProfileData;
+  console.log("updateData", updateData);
 
   return (
     <div className="dark:bg-slate-900 dark:text-white bg-white p-6 rounded-md my-6">
@@ -117,7 +108,9 @@ const EditForm = () => {
             <input
               type="text"
               id="name"
-              defaultValue={updateData?.name2 || ""}
+              defaultValue={
+                updateData?.name2 ? updateData?.name2 : user?.displayName
+              }
               placeholder="Your Full Name"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("name")}
@@ -129,7 +122,7 @@ const EditForm = () => {
             <input
               type="email"
               id="email"
-              defaultValue={updateData?.email || ""}
+              defaultValue={user?.email}
               placeholder="Your Email"
               readOnly
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
@@ -142,9 +135,9 @@ const EditForm = () => {
           <div className="mb-4">
             <label htmlFor="phone">Phone</label>
             <input
-              type="number"
+              type="text"
               id="phone"
-              defaultValue={updateData?.phone || ""}
+              defaultValue={updateData?.phone ? updateData?.phone : null}
               placeholder="Your Phone"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("phone")}
@@ -182,7 +175,9 @@ const EditForm = () => {
             <input
               type="text"
               id="education"
-              defaultValue={updateData?.education || ""}
+              defaultValue={
+                updateData?.education ? updateData?.education : null
+              }
               placeholder="Your Last Education"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("education")}
@@ -195,7 +190,7 @@ const EditForm = () => {
             <input
               type="text"
               id="language"
-              defaultValue={updateData?.language || ""}
+              defaultValue={updateData?.language ? updateData?.language : null}
               placeholder="Language"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("language")}
@@ -210,7 +205,7 @@ const EditForm = () => {
             <input
               type="text"
               id="country"
-              defaultValue={updateData?.country || ""}
+              defaultValue={updateData?.country ? updateData?.country : null}
               placeholder="Enter Country Name"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("country")}
@@ -222,7 +217,7 @@ const EditForm = () => {
             <input
               type="text"
               id="city"
-              defaultValue={updateData?.city || ""}
+              defaultValue={updateData?.city ? updateData?.city : null}
               placeholder="Enter City Name"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("city")}
@@ -235,7 +230,7 @@ const EditForm = () => {
           <input
             type="text"
             id="website"
-            defaultValue={updateData?.website || ""}
+            defaultValue={updateData?.website ? updateData?.website : null}
             placeholder="Enter Website Link"
             className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
             {...register("website")}
@@ -248,7 +243,7 @@ const EditForm = () => {
             <input
               type="text"
               id="facebook"
-              defaultValue={updateData?.facebook || ""}
+              defaultValue={updateData?.facebook ? updateData?.facebook : null}
               placeholder="Enter Facebook Link"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("facebook")}
@@ -260,7 +255,7 @@ const EditForm = () => {
             <input
               type="text"
               id="linkedin"
-              defaultValue={updateData?.linkedin || ""}
+              defaultValue={updateData?.linkedin ? updateData?.linkedin : null}
               placeholder="Enter LinkedIn Link"
               className="w-full px-5 py-4 dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition rounded-md outline-none mt-2"
               {...register("linkedin")}
@@ -272,7 +267,9 @@ const EditForm = () => {
           <label htmlFor="description p-10">Description</label>
           <textarea
             id="description"
-            defaultValue={updateData?.description || ""}
+            defaultValue={
+              updateData?.description ? updateData?.description : null
+            }
             placeholder="Enter job description"
             className="w-full h-60 px-5 py-4 rounded-md outline-none dark:bg-slate-800  bg-slate-100 border focus:border-blue-700 transition"
             {...register("description")}
@@ -282,9 +279,8 @@ const EditForm = () => {
         <button
           className="bg-primary px-10 py-3 text-lg font-semibold rounded-md text-gray-50 mt-10"
           type="submit"
-          disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Save"}
+          Save
         </button>
       </form>
     </div>
