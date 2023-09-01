@@ -162,7 +162,6 @@ const CompanyForm = () => {
             />
           </div>
 
-<<<<<<< HEAD
           <div className="mb-4">
             <label htmlFor="email">Email Address</label>
             <input
@@ -173,43 +172,6 @@ const CompanyForm = () => {
               className="w-full px-5 py-4 bg-[#F1F5F9] rounded-md outline-none cursor-not-allowed"
               {...register("email")}
             />
-=======
-      <div
-        key={myProfileData._id}
-        className="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-md my-6"
-      >
-        {/* Image Section */}
-        <div className="md:flex justify-between">
-          <div className="md:flex gap-6 items-center">
-            <div className="mb-3 md:mb-0">
-              <img
-                className="rounded-full h-32 w-32 mx-auto md:mx-0"
-                src={
-                  updateData?.image ? updateData?.image : myProfileData?.image
-                }
-                alt=""
-              />
-              <Link to="/dashboard/editProfile">
-                <p className="lg:hidden flex items-center justify-center gap-1 text-xl cursor-pointer text-primary pt-2 md:mt-0">
-                  <BiEdit /> <span>Edit</span>
-                </p>
-              </Link>
-            </div>
-            <div className="space-y-3">
-              <p className="flex flex-col text-sm">
-                Full Name{" "}
-                <span className="text-xl">
-                  {updateData?.name2 ? updateData?.name2 : myProfileData?.name}
-                </span>
-              </p>
-              <p className="flex flex-col text-sm">
-                Email Address{" "}
-                <span className="text-xl">
-                  {updateData?.email ? updateData?.email : myProfileData?.email}
-                </span>
-              </p>
-            </div>
->>>>>>> 02e07c6beb7ad0c72b6a7708d0e66a49bcf03b81
           </div>
 
           <div className="mb-4">
