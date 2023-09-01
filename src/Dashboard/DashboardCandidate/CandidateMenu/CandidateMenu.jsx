@@ -6,8 +6,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
-import { PiNote } from "react-icons/pi";
-import { PiBagSimpleBold } from "react-icons/pi";
+import { PiBagSimpleBold, PiNote } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
