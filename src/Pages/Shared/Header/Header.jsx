@@ -24,7 +24,7 @@ const Header = () => {
     becomeClient(email).then(() => {
       setClientRole(true);
       toast.success("You are client now, Post Jobs!");
-      navigate("/dashboard/post-job");
+      navigate("/dashboard/post-task");
       closeRoleModal();
     });
   };
@@ -65,10 +65,10 @@ const Header = () => {
                 <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                   <MenuItem name={"Home"} path={"/"} />
                   <MenuItem
-                    name={"Browse Jobs"}
+                    name={"Browse Tasks"}
                     path={"/browseJobs/browseJobs-home"}
                   />
-                  <MenuItem name={"Top Jobs"} path={"/"} />
+                  <MenuItem name={"Top Tasks"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
                   <MenuItem name={"Community"} path={"/community"} />
                 </ul>
@@ -83,7 +83,7 @@ const Header = () => {
                     !user ? "cursor-not-allowed" : "cursor-pointer"
                   } text-gray-100 bg-primary px-5 py-2 rounded-3xl font-normal xl:font-medium hover:text-gray-200`}
                 >
-                  Post a Job
+                  Create a Task
                 </button>
               )}
               <div>

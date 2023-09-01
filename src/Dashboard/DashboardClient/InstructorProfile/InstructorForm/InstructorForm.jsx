@@ -10,7 +10,7 @@ import { saveClient } from "../../../../api/auth";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
-const CompanyForm = () => {
+const InstructorForm = () => {
   const { user } = useContext(AuthContext);
   const [teamOptions, setTeamOptions] = useState(null);
   const [allowOptions, setAllowOptions] = useState(null);
@@ -104,7 +104,7 @@ const CompanyForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="image" className="block mb-1">
-            Upload Company Logo
+            Change Photo
           </label>
           <input
             type="file"
@@ -126,7 +126,7 @@ const CompanyForm = () => {
         </div>
         <div className="grid grid-cols-2 gap-10">
           <div className="mb-4">
-            <label htmlFor="name">Company name (optional)</label>
+            <label htmlFor="name">Instructor name (optional)</label>
             <input
               type="text"
               id="companyName"
@@ -174,33 +174,9 @@ const CompanyForm = () => {
               {...register("website")}
             />
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="name">Team Size</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={teamOptions}
-              onChange={setTeamOptions}
-              options={teamSize}
-              styles={customStyles}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="name">Allow In Search & Listing</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={allowOptions}
-              onChange={setAllowOptions}
-              options={allowToSearch}
-              styles={customStyles}
-            />
-          </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="description">About Company</label>
+          <label htmlFor="description">About Instructor</label>
 
           <textarea
             id="aboutCompany"
@@ -307,4 +283,4 @@ const CompanyForm = () => {
   );
 };
 
-export default CompanyForm;
+export default InstructorForm;
