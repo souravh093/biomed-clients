@@ -25,13 +25,13 @@ const InstructorView = () => {
   return (
     <div className="min-h-screen p-6">
       <DashboardTitle
-        title={"Company Profile!"}
+        title={"Instructor Profile!"}
         slogan={"Ready to jump back in?"}
       />
       <div className="bg-white dark:bg-gray-800 min-h-screen">
         <div className="p-10">
           <Link
-            to={"/dashboard/company-profile"}
+            to={"/dashboard/instructor-profile"}
             className="mb-5 flex justify-end"
           >
             <button className="bg-primary px-10 py-2 rounded-md text-gray-200 hover:bg-hover">
@@ -44,14 +44,8 @@ const InstructorView = () => {
                 <img
                   src={updateData?.image ? updateData?.image : canvas}
                   alt="Company Logo"
-                  className="w-16 h-16 rounded-full"
+                  className="w-16 h-16 rounded-full object-cover border"
                 />
-                <div>
-                  <h1 className="text-2xl font-semibold"></h1>
-                  <p className="text-gray-500 dark:text-gray-200">
-                    Team Size: {updateData?.teamSize ? updateData?.teamSize : "no data"}
-                  </p>
-                </div>
               </div>
               <div className="flex space-x-4">
                 <a
@@ -79,12 +73,12 @@ const InstructorView = () => {
             </div>
             <div className="mb-6 dark:text-gray-200">
               <h2>
-                <span className="text-lg font-semibold">Company name:</span>{" "}
+                <span className="text-lg font-semibold">Instructor name:</span>{" "}
                 {updateData?.companyName ? updateData?.companyName : "none"}
               </h2>
             </div>
             <div>
-              <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">About Company</h2>
+              <h2 className="text-lg font-semibold mb-2 dark:text-gray-200">About Instructor</h2>
               <p className="text-gray-600 dark:text-gray-300">{updateData?.aboutCompany ? updateData?.aboutCompany : "none"}</p>
             </div>
             <div className="mt-6">
