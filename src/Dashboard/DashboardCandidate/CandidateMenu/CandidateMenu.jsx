@@ -6,7 +6,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import { FaRegBookmark } from "react-icons/fa";
-import { PiBagSimpleBold } from "react-icons/pi";
+import { PiBagSimpleBold, PiNote } from "react-icons/pi";
 import { RiMessage2Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -53,25 +53,30 @@ const CandidateMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to="/dashboard/applied-jobs"
+            to="/dashboard/applied-tasks"
             className="flex items-center gap-3"
           >
-            <PiBagSimpleBold /> Applied Jobs
+            <PiBagSimpleBold /> Applied Tasks
           </Link>
         </li>
     
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to="/dashboard/shortlisted-jobs"
+            to="/dashboard/shortlisted-tasks"
             className="flex items-center gap-3"
           >
-            <FaRegBookmark /> Shortlisted Jobs
+            <FaRegBookmark /> Shortlisted Tasks
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
-        
-          <Link 
+          <Link to="/dashboard/upload-resume" className="flex items-center gap-3">
+            <PiNote className="text-2xl" /> Upload Resume
+          </Link>
+        </li>
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md dark:text-white text-gray-600">
+
+          <Link
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
