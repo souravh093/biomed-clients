@@ -16,7 +16,6 @@ import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyP
 import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
 import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
 import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
-import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
 import Community from "../Layout/Community";
 import CommunityProfile from "../Layout/CommunityProfile";
 import Dashboard from "../Layout/Dashboard";
@@ -35,6 +34,7 @@ import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
 import PostBlog from "../Dashboard/DashboardAdmin/PostBlog/PostBlog";
+import SocialMedia from "../Dashboard/DashboardAdmin/SocialMedia/SocialMedia";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
       },
       {
-        path: "/",
+        path: "/terms",
         element: <Terms></Terms>,
       },
       {
@@ -144,10 +144,6 @@ const router = createBrowserRouter([
         element: <AllApplications />,
       },
       {
-        path: "/dashboard/shortlisted-resumes",
-        element: <ShortlistedResumes />,
-      },
-      {
         path: "/dashboard/editProfile",
         element: <EditProfile />,
       },
@@ -168,6 +164,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-moderator",
         element: <AllModerator />,
+      },
+      {
+        path: "/dashboard/social-media",
+        element: <SocialMedia />,
       },
       {
         path: "/dashboard/post-blog",

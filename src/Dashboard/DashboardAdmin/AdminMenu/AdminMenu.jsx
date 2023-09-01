@@ -75,6 +75,15 @@ const AdminMenu = () => {
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600 dark:text-white">
           <Link
+            onClick={() => setDashboardToggle(false)}
+            to="/dashboard/social-media"
+            className="flex items-center gap-3"
+          >
+            <BsFillSignpostFill /> Social Media
+          </Link>
+        </li>
+        <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600 dark:text-white">
+          <Link
             to="/dashboard/manage-jobs"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
