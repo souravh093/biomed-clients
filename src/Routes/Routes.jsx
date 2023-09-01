@@ -31,13 +31,10 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
-<<<<<<< HEAD
 import AppliedTasks from "../Dashboard/DashboardCandidate/AppliedTasks/AppliedTasks";
-=======
 import InstructorProfile from "../Dashboard/DashboardClient/InstructorProfile/InstructorProfile";
 import InstructorView from "../Dashboard/DashboardClient/InstructorProfile/InstructorView/InstructorView";
 import ManageTask from "../Dashboard/DashboardClient/ManageTask/ManageTask";
->>>>>>> 3dbbe706f950b690105f333b596602ed2df3fc8d
 
 const router = createBrowserRouter([
   {
