@@ -26,10 +26,6 @@ const BrowseJobsDetails = () => {
     companyName,
   } = useLoaderData();
 
-  console.log(_id)
-
-  console.log(country);
-
   const showInfoCompany = {
     _id,
     title,
@@ -120,10 +116,10 @@ const BrowseJobsDetails = () => {
             <hr />
 
             <div className="mt-5">
-              <h3>About GlobalShala</h3>
+              <h3>About {companyName}</h3>
               <div className="flex gap-2 items-center text-blue-500">
-                <Link>Website </Link>
-                <PiShareFill></PiShareFill>
+                <Link>website link</Link>
+                <PiShareFill />
               </div>
 
               <p>
@@ -159,14 +155,16 @@ const BrowseJobsDetails = () => {
 
               <div>
                 <h3 className="mb-3 mt-5">Skill(s) required</h3>
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="dark:bg-slate-700 bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
-                  >
-                    {skill.value}
-                  </span>
-                ))}
+                {skills
+                  ? skills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="dark:bg-slate-700 bg-slate-100 py-1 px-2 mr-2  rounded-full text-sm"
+                      >
+                        {skill.value}
+                      </span>
+                    ))
+                  : "no skills"}
               </div>
 
               <div className="mt-5">

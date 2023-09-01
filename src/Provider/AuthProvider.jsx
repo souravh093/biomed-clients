@@ -92,17 +92,28 @@ const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
-
-
   // Share my profile data
-
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
       return res.data;
     },
   });
+
+  // get single job using email
+  const { data: manageJobs = [] } = useQuery({
+    queryKey: ["manageJobs"],
+    queryFn: async () => {
+      const res = await axios(
+        `https://biomed-server.vercel.app/jobs/souravh093@gmail.com`
+      );
+      return res.data;
+    },
+  });
+
 
   const authInfo = {
     user,
@@ -125,7 +136,10 @@ const AuthProvider = ({ children }) => {
     setDashboardToggle,
     setJobsSidebarToggle,
     // my profile data sharing
-    myProfileData
+    myProfileData,
+
+    // manage jobs single job
+    manageJobs,
   };
 
   return (

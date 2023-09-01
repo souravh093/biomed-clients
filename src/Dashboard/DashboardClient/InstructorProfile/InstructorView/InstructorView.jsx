@@ -8,7 +8,7 @@ import { FaFacebookF, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import canvas from "../../../../assets/placeholder.jpg"
  
-const CompanyView = () => {
+const InstructorView = () => {
   const { user } = useContext(AuthContext);
 
   const { data: companyView = [] } = useQuery({
@@ -130,4 +130,4 @@ const CompanyView = () => {
   );
 };
 
-export default CompanyView;
+export default InstructorView;
