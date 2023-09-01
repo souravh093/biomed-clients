@@ -107,7 +107,7 @@ const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="resume"
                     >
-                      Upload Resume
+                      Upload Submitted file 
                     </label>
                     <input
                       type="file"
@@ -121,7 +121,7 @@ const ApplyModal = ({ closeModal, isOpen, showInfoCompany }) => {
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="coverLetter"
                     >
-                      Cover Letter
+                      Your opinion
                     </label>
                     <textarea
                       rows="10"

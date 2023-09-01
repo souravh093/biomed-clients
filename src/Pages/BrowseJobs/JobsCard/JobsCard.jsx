@@ -1,23 +1,21 @@
-import { AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineClockCircle, AiOutlineFileDone } from "react-icons/ai";
 import { BsBookmarkPlus } from "react-icons/bs";
-import { FaChair, FaIndustry } from "react-icons/fa";
+import { FaIndustry } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 
 import { Link } from "react-router-dom";
 
 const JobCard = ({ task }) => {
   const {
-    experience,
     logo,
-    offer,
     title,
     _id,
-    companyName,
     country,
     description,
     jobType,
     industry,
     startDate,
+    deadline,
   } = task;
 
   return (
@@ -36,40 +34,44 @@ const JobCard = ({ task }) => {
           <img className="w-20 object-contain" src={logo} alt="logo" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-600">{companyName}</h2>
+          <h2 className="text-xl font-semibold text-gray-600">
+            Task type: <span className="text-lg">{jobType}</span>
+          </h2>
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 justify-center gap-3 xl:gap-5 mb-5">
         <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
-          <FaIndustry className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {industry}
+          <FaIndustry className="md:text-2xl lg:text-base xl:text-3xl text-primary" />{" "}
+          {industry}
         </div>
         <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
-          <MdLocationOn className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {country}
+          <MdLocationOn className="md:text-2xl lg:text-base xl:text-3xl text-primary" />{" "}
+          {country}
         </div>
         <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
-          <AiOutlineClockCircle className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {2} days
-          ago
+          <AiOutlineClockCircle className="md:text-2xl lg:text-base xl:text-3xl text-primary" />{" "}
+          {2} days ago
         </div>
         <div className="flex gap-2 items-center text-base xl:text-lg text-gray-500 font-semibold">
-          <FaChair className="md:text-2xl lg:text-base xl:text-3xl text-primary" /> {5} Vacancies
+          <AiOutlineFileDone className="md:text-2xl lg:text-base xl:text-3xl text-primary" />{" "}
+          {5} Completed
         </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row items-center justify-center space-y-2 xl:space-y-0 gap-3 mb-2">
+      <div className="flex flex-col xl:flex-row items-center space-y-2 xl:space-y-0 gap-3 mb-2">
         <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
           {startDate}
         </div>
         <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
-          {experience}
-        </div>
-        <div className="border-2 rounded-3xl text-xs xl:text-sm px-3 py-1 dark:bg-slate-700 bg-gray-100">
-          {jobType}
+          {industry}
         </div>
       </div>
 
       <div className="my-5">
-        <h2 className="text-lg"><span className="font-semibold">Salary:</span> {offer}</h2>
+        <h2 className="text-lg">
+          <span className="font-semibold">Dead line:</span> {deadline}
+        </h2>
       </div>
 
       <div className="line-clamp-3 mb-5">{description}</div>

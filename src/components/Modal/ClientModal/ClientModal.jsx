@@ -35,12 +35,12 @@ const ClientModal = ({ isOpen, closeModal, modalHandler, email }) => {
                   as="h3"
                   className="text-lg font-medium text-center leading-6 text-gray-900"
                 >
-                  Become A Client!
+                  Become A Instructor!
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
                     Please read all the <Link to={"/terms"} className="text-primary">terms & conditions</Link> before
-                    becoming a client.
+                    becoming a Instructor.
                   </p>
                 </div>
                 <hr className="mt-8 " />

@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           fetch(`https://biomed-server.vercel.app/singlejob/${params.id}`),
       },
       {
-        path: "/",
+        path: "/terms",
         element: <Terms></Terms>,
       },
       {
