@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./TrendingJobs.css";
+import "./TrendingTasks.css";
 
 // Required modules
 import { useQuery } from "@tanstack/react-query";
@@ -16,11 +16,11 @@ import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 import Container from "../../../components/Shared/Container/Container";
 import TrendingSlide from "./TrendingSlide/TrendingSlide";
 
-const TrendingJobs = () => {
-  const { isLoading, data: jobs = [] } = useQuery({
-    queryKey: ["jobs"],
+const TrendingTasks = () => {
+  const { isLoading, data: tasks = [] } = useQuery({
+    queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await axios("/TrendingJobsData/trendingJobs.json");
+      const res = await axios("/TrendingTasksData/trendingTasks.json");
       return res.data;
     },
   });
@@ -32,8 +32,8 @@ const TrendingJobs = () => {
   return (
     <Container>
       <SectionTitle
-        heading={"Trending Jobs"}
-        text={"Most viewed and all-time top Jobs"}
+        heading={"Trending Tasks"}
+        text={"Most viewed and all-time top Tasks"}
       />
       <div className="w-full px-4 mx-auto">
         <Swiper
@@ -63,9 +63,9 @@ const TrendingJobs = () => {
             },
           }}
         >
-          {jobs.map((job) => (
-            <SwiperSlide key={job._id}>
-              <TrendingSlide job={job} />
+          {tasks.map((task) => (
+            <SwiperSlide key={task._id}>
+              <TrendingSlide task={task} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -74,4 +74,4 @@ const TrendingJobs = () => {
   );
 };
 
-export default TrendingJobs;
+export default TrendingTasks;

@@ -1,18 +1,16 @@
-import React from "react";
-import { useContext } from "react";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import CreatableSelect from "react-select/creatable";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import axios from "axios";
 import { saveClient } from "../../../../api/auth";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
-const CompanyForm = () => {
+const InstructorForm = () => {
   const { user } = useContext(AuthContext);
   const [teamOptions, setTeamOptions] = useState(null);
   const [allowOptions, setAllowOptions] = useState(null);
@@ -106,7 +104,7 @@ const CompanyForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="image" className="block mb-1">
-            Upload Company Logo
+            Change Photo
           </label>
           <input
             type="file"
@@ -119,21 +117,16 @@ const CompanyForm = () => {
                 hover:file:bg-gray-100
               "
             {...register("image", {
-              required: "Upload logo is required",
-              validate: {
-                fileSize: (file) =>
-                  file[0]?.size < 1048576 || "Image size must be less than 1MB",
-                fileType: (file) =>
-                  /jpeg|png|gif/.test(file[0]?.type) ||
-                  "Unsupported image format (jpeg/png/gif only)",
-              },
+              required: "Please upload an image",
             })}
           />
-          {errors.image && <p className="text-red-500">{errors.image.message}</p>}
+          {errors?.image && (
+            <span className="text-red-500">{errors?.image.message}</span>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-10">
           <div className="mb-4">
-            <label htmlFor="name">Company name (optional)</label>
+            <label htmlFor="name">Instructor name (optional)</label>
             <input
               type="text"
               id="companyName"
@@ -181,33 +174,9 @@ const CompanyForm = () => {
               {...register("website")}
             />
           </div>
-
-          <div className="mb-4">
-            <label htmlFor="name">Team Size</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={teamOptions}
-              onChange={setTeamOptions}
-              options={teamSize}
-              styles={customStyles}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="name">Allow In Search & Listing</label>
-
-            <CreatableSelect
-              className="w-full px-4 py-2 bg-gray-100 border rounded-md focus:ring focus:ring-blue-300"
-              defaultValue={allowOptions}
-              onChange={setAllowOptions}
-              options={allowToSearch}
-              styles={customStyles}
-            />
-          </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="description">About Company</label>
+          <label htmlFor="description">About Instructor</label>
 
           <textarea
             id="aboutCompany"
@@ -314,4 +283,4 @@ const CompanyForm = () => {
   );
 };
 
-export default CompanyForm;
+export default InstructorForm;

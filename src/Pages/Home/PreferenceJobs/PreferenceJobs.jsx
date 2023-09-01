@@ -7,13 +7,13 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "../../../components/Shared/Container/Container";
 import SectionTitle from "../../../components/Shared/SectionTitle/SectionTitle";
-import PreferenceItem from "./PreferenceItem/PreferenceItem";
+import TrendingSlide from "../TrendingTasks/TrendingSlide/TrendingSlide";
 
 const PreferenceJobs = () => {
   const { isLoading, data: preference = [] } = useQuery({
     queryKey: ["preference"],
     queryFn: async () => {
-      const res = await axios("preferencesData.json");
+      const res = await axios("/TrendingTasksData/trendingTasks.json");
       return res.data;
     },
   });
@@ -58,7 +58,7 @@ const PreferenceJobs = () => {
         >
           {preference.map((pre, index) => (
             <SwiperSlide key={index}>
-              <PreferenceItem data={pre} />
+              <TrendingSlide task={pre} />
             </SwiperSlide>
           ))}
         </Swiper>
