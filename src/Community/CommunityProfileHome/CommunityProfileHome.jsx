@@ -31,15 +31,15 @@ const CommunityProfileHome = () => {
                     className="w-full h-60 object-cover"
                 />
                 <img
-                    src={updateData.image}
+                    src={updateData?.image}
                     alt="Profile Photo"
                     className="w-32 h-32 absolute bottom-0 left-20 transform translate-y-1/2 rounded-full border-4 border-gray-400"
                 />
             </div>
             <div className='p-8'>
                 <div className="mt-10 ms-12">
-                    <h1 className="text-2xl font-bold">{updateData.name}</h1>
-                    <p className="text-gray-600">{updateData.email}</p>
+                    <h1 className="text-2xl font-bold">{updateData?.name}</h1>
+                    <p className="text-gray-600">{updateData?.email}</p>
                     <p className='text-gray-600'>Software Engineer, Dhaka</p>
                 </div>
                 <div className="flex mt-2 ms-12">
