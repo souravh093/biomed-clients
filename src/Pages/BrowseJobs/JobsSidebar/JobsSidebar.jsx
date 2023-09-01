@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import Select from 'react-select';
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const skills = [
   { value: "react", label: "React" },
@@ -86,7 +86,7 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             <input
               onChange={(e) => setJobTitle(e.target.value)}
               type="text"
-              placeholder="Job title or company"
+              placeholder="Job title"
               className="w-full py-3 pl-8 md:pl-14 lg:pl-10 rounded-lg  focus:outline-none  focus:ring focus:ring-[#5BBB7B] text-xs md:text-sm"
             />
             <button className="absolute top-0 left-0 bottom-0 w-10 pl-3">
@@ -100,7 +100,7 @@ const JobsSidebar = ({browseJobsData,getData}) => {
             <input
               onChange={(e) => setLocation(e.target.value)}
               type="text"
-              placeholder="City or postcode"
+              placeholder="Country"
               className="w-full py-3 pl-8 md:pl-14 lg:pl-10 rounded-lg  focus:outline-none  focus:ring focus:ring-[#5BBB7B] text-xs md:text-sm"
             />
             <button className="absolute top-0 left-0 bottom-0 w-10 pl-3">

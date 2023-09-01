@@ -12,6 +12,7 @@ const Dashboard = () => {
   if (adminRole === null || clientRole === null || moderatorRole === null) {
     return <Loader />
   }
+  
   return (
     <div>
       <Navbar />

@@ -6,12 +6,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const ProfileDropdown = () => {
-  const { user, logoutUser, clientRole, setClientRole } =
-    useContext(AuthContext);
+  const {
+    user,
+    logoutUser,
+    clientRole,
+    setClientRole,
+    adminRole,
+    moderatorRole,
+  } = useContext(AuthContext);
   const { data: myProfileData = [] } = useQuery({
     queryKey: ["profile", user?.email],
     queryFn: async () => {
-      const res = await axios(`https://biomed-server.vercel.app/users/${user?.email}`);
+      const res = await axios(
+        `https://biomed-server.vercel.app/users/${user?.email}`
+      );
       return res.data;
     },
   });
@@ -60,7 +68,7 @@ const ProfileDropdown = () => {
         <div className="w-12 h-12 rounded-full overflow-hidden">
           <img
             referrerPolicy="no-referrer"
-            src={updateData?.image ? updateData?.image : user?.photoURL}
+            src={updateData?.image || user?.photoURL}
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -85,7 +93,17 @@ const ProfileDropdown = () => {
               Edit Profile
             </Link>
 
-            <Link to={"/dashboard/client-home"}>
+            <Link
+              to={
+                adminRole
+                  ? "/dashboard/client-home"
+                  : moderatorRole
+                  ? "/dashboard/client-home"
+                  : clientRole
+                  ? "/dashboard/client-home"
+                  : "/dashboard/candidate-home"
+              }
+            >
               <li className="px-10 py-2 w-full  dark:hover:bg-slate-600 hover:bg-gray-100 cursor-pointer">
                 Dashboard
               </li>

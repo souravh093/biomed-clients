@@ -42,28 +42,28 @@ const ClientMenu = () => {
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/company-view"}
+            to={"/dashboard/instructor-view"}
             className="flex items-center gap-3 dark:text-white"
           >
-            <AiOutlineUser /> Company Profile
+            <AiOutlineUser /> Instructor Profile
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600 dark:text-white">
           <Link
             onClick={() => setDashboardToggle(false)}
-            to={"/dashboard/post-job"}
+            to={"/dashboard/post-task"}
             className="flex items-center gap-3"
           >
-            <CiPaperplane /> Post A New Job
+            <CiPaperplane /> Create A New Task
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600 dark:text-white">
           <Link
-            to="/dashboard/manage-jobs"
+            to="/dashboard/manage-task"
             onClick={() => setDashboardToggle(false)}
             className="flex items-center gap-3"
           >
-            <PiBagSimpleBold /> Manage Jobs
+            <PiBagSimpleBold /> Manage Task
           </Link>
         </li>
         <li className="hover:bg-green-200 transition py-5 px-3 rounded-md text-gray-600 dark:text-white">

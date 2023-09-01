@@ -3,11 +3,8 @@ import DashboardTitle from '../../../components/DashboardTitle/DashboardTitle';
 import { GiConfirmed } from 'react-icons/gi';
 import { BiLinkAlt } from 'react-icons/bi';
 import SocialMediaForm from './SocialMediaForm/SocialMediaForm';
-import { useLoaderData } from 'react-router-dom';
 
 const SocialMedia = () => {
-    const data = useLoaderData();
-    console.log(data);
     return (
         <div className="min-h-screen dark:bg-gray-700 dark:text-white p-6">
             <DashboardTitle title={"Social Media Link"} slogan={"Ready to jump back in?"} />

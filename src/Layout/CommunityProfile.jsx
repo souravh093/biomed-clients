@@ -9,10 +9,10 @@ const CommunityProfile = () => {
     <>
       <CommunityNavbar />
       <div className="grid grid-cols-7">
-        <div className="col-span-2 bg-yellow-200">
+        <div className="col-span-2">
           <CommunityLeftSidebar />
         </div>
-        <div className="col-span-5 bg-orange-200">
+        <div className="col-span-5">
           <Outlet />
         </div>
       </div>

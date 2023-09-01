@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Select from "react-select";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
 import AllApplicationsCard from "./AllApplicationsCard";
+import Skeleton from "react-loading-skeleton";
 
 const AllApplications = () => {
   const [setValue] = useState(null);
@@ -20,7 +21,7 @@ const AllApplications = () => {
     },
   });
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Skeleton count={10} />;
   }
   // console.log(shortlistedResumes);
   const options = [

@@ -9,13 +9,13 @@ const Community = () => {
     <>
       <CommunityNavbar />
       <div className="grid grid-cols-7">
-        <div className="col-span-2 bg-yellow-200">
+        <div className="col-span-2 hidden lg:block">
           <CommunityLeftSidebar />
         </div>
-        <div className="col-span-3 bg-orange-200">
+        <div className="col-span-7 lg:col-span-3">
           <Outlet />
         </div>
-        <div  className="col-span-2 bg-green-200">
+        <div  className="col-span-2 hidden lg:block">
           <CommunityRightSidebar />
         </div>
       </div>

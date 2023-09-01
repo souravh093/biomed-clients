@@ -12,7 +12,7 @@ const CandidateBox = () => {
           </div>
           <div>
             <p className="text-blue-800 text-4xl font-semibold text-end">22</p>
-            <p>Applied Jobs</p>
+            <p>Applied Tasks</p>
           </div>
         </div>
         {/* box-2 */}
@@ -22,7 +22,7 @@ const CandidateBox = () => {
           </div>
           <div>
             <p className="text-red-700 text-4xl font-semibold text-end">9382</p>
-            <p>Job Alerts</p>
+            <p>Task Alerts</p>
           </div>
         </div>
         {/* box-3 */}
