@@ -1,46 +1,80 @@
 import React from "react";
-import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+} from 'react-icons/fa';
 
-const PreferenceItem = ({ data }) => {
+const PreferenceItem = ({ task }) => {
   const {
-    job_name,
-    company_logo,
-    job_location,
-    company_name,
-    salary,
-    company_description,
-  } = data;
+    task_image,
+    ceo_name,
+    task_title
+  } = task;
+  const [isHovered, setIsHovered] = useState(false);
+
+
 
   return (
-    <div className="dark:bg-gray-800 bg-white shadow-md rounded-lg overflow-hidden flex flex-col w-full h-[485px]">
-      <div className="p-6 flex-grow">
-        <div className="flex items-center space-x-4">
-          <img className="w-16 h-16 rounded-full" src={company_logo} alt="" />
-          <div>
-            <h2 className="text-lg font-semibold text-gray-800">{job_name}</h2>
-            <h3 className="text-sm text-gray-600">{company_name}</h3>
+    <div
+      className={`bg-gray-100 ${isHovered ? '' : 'skew-y-12 -rotate-2'}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className="bg-white shadow-md rounded-lg overflow-hidden w-100"
+      >
+        <div className="p-4 pt-10 rotate-card">
+          <img
+            className={`w-48 h-48 rounded-full mx-auto ${isHovered ? '' : 'transform'
+              }`}
+            src={task_image}
+            alt="Profile"
+          />
+          <h2 className="text-xl font-semibold text-center mt-4">{ceo_name}</h2>
+          <p className="text-gray-600 text-center mt-2">{task_title}</p>
+        </div>
+        <div className="px-6 py-4">
+          <div className="flex justify-evenly">
+            <div className="text-sm text-gray-600">
+              <span className="font-semibold">Experience</span>
+              <br />
+              <span>1.5 years</span>
+            </div>
+            <div className="text-sm text-gray-600">
+              <span className="font-semibold">Achievement</span>
+              <br />
+              <span>Top-rated evaluator</span>
+            </div>
           </div>
         </div>
-        <hr className="my-4 border-t border-gray-300" />
-        <div className="text-gray-700">
-          <div className="flex items-center mb-2">
-            <CiLocationOn className="w-4 h-4 mr-2" /> {job_location}
-          </div>
-          <div className="flex items-center">
-            <CiMoneyCheck1 className="w-4 h-4 mr-2" /> {salary} /year
+        <div className="px-6 py-4">
+          <div className="flex justify-center">
+            <a href="#" className="text-gray-500 mx-3">
+              <FaFacebook />
+            </a>
+            <a href="#" className="text-gray-500 mx-3">
+              <FaTwitter />
+            </a>
+            <a href="#" className="text-gray-500 mx-3">
+              <FaInstagram />
+            </a>
+            <a href="#" className="text-gray-500 mx-3">
+              <FaLinkedin />
+            </a>
+            <a href="#" className="text-gray-500 mx-3">
+              <FaGithub />
+            </a>
           </div>
         </div>
-        <div className="my-5 flex-grow">
-          <p>{company_description}</p>
+        <div className="px-6 py-4">
+          <button className=" bg-primary text-white font-semibold py-2 px-4 rounded-full w-full hover:bg-green-600 transition-all duration-200">
+            Message
+          </button>
         </div>
-      </div>
-      <div className="bg-[#5BBB7B] text-white py-2 text-center hover:bg-opacity-90">
-        <Link to="/details" className="flex items-center justify-center">
-          <span className="mr-1">View details</span>
-          <IoIosArrowForward className="w-4 h-4" />
-        </Link>
       </div>
     </div>
   );
