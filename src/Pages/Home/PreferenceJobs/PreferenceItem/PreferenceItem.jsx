@@ -14,7 +14,7 @@ const PreferenceItem = ({ task }) => {
       <div className="p-4 text-center">
         <div className="mt-4">
           <img
-            className="w-12 h-12 mx-auto mb-2"
+            className="w-12 h-12 mx-auto mb-2 object-cover"
             src={quoteImg}
             alt="Testimonials Icon"
           />
