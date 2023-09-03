@@ -36,7 +36,7 @@ const PreferenceJobs = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={4}
+          slidesPerView={3}
           loop={true}
           pagination={{ clickable: true }}
           modules={[Autoplay, Pagination]}
@@ -50,10 +50,7 @@ const PreferenceJobs = () => {
             },
             1024: {
               slidesPerView: 3,
-            },
-            1440: {
-              slidesPerView: 4,
-            },
+            }
           }}
         >
           {preference.map((pre, index) => (
