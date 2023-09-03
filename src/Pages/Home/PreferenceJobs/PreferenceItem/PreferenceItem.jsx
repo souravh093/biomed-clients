@@ -10,7 +10,7 @@ const PreferenceItem = ({ task }) => {
 
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden w-100">
+    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden w-100">
       <div className="p-4 text-center">
         <div className="mt-4">
           <img
