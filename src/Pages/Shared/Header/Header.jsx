@@ -6,12 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { becomeClient } from "../../../api/auth";
 import logo from "../../../assets/logo.png";
+import Dark from "../../../components/Dark/Dark";
 import ClientModal from "../../../components/Modal/ClientModal/ClientModal";
 import ProfileDropdown from "../../../components/ProfileDropdown/ProfileDropdown";
 import Container from "../../../components/Shared/Container/Container";
 import "./Header.css";
 import MenuItem from "./MenuItem/MenuItem";
-import Dark from "../../../components/Dark/Dark";
 
 const Header = () => {
   const { user, clientRole, setClientRole } = useContext(AuthContext);
@@ -24,7 +24,7 @@ const Header = () => {
     becomeClient(email).then(() => {
       setClientRole(true);
       toast.success("You are client now, Post Jobs!");
-      navigate("/dashboard/post-job");
+      navigate("/dashboard/post-task");
       closeRoleModal();
     });
   };
@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed w-full z-50 transition-all ease-in-out duration-200 ${
+      className={`fixed w-full bg-green-200 z-50 transition-all ease-in-out duration-200 ${
         scrolling ? "backdrop-blur-lg bg-opacity-80 shadow-md" : ""
       }`}
     >
@@ -65,16 +65,14 @@ const Header = () => {
                 <ul className="hidden  xl:flex items-center space-x-4 2xl:space-x-6">
                   <MenuItem name={"Home"} path={"/"} />
                   <MenuItem
-                    name={"Browse Jobs"}
+                    name={"Browse Tasks"}
                     path={"/browseJobs/browseJobs-home"}
                   />
-                  <MenuItem name={"Top Jobs"} path={"/"} />
+                  <MenuItem name={"Top Tasks"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
-                  <MenuItem name={"Contact"} path={"/contact"} />
-                  <Dark/>
+                  <MenuItem name={"Community"} path={"/community"} />
                 </ul>
               </div>
-            
             </div>
             <div className="hidden xl:flex items-center gap-10">
               {!clientRole && (
@@ -85,7 +83,7 @@ const Header = () => {
                     !user ? "cursor-not-allowed" : "cursor-pointer"
                   } text-gray-100 bg-primary px-5 py-2 rounded-3xl font-normal xl:font-medium hover:text-gray-200`}
                 >
-                  Post a Job
+                  Create a Task
                 </button>
               )}
               <div>
@@ -103,8 +101,8 @@ const Header = () => {
                   </ul>
                 )}
               </div>
+              <Dark />
             </div>
-
             {/* toggle button */}
             <button className="xl:hidden" onClick={() => setToggle(!toggle)}>
               {toggle ? (
@@ -119,7 +117,7 @@ const Header = () => {
         {toggle && (
           <div
             className={`absolute flex flex-col items-center ${
-              toggle && "transition-all ease-in-out duration-200"
+              toggle && "animated-slideIn"
             } bg-[#80faa9] w-full py-5 animate-fadeIn`}
           >
             <div className="flex justify-center items-center gap-16 xl:hidden">
@@ -132,13 +130,13 @@ const Header = () => {
                   />
                   <MenuItem name={"Top Jobs"} path={"/"} />
                   <MenuItem name={"Blog"} path={"/blogs"} />
-                  <MenuItem name={"Contact"} path={"/"} />
+                  <MenuItem name={"Community"} path={"/community"} />
                 </ul>
               </div>
             </div>
-        <div className="mb-2 md:hidden">
-        <Dark/>
-        </div>
+            <div className="mb-2 md:hidden">
+              <Dark />
+            </div>
             <div className="flex xl:hidden flex-col items-center gap-10">
               {!clientRole && (
                 <button

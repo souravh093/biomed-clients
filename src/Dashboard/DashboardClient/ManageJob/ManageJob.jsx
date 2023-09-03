@@ -1,10 +1,48 @@
-import { BsChevronDown } from "react-icons/bs";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { PiToolboxLight } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { SlLocationPin } from "react-icons/sl";
 import DashboardTitle from "../../../components/DashboardTitle/DashboardTitle";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../components/Loader/Loader";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useContext, useState } from "react";
+import Select from "react-select";
+
+
 const ManageJob = () => {
+  const [setValue] = useState(null);
+  const options = [
+    { value: "Newest", label: "Newest" },
+    { value: "Last 12 Months", label: "Last 12 Months" },
+    { value: "Last 16 Months", label: "Last 16 Months" },
+    { value: "Last 24 Months", label: "Last 24 Months" },
+    { value: "Last 5 year", label: "Last 5 year" },
+  ];
+  const selectStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "#f0f5f7",
+      borderRadius: "0.375rem",
+      borderColor: "1px solid #ced4da",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "transparent",
+      },
+    }),
+  };
+  const { user } = useContext(AuthContext);
+  const { data: manageJobsData, isLoading } = useQuery({
+    queryKey: ["manage", user?.email],
+    queryFn: async () => {
+      const res = await axios(`https://biomed-server.vercel.app/jobs`);
+      return res.data;
+    },
+  });
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className="md:p-20 p-5">
       {/* Title Section */}
@@ -15,28 +53,14 @@ const ManageJob = () => {
       <div className="md:mt-10 mt-7 dark:bg-gray-800 dark:text-white bg-white md:p-7 p-5 rounded-xl shadow-sm">
         <div className="md:flex md:justify-between">
           <p className="text-lg">My Job Listings</p>
-          <details className="dropdown mt-3 md:mt-0">
-            <summary className="m-1 btn dark:bg-gray-800 bg-[#F0F5F7] border-1 border-gray-300">
-              Short by <BsChevronDown />
-            </summary>
-            <ul className="p-2 shadow menu dropdown-content z-[1]dark: bg-gray-800 bg-[#F0F5F7] rounded-box w-52">
-              <li>
-                <a>Last 6 Months</a>
-              </li>
-              <li>
-                <a>Last 12 Months</a>
-              </li>
-              <li>
-                <a>Last 16 Months</a>
-              </li>
-              <li>
-                <a>Last 24 Months</a>
-              </li>
-              <li>
-                <a>Last 5 Years</a>
-              </li>
-            </ul>
-          </details>
+          <Select
+                className="text-sm"
+                isSearchable={false}
+                options={options}
+                defaultValue={setValue}
+                placeholder="Newest"
+                styles={selectStyles}
+              />
         </div>
         <div className="relative overflow-x-auto md:mt-8">
           <table className="w-full text-left">
@@ -45,7 +69,6 @@ const ManageJob = () => {
                 <th scope="col" className="px-6 py-3">
                   Title
                 </th>
-                n
                 <th scope="col" className="px-6 py-3">
                   Applications
                 </th>
@@ -60,23 +83,24 @@ const ManageJob = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            {manageJobsData.map((job)=>(
+              <tbody key={job._id}>
               <tr className="dark:bg-gray-800 bg-white border-b ">
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
                   <div className="flex gap-4">
-                    <img src="https://i.ibb.co/yyx3Vvb/Manage-Job.png" alt="" />
+                    <img src={job.logo} className="rounded-2xl w-14 object-cover" alt="" />
                     <div>
                       <p className="md:text-lg text-sm font-bold">
                         Software Engineer (Android), Libraries
                       </p>
                       <div className="flex  text-sm font-thin mt-2">
                         <PiToolboxLight size={20} />
-                        <p className="ms-1">Segment</p>
+                        <p className="ms-1">{job.jobType}</p>
                         <SlLocationPin size={18} className="ms-3" />
-                        <p className="ms-1">London, UK</p>
+                        <p className="ms-1">{job.city}, {job.country}</p>
                       </div>
                     </div>
                   </div>
@@ -86,7 +110,7 @@ const ManageJob = () => {
                 </td>
                 <td className="px-6 py-4 text-sm font-thin">
                   <p>October 27, 2017</p>
-                  <p>April 25, 2011</p>
+                  <p>{job.deadline}</p>
                 </td>
                 <td className="px-6 py-4 text-green-700 text-sm font-thin">
                   Active
@@ -98,18 +122,8 @@ const ManageJob = () => {
                   </div>
                 </td>
               </tr>
-              <tr className="dark:bg-gray-800 dark:text-white bg-white ">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium dark:text-white text-gray-900 whitespace-nowrap "
-                >
-                  Sample
-                </th>
-                <td className="px-6 py-4">Sample</td>
-                <td className="px-6 py-4">Sample</td>
-                <td className="px-6 py-4">Sample</td>
-              </tr>
             </tbody>
+            ))}
           </table>
         </div>
       </div>

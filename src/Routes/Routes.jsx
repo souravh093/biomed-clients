@@ -1,18 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
-import AppliedJobs from "../Dashboard/DashboardCandidate/AppliedJobs/AppliedJobs";
+import CommunityHome from "../Community/CommunityHome/CommunityHome";
+import CommunityProfileHome from "../Community/CommunityProfileHome/CommunityProfileHome";
+import AllClients from "../Dashboard/DashboardAdmin/AllClients/AllClients";
+import AllModerator from "../Dashboard/DashboardAdmin/AllModerator/AllModerator";
+import AllUsers from "../Dashboard/DashboardAdmin/AllUsers/AllUsers";
 import CandidateHome from "../Dashboard/DashboardCandidate/CandidateHome/CandidateHome";
 import EditProfile from "../Dashboard/DashboardCandidate/MyProfile/EditProfile/EditProfile";
 import MyProfile from "../Dashboard/DashboardCandidate/MyProfile/MyProfile";
-import ShortlistedJobs from "../Dashboard/DashboardCandidate/ShortlistedJobs/ShortlistedJobs";
-import UploadResume from "../Dashboard/DashboardCandidate/UploadResume/UploadResume";
+import ShortlistedTasks from "../Dashboard/DashboardCandidate/ShortlistedTasks/ShortlistedTasks";
 import AllApplications from "../Dashboard/DashboardClient/AllApplications/AllApplications";
 import ClientHome from "../Dashboard/DashboardClient/ClientHome/ClientHome";
 import ClientMessage from "../Dashboard/DashboardClient/ClientMessage/ClientMessage";
-import CompanyProfile from "../Dashboard/DashboardClient/CompanyProfile/CompanyProfile";
-import CompanyView from "../Dashboard/DashboardClient/CompanyProfile/CompanyView/CompanyView";
-import ManageJob from "../Dashboard/DashboardClient/ManageJob/ManageJob";
-import PostJob from "../Dashboard/DashboardClient/PostJob/PostJob";
-import ShortlistedResumes from "../Dashboard/DashboardClient/ShortlistedResumes/ShortlistedResumes";
+import PostTask from "../Dashboard/DashboardClient/PostTask/PostTask";
+import Community from "../Layout/Community";
+import CommunityProfile from "../Layout/CommunityProfile";
 import Dashboard from "../Layout/Dashboard";
 import Root from "../Layout/Root";
 import BlogDetails from "../Pages/Blogs/BlogDetails/BlogDetails";
@@ -27,6 +28,13 @@ import Login from "../Pages/Login/Login/Login";
 import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
+import PrivateRoute from "./PrivateRoute";
+import PostBlog from "../Dashboard/DashboardAdmin/PostBlog/PostBlog";
+import SocialMedia from "../Dashboard/DashboardAdmin/SocialMedia/SocialMedia";
+import AppliedTasks from "../Dashboard/DashboardCandidate/AppliedTasks/AppliedTasks";
+import InstructorProfile from "../Dashboard/DashboardClient/InstructorProfile/InstructorProfile";
+import InstructorView from "../Dashboard/DashboardClient/InstructorProfile/InstructorView/InstructorView";
+import ManageTask from "../Dashboard/DashboardClient/ManageTask/ManageTask";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +54,7 @@ const router = createBrowserRouter([
         path: "/blogDetails/:id",
         element: <BlogDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/blogs/${params.id}`),
       },
 
       {
@@ -63,10 +71,10 @@ const router = createBrowserRouter([
         path: "/jobsDatail/:id",
         element: <BrowseJobsDetails />,
         loader: ({ params }) =>
-          fetch(`https://biomed-server.vercel.app/jobs/${params.id}`),
+          fetch(`https://biomed-server.vercel.app/singlejob/${params.id}`),
       },
       {
-        path: "/",
+        path: "/terms",
         element: <Terms></Terms>,
       },
       {
@@ -104,40 +112,33 @@ const router = createBrowserRouter([
         element: <MyProfile />,
       },
       {
-        path: "/dashboard/applied-jobs",
-        element: <AppliedJobs />,
+        path: "/dashboard/applied-tasks",
+        element: <AppliedTasks></AppliedTasks>,
+      },
+  
+      {
+        path: "/dashboard/post-task",
+        element: <PostTask />,
       },
       {
-        path: "/dashboard/upload-resume",
-        element: <UploadResume />,
+        path: "/dashboard/instructor-profile",
+        element: <InstructorProfile />,
       },
       {
-        path: "/dashboard/post-job",
-        element: <PostJob />,
+        path: "/dashboard/instructor-view",
+        element: <InstructorView />,
       },
       {
-        path: "/dashboard/company-profile",
-        element: <CompanyProfile />,
+        path: "/dashboard/shortlisted-tasks",
+        element: <ShortlistedTasks />,
       },
       {
-        path: "/dashboard/company-view",
-        element: <CompanyView />,
-      },
-      {
-        path: "/dashboard/shortlisted-jobs",
-        element: <ShortlistedJobs />,
-      },
-      {
-        path: "/dashboard/manage-jobs",
-        element: <ManageJob />,
+        path: "/dashboard/manage-task",
+        element: <ManageTask />,
       },
       {
         path: "/dashboard/all-applications",
         element: <AllApplications />,
-      },
-      {
-        path: "/dashboard/shortlisted-resumes",
-        element: <ShortlistedResumes />,
       },
       {
         path: "/dashboard/editProfile",
@@ -146,6 +147,54 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/client-message",
         element: <ClientMessage />,
+      },
+
+      // dashboard admin
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/all-client",
+        element: <AllClients />,
+      },
+      {
+        path: "/dashboard/all-moderator",
+        element: <AllModerator />,
+      },
+      {
+        path: "/dashboard/social-media",
+        element: <SocialMedia />,
+      },
+      {
+        path: "/dashboard/post-blog",
+        element: <PostBlog/>,
+      }
+    ],
+  },
+  // Community Routes
+  {
+    path: "/community",
+    element: (
+      <PrivateRoute>
+        <Community />
+      </PrivateRoute>
+
+    ),
+    children: [
+      {
+        path: "/community",
+        element: <CommunityHome />,
+      },
+    ],
+  },
+  {
+    path: "/community/community-profile",
+    element: <CommunityProfile />,
+    children: [
+      {
+        path: "/community/community-profile",
+        element: <CommunityProfileHome />
       },
     ],
   },

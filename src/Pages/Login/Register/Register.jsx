@@ -6,7 +6,6 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { saveUser } from "../../../api/auth";
-import loginImg from "../../../assets/login/login.jpg";
 
 const imageToken = import.meta.env.VITE_UPLOAD_TOKEN;
 
@@ -54,11 +53,22 @@ const Register = () => {
     });
   };
 
+  const gradientBg = {
+    backgroundColor: "rgb(224, 231, 255)",
+    backgroundImage:
+      "radial-gradient(at 54% 54%, rgb(229, 229, 229) 0, transparent 70%), " +
+      "radial-gradient(at 6% 91%, rgb(236, 252, 203) 0, transparent 67%), " +
+      "radial-gradient(at 3% 64%, rgb(194, 65, 12) 0, transparent 45%), " +
+      "radial-gradient(at 69% 78%, rgb(30, 64, 175) 0, transparent 59%), " +
+      "radial-gradient(at 17% 88%, rgb(212, 212, 212) 0, transparent 14%), " +
+      "radial-gradient(at 91% 95%, rgb(244, 63, 94) 0, transparent 62%)",
+  };
+
   // TODO google authentication
 
   return (
     <div
-      style={{ backgroundImage: `url(${loginImg})` }}
+      style={gradientBg}
       className="lg:min-h-screen h-screen flex items-center justify-center bg-no-repeat bg-cover lg:bg-contain"
     >
       <div className="dark:bg-gray-800 dark:text-white  bg-gray-50 shadow-md px-6 py-8 lg:w-1/3 xl:w-1/4 rounded-md">
