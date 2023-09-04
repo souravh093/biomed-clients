@@ -35,6 +35,10 @@ import Register from "../Pages/Login/Register/Register";
 import RegisterClient from "../Pages/LoginClient/RegisterClient/RegisterClient";
 import Terms from "../components/Terms/Terms";
 import PrivateRoute from "./PrivateRoute";
+import TaskOverview from "../Dashboard/DashboardCandidate/TaskOverview/TaskOverview";
+import TaskDetails from "../Dashboard/DashboardCandidate/TaskDetails/TaskDetails";
+import TaskSubmission from "../Dashboard/DashboardCandidate/TaskSubmission/TaskSubmission";
+import TaskHistory from "../Dashboard/DashboardCandidate/TaskHistory/TaskHistory";
 
 const router = createBrowserRouter([
   {
@@ -110,6 +114,22 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-profile",
         element: <MyProfile />,
+      },
+      {
+        path: "/dashboard/task-overview",
+        element: <TaskOverview />,
+      },
+      {
+        path: "/dashboard/task-details",
+        element: <TaskDetails />,
+      },
+      {
+        path: "/dashboard/task-submission",
+        element: <TaskSubmission />,
+      },
+      {
+        path: "/dashboard/task-history",
+        element: <TaskHistory />,
       },
       {
         path: "/dashboard/applied-tasks",
